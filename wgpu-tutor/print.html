@@ -149,7 +149,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="还没写呢"><a class="header" href="#还没写呢">还没写呢</a></h1>
+                        <h1 id="引言"><a class="header" href="#引言">引言</a></h1>
+<blockquote>
+<p>在遥远的梦想之地，让 Rust 有一个安全的，不使用<code>unsafe</code>的图形库是很多人长远的理想，无数的前辈们前仆后继<a href="https://github.com/gfx-rs/gfx/tree/pre-ll">gfx</a>，<a href="https://github.com/glium/glium">glium</a>，<a href="https://github.com/vulkano-rs/vulkano">vulkano</a>……一时间，仿佛诸神黄昏。然，或许是这个问题对人类而言太过困难，或许是神明的旨意，英雄们或落幕，或仍有不足……漫漫长夜，笼罩着Rust图形学库的未来。长夜终尽！曙光将至！救世主已经降临！让我们跪服于其神威，高呼祂的姓名！——<a href="https://github.com/gfx-rs/wgpu">WGPU</a>！！！</p>
+<p align="right">——佚名</p>
+</blockquote>
+<blockquote>
+<p>放你妈的屁</p>
+<p align="right">——switefaster</p>
+</blockquote>
+<p>蚌埠住了。</p>
+<hr />
+<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发~~然而后者现在也进入维护模式了，因为WGPU~~，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦~~蛋疼~~，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<del>GL，狗都不用</del></small></p>
+<p>WGPU 可能不是这些库中性能最高的，却绝对称得上是最易用的，也是笔者(下文中统称&quot;我&quot;)最喜欢的图形库。</p>
+<p>在这篇教程中，我会尽量用通俗易懂的语言向读者(下文中或许会简称&quot;你&quot;)介绍WGPU的基本使用。鉴于图形库的性质，我会相对详细地介绍其中涉及的数学知识以及图形库工作的方式，并且会提及到其他图形库中的写法。图形学初学者和其他图形库用户过来打酱油都可以放心食用。</p>
+<blockquote>
+<p><strong>警告：</strong> 切忌将本教程当作一本正经的教程，否则后果自负。文中笔者可能会使用模糊不清甚至粗俗的语言，若有不适，请适度阅读。<del>我是不是警告晚了？</del></p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
 
                     </main>
