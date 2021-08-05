@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+                <link rel="stylesheet" href="extra-style.css">
         
                 <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -166,7 +167,7 @@
 </blockquote>
 <p>蚌埠住了。</p>
 <hr />
-<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发~~然而后者现在也进入维护模式了，因为WGPU~~，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦~~蛋疼~~，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<del>GL，狗都不用</del></small></p>
+<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发<mask>然而后者现在也进入维护模式了，因为WGPU</mask>，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦<mask>蛋疼</mask>，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<mask>GL，狗都不用</mask></small></p>
 <p>WGPU 可能不是这些库中性能最高的，却绝对称得上是最易用的，也是笔者(下文中统称&quot;我&quot;)最喜欢的图形库。</p>
 <p>在这篇教程中，我会尽量用通俗易懂的语言向读者(下文中或许会简称&quot;你&quot;)介绍WGPU的基本使用。鉴于图形库的性质，我会相对详细地介绍其中涉及的数学知识以及图形库工作的方式，并且会提及到其他图形库中的写法。图形学初学者和其他图形库用户过来打酱油都可以放心食用。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="程序窗口和循环"><a class="header" href="#程序窗口和循环">程序，窗口和循环</a></h1>
@@ -195,7 +196,7 @@ winit = &quot;0.25.0&quot;
 <p>没错，只有短短三行，我们就完成了窗口初始化，念及此我不禁感叹winit的伟大。</p>
 <p>还是要解释一下上面的代码的，winit中的类型<code>winit::event_loop::EventLoop</code>是winit中用来传递窗口事件的类型，本身除了<code>EventLoop::run</code>以外没有什么特别值得关注的函数。值得注意的是<code>EventLoop</code>可以传入用户自定义的事件，详情请阅读<a href="https://docs.rs/winit/0.25.0/winit/event_loop/struct.EventLoop.html">EventLoop的文档</a>。</p>
 <p><code>winit::window::Window</code>便是窗口的主体了，主要负责保管窗口句柄，窗口大小，光标位置等的数据，具体可以设置以及获取的数据请参见<a href="https://docs.rs/winit/0.25.0/winit/window/struct.Window.html">Window的文档</a>和<a href="https://docs.rs/winit/0.25.0/winit/window/struct.WindowBuilder.html">WindowBuilder的文档</a>。值得一提的是<code>Window</code>实现了<code>HasRawWindowHandle</code>，所以可以直接将<code>&amp;Window</code>作为各类图形库的窗口句柄输入。</p>
-<p><code>EventLoop::run</code>接受<code>F: 'static + FnMut(Event&lt;'_, T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;, &amp;mut ControlFlow)</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是可以<code>Deref</code>出<code>&amp;EventLoop</code>的一个包装，主要方便用户在事件处理过程中创建新的窗口，而第三个参数负责控制窗口状态，用法例如<code>*control_flow = ControlFlow::Exit</code>。在一次回调结束后，winit会根据ControlFlow的值改变窗口的状态，比如关闭窗口等。<del>一切都是borrow checker的选择</del></p>
+<p><code>EventLoop::run</code>接受<code>F: 'static + FnMut(Event&lt;'_, T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;, &amp;mut ControlFlow)</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是可以<code>Deref</code>出<code>&amp;EventLoop</code>的一个包装，主要方便用户在事件处理过程中创建新的窗口，而第三个参数负责控制窗口状态，用法例如<code>*control_flow = ControlFlow::Exit</code>。在一次回调结束后，winit会根据ControlFlow的值改变窗口的状态，比如关闭窗口等。<mask>一切都是borrow checker的选择</mask></p>
 <p>下一节，我们将会介绍如何处理窗口发送的事件，并且确定程序循环的主体。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="突发事件"><a class="header" href="#突发事件">突发事件</a></h1>
 
@@ -233,6 +234,7 @@ winit = &quot;0.25.0&quot;
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+                <script type="text/javascript" src="tag-replacer.js"></script>
         
                         <script type="text/javascript">
         window.addEventListener('load', function() {
