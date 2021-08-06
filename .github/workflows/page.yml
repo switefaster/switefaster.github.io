@@ -22,3 +22,4 @@ jobs:
           publish_dir: ./
           exclude_assets: '.github'
           publish_branch: main
+          keep_files: true
