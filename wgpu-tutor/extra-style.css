@@ -1,9 +1,0 @@
-.mask {
-    background-color: #252525;
-    color: #252525;
-    transition: color 0.5s;
-}
-
-.mask:hover {
-    color: #ffffff;
-}
