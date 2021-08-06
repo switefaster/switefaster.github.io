@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>先前工作总结 | Switefaster&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本篇含有以下可能会引起您不适的要素：  Rust 吹 OpenGL 黑 C++ 黑  若有不适应者请自行回避，请不要因为这种事造成不必要的争论。不过我说话也没那么绝对，如果不是真的不愿意看到我对这几个东西的倾向那还是留下看吧。  因为之前没写记录，所以在这简单总结一下之前的成果。 之前写图形的东西基本一直在用 C++ 和 DirectX。其实 DirectX 的设计挺好的，OOP 模式的设计用起来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="先前工作总结">
+<meta property="og:url" content="https://switefaster.github.io/blog/2020/06/13/first-summary/index.html">
+<meta property="og:site_name" content="Switefaster&#39;s Blog">
+<meta property="og:description" content="本篇含有以下可能会引起您不适的要素：  Rust 吹 OpenGL 黑 C++ 黑  若有不适应者请自行回避，请不要因为这种事造成不必要的争论。不过我说话也没那么绝对，如果不是真的不愿意看到我对这几个东西的倾向那还是留下看吧。  因为之前没写记录，所以在这简单总结一下之前的成果。 之前写图形的东西基本一直在用 C++ 和 DirectX。其实 DirectX 的设计挺好的，OOP 模式的设计用起来">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-13T09:17:01.000Z">
+<meta property="article:modified_time" content="2021-08-06T03:34:48.177Z">
+<meta property="article:author" content="switefaster">
+<meta property="article:tag" content="CG">
+<meta property="article:tag" content="GameDev">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Switefaster&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Switefaster&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">About his story with Rust&amp;Game</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://switefaster.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-first-summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/06/13/first-summary/" class="article-date">
+  <time datetime="2020-06-13T09:17:01.000Z" itemprop="datePublished">2020-06-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      先前工作总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇含有以下可能会引起您不适的要素：</p>
+<ul>
+<li>Rust 吹</li>
+<li>OpenGL 黑</li>
+<li>C++ 黑</li>
+</ul>
+<p>若有不适应者请自行回避，请不要因为这种事造成不必要的争论。<del>不过我说话也没那么绝对，如果不是真的不愿意看到我对这几个东西的倾向那还是留下看吧。</del></p>
+<hr>
+<p>因为之前没写记录，所以在这简单总结一下之前的成果。</p>
+<p>之前写图形的东西基本一直在用 C++ 和 DirectX。其实 DirectX 的设计挺好的，OOP 模式的设计用起来相当舒服，比 GL 的状态机高到不知道哪里去了。但是在编写的过程中，无论是 DX 本身还是 C++ 的各种特性可能造成的内存安全问题非常扎心，写起来总是感觉提心吊胆。再者 C++ 因为种种原因让人觉得非常笨重，有些功能也相当落后，而且编译起来相当的慢，编译错误也像天书，总之体验相当差。每次改点什么都要和 Linker 斗智斗勇，实属心累。于是那个坑就被我打入冷宫，碰都不想碰。</p>
+<p>然后，救星出现了——Rust</p>
+<p>Rust 如果做到了他宣称的那样，那么就能同时兼顾安全和高效，这显然是非常诱人的条件。实话实说，我其实一开始并不相信，将其看作一门玩具语言。其实我先前也碰过 Rust，不过由于缺乏动力所以没有学下去。这一回，因为漫长的寒假，我去正式看了一遍 <a href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener">The Book</a>。然后我发觉，Rust 好像确实做到了如它声称的那样，高效而安全。而且由于是新生语言，没有什么包袱，无论是从语法还是到理念都相当轻盈而现代，我很喜欢。<del>它那种不和当今继承多态的天下同流合污，反抗到底的精神也深得我心。</del></p>
+<p>在这里先澄清一点。众所周知，Rust 的大部分安全保障都在编译期完成，而 Rust 也为了保证安全引入了 Ownership 机制。这导致了 Rust 非常容易造成很多意想不到的编译错误，也会导致一些设计无法使用。乍一听非常吓人，对吧？其实还好。首先，Ownership 机制这种东西其实就那么几个简单的规则，通常按着习惯来写也不会出问题；就算出问题了，Rust 的编译器是非常贴心的，会详细指出是哪里出了什么问题(比如 immutable borrow 和 mutable borrow 发生的位置)，和可以怎么样解决。一开始斗智斗勇多了以后，后面慢慢问题会越来越少。当然，它也有缺点。比如因为去除了继承多态所以能沿用 OOP 的设计模式相当有限，而且因为要靠泛型实现多态所以有些泛型边界会看着死长，不过这些要么有替代方案要么不是什么大问题，所以总体而言体验还是相当好的。</p>
+<p>回到正题，学完 Rust 以后，我突然想到，Rust 的这些资源会不会相当不成熟？这个问题是致命的，因为首先要用图形库必须需要 FFI，而且全是 unsafe，以我个人的能力难以解决。其次很多加载之类的库如果要自己写也是非常致命的。可以发现 crates.io 上面有专门的图形库分类和游戏引擎分类，但是这些零散的库要找到合适的还是相当劳累的。这导致了我先前只知道满是 unsafe 的 <a href="https://crates.io/crates/gfx-hal/" target="_blank" rel="noopener">gfx-hal</a>，而 gfx_prell 又非常不对我的胃口，相当头痛。这是候我发现了<a href="https://arewegameyet.com/" target="_blank" rel="noopener">这个网站</a>。这个网站关注 Rust 的游戏开发产业，并收集了游戏常用的各种库。</p>
+<p>我个人喜欢和相对底层的东西打交道，所以在经过多此碰壁后，我发现了这个图形库非常和我胃口——<a href="https://crates.io/crates/vulkano" target="_blank" rel="noopener">Vulkano</a>。这是 Vulkan 的 idiomatic wrapper，也就是说它保证安全，而且它提供的一些设计我非常喜欢，以后估计就用它了。</p>
+<p>大概就先讲到这里，最后宣传一下我为了试验开的<a href="https://github.com/switefaster/unnamed_simulator/" target="_blank" rel="noopener">仓库</a>。<del>可以看到里面有很多我和 Github Actions 对法的垃圾 commit</del></p>
+<p>附上其 dependencies：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">winit</span> = <span class="string">"0.22.1"</span> <span class="comment"># 窗口</span></span><br><span class="line"><span class="attr">vulkano-win</span> = <span class="string">"0.19.0"</span> <span class="comment"># Vulkano-winit 转接用</span></span><br><span class="line"><span class="attr">vulkano</span> = <span class="string">"0.19.0"</span> <span class="comment"># 图形</span></span><br><span class="line"><span class="attr">vulkano-shaders</span> = <span class="string">"0.19.0"</span> <span class="comment"># Vulkano 配套的着色器宏</span></span><br><span class="line"><span class="attr">serde</span> = &#123; version = <span class="string">"1.0.106"</span>, features = [<span class="string">"derive"</span>] &#125; <span class="comment"># 序列化反序列化(不会吧不会吧不会真的有人不知道 serde 吧)</span></span><br><span class="line"><span class="attr">nalgebra</span> = <span class="string">"0.21.0"</span> <span class="comment"># 数学库</span></span><br><span class="line"><span class="attr">ncollide3d</span> = <span class="string">"0.23.0"</span> <span class="comment"># 碰撞物理</span></span><br><span class="line"><span class="attr">nphysics3d</span> = <span class="string">"0.15.0"</span> <span class="comment"># 物理</span></span><br><span class="line"><span class="attr">wavefront_obj</span> = <span class="string">"7.0.0"</span> <span class="comment"># OBJ 模型加载</span></span><br><span class="line"><span class="attr">collada</span> = <span class="string">"0.13.0"</span> <span class="comment"># Collada 模型加载</span></span><br><span class="line"><span class="attr">tokio</span> = &#123; version = <span class="string">"0.2"</span>, features = [<span class="string">"full"</span>] &#125; <span class="comment"># 网络</span></span><br><span class="line"><span class="attr">futures</span> = <span class="string">"0.3"</span> <span class="comment"># 异步实现</span></span><br><span class="line"><span class="attr">cpal</span> = <span class="string">"0.11.0"</span> <span class="comment"># 声音</span></span><br><span class="line"><span class="attr">gilrs</span> = <span class="string">"0.7.4"</span> <span class="comment"># 设备输入</span></span><br><span class="line"><span class="attr">specs</span> = <span class="string">"0.16.1"</span> <span class="comment"># ECS</span></span><br><span class="line"><span class="attr">assets_manager</span> = <span class="string">"0.2.2"</span> <span class="comment"># 资源管理</span></span><br></pre></td></tr></table></figure>
+
+<p>就是这样，后会有期，mi amigo。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://switefaster.github.io/blog/2020/06/13/first-summary/" data-id="ckrzsoi6l0001a1os2rpef9xg" class="article-share-link">Share</a>
+      
+        <a href="https://switefaster.github.io/blog/2020/06/13/first-summary/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/CG/" rel="tag">CG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GameDev/" rel="tag">GameDev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Rust/" rel="tag">Rust</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/06/24/structure-intro/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          项目结构介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/06/13/diary-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">0 号日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CG/" rel="tag">CG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/GameDev/" rel="tag">GameDev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Rust/" rel="tag">Rust</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/CG/" style="font-size: 10px;">CG</a> <a href="/blog/tags/GameDev/" style="font-size: 10px;">GameDev</a> <a href="/blog/tags/Rust/" style="font-size: 10px;">Rust</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">六月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/08/04/recent-action/">爷回来辣！</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/08/08/summary-1/">项目进度报告</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/06/24/structure-intro/">项目结构介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/06/13/first-summary/">先前工作总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/06/13/diary-0/">0 号日志</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 switefaster<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'switefaster-blog';
+  
+  var disqus_url = 'https://switefaster.github.io/blog/2020/06/13/first-summary/';
+  
+  var disqus_config = function () {
+    this.page.url = 'https://switefaster.github.io/blog/2020/06/13/first-summary/';
+    this.page.identifier = '/2020/06/13/first-summary/';
+  };
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
