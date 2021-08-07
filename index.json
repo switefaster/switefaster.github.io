@@ -6,7 +6,7 @@
             "description": "瞎写的WGPU教程，拿来下饭最佳",
             "tags": [
                 "教程",
-                "书籍"
+                "施工"
             ],
             "build": {
                 "owner": "switefaster",
@@ -45,12 +45,114 @@
                     "url": "https://switefaster.github.io/blog/"
                 }
             ]
+        },
+        {
+            "id": 2,
+            "title": "Nederite",
+            "description": "在写的游戏引擎或者游戏，不是很确定。",
+            "tags": [
+                "游戏",
+                "施工"
+            ],
+            "build": {
+                "owner": "switefaster",
+                "repository": "nederite"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/switefaster/nederite"
+                },
+                {
+                    "icon": "icon-park:ad-product",
+                    "url": "https://github.com/switefaster/nederite/releases"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "N2-Station",
+            "description": "N2 直播站后端，但是SBCK就是不用",
+            "tags": [
+                "网站",
+                "后端"
+            ],
+            "build": {
+                "owner": "M1k0t0",
+                "repository": "N2-Station"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/M1k0t0/N2-Station"
+                },
+                {
+                    "icon": "icon-park:ad-product",
+                    "url": "https://github.com/M1k0t0/N2-Station/releases"
+                },
+                {
+                    "icon": "whh:website",
+                    "url": "https://n2station.live"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Multi Pong",
+            "description": "Amethyst 写的多人对战 Pong，但是不爽所以弃坑了",
+            "tags": [
+                "游戏",
+                "弃坑"
+            ],
+            "build": {
+                "owner": "switefaster",
+                "repository": "multi_pong"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/switefaster/multi_pong"
+                },
+                {
+                    "icon": "icon-park:ad-product",
+                    "url": "https://github.com/switefaster/multi_pong/releases"
+                }
+            ]
+        }
+    ],
+    "friend_cards": [
+        {
+            "id": 0,
+            "title": "香肠的生物群系教程",
+            "description": "香肠倾注心血之作，力荐",
+            "tags": [
+                "教程",
+                "书籍"
+            ],
+            "build": {
+                "owner": "Yaossg",
+                "repository": "biome"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/Yaossg/biome"
+                },
+                {
+                    "icon": "akar-icons:book",
+                    "url": "https://yaossg.github.io/biome/"
+                }
+            ]
         }
     ],
     "tag_icons": {
         "教程": "fa-solid:chalkboard-teacher",
         "书籍": "codicon:book",
         "博客": "carbon:blog",
-        "网站": "whh:website"
+        "网站": "whh:website",
+        "施工": "ion:construct-outline",
+        "游戏": "akar-icons:game-controller",
+        "后端": "bx:bxs-server",
+        "弃坑": "akar-icons:stop"
     }
 }
