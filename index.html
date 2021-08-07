@@ -12,225 +12,242 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <!-- Production -->
+    <!-- <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.prod.js"></script> -->
+    <!-- Development -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <title>Switefaster 的主页</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
-        <div class="container-fluid d-flex justify-content-between">
+        <div class="container-fluid d-flex">
             <a class="navbar-brand text-muted" href="#">
-                <img src="https://avatars.githubusercontent.com/switefaster" alt="logo" style="width: 40px;">
-                switefaster 的主页索引
+                <img class="navbar-brand" src="https://avatars.githubusercontent.com/switefaster" alt="logo"
+                    style="width: 40px;">
+                switefaster 的主页
             </a>
-            <p class="navbar-text text-center">这是个索引哦，选一个你想看的内容吧</p>
-            <ul class="navbar-nav">
-                <li class="navbar-item">
-                    <a class="nav-link" href="https://github.com/switefaster">
-                        <span class="iconify" data-icon="logos:github-icon" data-width="30"></span>
-                    </a>
-                </li>
-            </ul>
+            <p class="navbar-text text-center mx-auto">这是个索引哦，选一个你想看的内容吧</p>
+            <form class="d-flex justify-content-end">
+                <input class="form-control me-2" type="search" placeholder="搜点什么" aria-label="search"
+                    id="filter-content">
+                <button class="btn btn-outline-secondary" type="button" id="filter-search">搜&nbsp;索</button>
+            </form>
         </div>
     </nav>
-    <div class="container-fluid" style="margin-top: 5mm;">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card text-center" style="width: 18rem">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col">
-                                <span class="iconify" data-icon="codicon:book"></span>书籍
-                            </div>
-                            <div class="col">
-                                <span class="iconify" data-icon="fa-solid:chalkboard-teacher"></span>教程
-                            </div>
-                            <div class="col build-state" repo="wgpu-tutor"></div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-muted display-6">某不正经的WGPU教程</h5>
-                        <p class="card-text text-muted text-bold">瞎写的WGPU教程，拿来下饭最佳</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item">
-                                        <a href="https://github.com/switefaster/wgpu-tutor">
-                                            <span class="iconify" data-icon="logos:github-icon" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="https://switefaster.github.io/wgpu-tutor/">
-                                            <span class="iconify" data-icon="akar-icons:book" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center" style="width: 18rem">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col">
-                                <span class="iconify" data-icon="carbon:blog"></span>博客
-                            </div>
-                            <div class="col">
-                                <span class="iconify" data-icon="whh:website"></span>网站
-                            </div>
-                            <div class="col build-state" repo="blog-hexo"></div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-muted display-6">Switefaster的博客</h5>
-                        <p class="card-text text-muted text-bold">定期不更新</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item">
-                                        <a href="https://github.com/switefaster/blog-hexo">
-                                            <span class="iconify" data-icon="logos:github-icon" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="https://switefaster.github.io/blog/">
-                                            <span class="iconify" data-icon="akar-icons:link" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center" style="width: 18rem">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col">
-                                <span class="iconify" data-icon="bx:bxs-file-html"></span>网页
-                            </div>
-                            <div class="col">
-                                <span class="iconify" data-icon="mdi:source-repository-multiple"></span>仓库
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-muted display-6">switefaster.github.io</h5>
-                        <p class="card-text text-muted text-bold">如蜜传如蜜</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item">
-                                        <a href="https://github.com/switefaster/switefaster.github.io">
-                                            <span class="iconify" data-icon="logos:github-icon" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="https://github.com/switefaster/switefaster.github.io/tree/index">
-                                            <span class="iconify" data-icon="entypo:flow-branch" data-width="30"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid" style="margin-top: 5mm;" id="main-frame">
+        <div v-for="sub_cards in groupCards" class="row">
+            <content-card v-for="card in sub_cards" v-bind:card="card" v-bind:key="card.id"></content-card>
         </div>
     </div>
 
     <script>
-        let done = `
-                            <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
-                                    class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                                    title="构建完成了喵">
-                                    <path
-                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                                </svg>
-                            </div>
-                        `;
-        let queued = `
-                            <div class="col">
-                                <div class="spinner-grow text-warning spinner-grow-sm" role="status"
-                                    data-toggle="tooltip" data-placement="top" title="有构建任务在队列中喵~">
-                                </div>
-                            </div>
-                        `;
-        let running = `
-                            <div class="col">
-                                <div class="spinner-border text-warning spinner-border-sm" role="status"
-                                    data-toggle="tooltip" data-placement="top" title="正在构建喵~">
-                                </div>
-                            </div>
-                        `;
-        let failed = `
-                            <div class="col">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
-                                    class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                                    title="构建失败了QWQ">
-                                    <path
-                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                            </div>
-                        `;
-
-        let error = `
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey"
-                                class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                                title="获取失败了QWQ">
-                                <path
-                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </div>
-                        `;
-
-        $(document).ready((_) => {
-            $(".build-state").each((_, elem) => {
-                let repository = elem.getAttribute("repo");
-                $.ajax(
-                    {
-                        async: false,
-                        url: `https://api.github.com/repos/switefaster/${repository}/actions/runs`,
-                        method: "GET",
-                        headers: {
-                            "Accept": "application/vnd.github.v3+json"
-                        },
-                        success: (data, status, xhr) => {
-                            let run = data.workflow_runs[0];
-                            if (run.status === "queued") {
-                                elem.replaceWith($(queued)[0]);
-                            } else if (run.status === "completed") {
-                                if (run.conclusion === "success") {
-                                    elem.replaceWith($(done)[0]);
-                                } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
-                                    elem.replaceWith($(failed)[0]);
-                                }
-                            } else if (run.status === "in_progress") {
-                                elem.replaceWith($(running)[0]);
-                            }
-
-                            $('[data-toggle="tooltip"]').tooltip()
-                        },
-                        error: (xhr, status, err) => {
-                            elem.replaceWith($(error)[0]);
-
-                            $('[data-toggle="tooltip"]').tooltip()
-                        },
+        $.getJSON("index.json", (index_data, status, xhr) => {
+            let vue = Vue.createApp({
+                data() {
+                    return { index: index_data, filter: '' };
+                },
+                computed: {
+                    groupCards() {
+                        return _.chunk(this.filteredCards, 4);
+                    },
+                    filteredCards() {
+                        return _.filter(this.index.cards, ((self) => { return (card) => { return _.includes(card.title, self.filter) } })(this));
                     }
-                )
-            })
-        })
+                },
+                mounted() {
+                    this.$nextTick(function () {
+                        $("#filter-search").click((event) => {
+                            this.filter = $("#filter-content").val();
+                        });
+                        $('[data-toggle="tooltip"]').tooltip()
+                        $(".build-state").each((_, elem) => {
+                            let repository = elem.getAttribute("repo");
+                            let card_id = elem.getAttribute("card-id");
+                            $.ajax(
+                                {
+                                    async: false,
+                                    url: `https://api.github.com/repos/${repository}/actions/runs`,
+                                    method: "GET",
+                                    headers: {
+                                        "Accept": "application/vnd.github.v3+json"
+                                    },
+                                    success: (data, status, xhr) => {
+                                        let run = data.workflow_runs[0];
+                                        if (run.status === "queued") {
+                                            this.index.cards[card_id].build.state = "queued";
+                                        } else if (run.status === "completed") {
+                                            if (run.conclusion === "success") {
+                                                this.index.cards[card_id].build.state = "success";
+                                            } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
+                                                this.index.cards[card_id].build.state = "failed";
+                                            }
+                                        } else if (run.status === "in_progress") {
+                                            this.index.cards[card_id].build.state = "running";
+                                        }
+                                    },
+                                    error: (xhr, status, err) => {
+                                        this.index.cards[card_id].build.state = "error";
+                                    },
+                                }
+                            )
+
+                            setInterval((function (self) {
+                                return () => {
+                                    $.ajax(
+                                        {
+                                            async: true,
+                                            url: `https://api.github.com/repos/${repository}/actions/runs`,
+                                            method: "GET",
+                                            headers: {
+                                                "Accept": "application/vnd.github.v3+json"
+                                            },
+                                            success: (data, status, xhr) => {
+                                                let run = data.workflow_runs[0];
+                                                if (run.status === "queued") {
+                                                    self.index.cards[card_id].build.state = "queued";
+                                                } else if (run.status === "completed") {
+                                                    if (run.conclusion === "success") {
+                                                        self.index.cards[card_id].build.state = "success";
+                                                    } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
+                                                        self.index.cards[card_id].build.state = "failed";
+                                                    }
+                                                } else if (run.status === "in_progress") {
+                                                    self.index.cards[card_id].build.state = "running";
+                                                }
+                                            },
+                                            error: (xhr, status, err) => {
+                                                self.index.cards[card_id].build.state = "error";
+                                            },
+                                        }
+                                    )
+                                }
+                            })(this), 30000);
+                        })
+                    })
+                }
+            });
+
+            vue.component('content-card', {
+                props: ['card'],
+                template: `
+            <div class="col-sm-3">
+                <div class="card text-center" style="width: 18rem">
+                    <div class="card-header">
+                        <div class="row">
+                            <div v-for="tag in card.tags" class="col">
+                                <span class="iconify" v-bind:data-icon="$root.index.tag_icons[tag]"></span>{{ tag }}
+                            </div>
+                            <div v-if="'build' in card" class="col build-state" v-bind:repo="card.build.owner + '/' + card.build.repository" v-bind:card-id="card.id">
+                                <build-success v-show="card.build.state === 'success'"></build-success>
+                                <build-queued v-show="card.build.state === 'queued'"></build-queued>
+                                <build-running v-show="card.build.state === 'running'"></build-running>
+                                <build-failed v-show="card.build.state === 'failed'"></build-failed>
+                                <fetch-error v-show="card.build.state === 'error'"></fetch-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-muted display-6">{{ card.title }}</h5>
+                        <p class="card-text text-muted text-bold">{{ card.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group list-group-horizontal">
+                                    <li v-for="link in card.links" class="list-group-item">
+                                        <a v-bind:href="link.url">
+                                            <span class="iconify" v-bind:data-icon="link.icon" data-width="30"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+            });
+
+            vue.component('build-success', {
+                template:
+                    `
+                <div class="col">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
+                        class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                        title="构建完成了喵">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                </div>
+            `
+            });
+            vue.component('build-queued', {
+                template:
+                    `
+                    <div class="col">
+                        <div class="spinner-grow text-warning spinner-grow-sm" role="status"
+                            data-toggle="tooltip" data-placement="top" title="有构建任务在队列中喵~">
+                        </div>
+                    </div>
+                `,
+            });
+            vue.component('build-running', {
+                template:
+                    `
+                    <div class="col">
+                        <div class="spinner-border text-warning spinner-border-sm" role="status"
+                            data-toggle="tooltip" data-placement="top" title="正在构建喵~">
+                        </div>
+                    </div>
+                `,
+            });
+            vue.component('build-failed', {
+                template:
+                    `
+                    <div class="col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
+                            class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                            title="构建失败了QWQ">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </div>
+                `,
+            });
+            vue.component('fetch-error', {
+                template:
+                    `
+                    <div class="col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey"
+                            class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                            title="获取失败了QWQ">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </div>
+                `,
+            });
+            vue.mount("#main-frame");
+        });
     </script>
 </body>
+
+<footer class="fixed-bottom" style="background-color: lightgray;">
+    <div class="d-flex justify-content-end">
+        <div class="text-end text-secondary p-3">
+            © 2021 Copyright
+            <a class="text-dark" href="https://switefaster.github.io">
+                <span class="badge bg-light text-secondary">switefaster</span>
+            </a>
+        </div>
+        <div class="text-end my-auto" style="margin-right: 3mm;">
+            <a class="btn btn-light text-secondary" href="https://github.com/switefaster/switefaster.github.io">
+                <span class="iconify" data-icon="logos:github-icon" data-width="30"></span>Github
+            </a>
+        </div>
+    </div>
+</footer>
 
 </html>

@@ -1,0 +1,56 @@
+{
+    "cards": [
+        {
+            "id": 0,
+            "title": "某不正经的WGPU教程",
+            "description": "瞎写的WGPU教程，拿来下饭最佳",
+            "tags": [
+                "教程",
+                "书籍"
+            ],
+            "build": {
+                "owner": "switefaster",
+                "repository": "wgpu-tutor"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/switefaster/wgpu-tutor"
+                },
+                {
+                    "icon": "akar-icons:book",
+                    "url": "https://switefaster.github.io/wgpu-tutor/"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "title": "Switefaster的博客",
+            "description": "定期不更新",
+            "tags": [
+                "博客",
+                "网站"
+            ],
+            "build": {
+                "owner": "switefaster",
+                "repository": "blog-hexo"
+            },
+            "links": [
+                {
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/switefaster/blog-hexo"
+                },
+                {
+                    "icon": "akar-icons:link",
+                    "url": "https://switefaster.github.io/blog/"
+                }
+            ]
+        }
+    ],
+    "tag_icons": {
+        "教程": "fa-solid:chalkboard-teacher",
+        "书籍": "codicon:book",
+        "博客": "carbon:blog",
+        "网站": "whh:website"
+    }
+}
