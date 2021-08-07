@@ -12,8 +12,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Production -->
+    <!-- <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.prod.js"></script> -->
+    <!-- Development -->
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <title>Switefaster 的主页</title>
 </head>
@@ -28,8 +30,9 @@
             </a>
             <p class="navbar-text text-center mx-auto">这是个索引哦，选一个你想看的内容吧</p>
             <form class="d-flex justify-content-end">
-                <input class="form-control me-2" type="search" placeholder="搜点什么" aria-label="search">
-                <button class="btn btn-outline-secondary" type="button">搜&nbsp;索</button>
+                <input class="form-control me-2" type="search" placeholder="搜点什么" aria-label="search"
+                    id="filter-content">
+                <button class="btn btn-outline-secondary" type="button" id="filter-search">搜&nbsp;索</button>
             </form>
         </div>
     </nav>
@@ -40,15 +43,101 @@
     </div>
 
     <script>
-        Vue.component('content-card', {
-            props: ['card'],
-            template: `
+        $.getJSON("index.json", (index_data, status, xhr) => {
+            let vue = Vue.createApp({
+                data() {
+                    return { index: index_data, filter: '' };
+                },
+                computed: {
+                    groupCards() {
+                        return _.chunk(this.filteredCards, 4);
+                    },
+                    filteredCards() {
+                        return _.filter(this.index.cards, ((self) => { return (card) => { return _.includes(card.title, self.filter) } })(this));
+                    }
+                },
+                mounted() {
+                    this.$nextTick(function () {
+                        $("#filter-search").click((event) => {
+                            this.filter = $("#filter-content").val();
+                        });
+                        $('[data-toggle="tooltip"]').tooltip()
+                        $(".build-state").each((_, elem) => {
+                            let repository = elem.getAttribute("repo");
+                            let card_id = elem.getAttribute("card-id");
+                            $.ajax(
+                                {
+                                    async: false,
+                                    url: `https://api.github.com/repos/${repository}/actions/runs`,
+                                    method: "GET",
+                                    headers: {
+                                        "Accept": "application/vnd.github.v3+json"
+                                    },
+                                    success: (data, status, xhr) => {
+                                        let run = data.workflow_runs[0];
+                                        if (run.status === "queued") {
+                                            this.index.cards[card_id].build.state = "queued";
+                                        } else if (run.status === "completed") {
+                                            if (run.conclusion === "success") {
+                                                this.index.cards[card_id].build.state = "success";
+                                            } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
+                                                this.index.cards[card_id].build.state = "failed";
+                                            }
+                                        } else if (run.status === "in_progress") {
+                                            this.index.cards[card_id].build.state = "running";
+                                        }
+                                    },
+                                    error: (xhr, status, err) => {
+                                        this.index.cards[card_id].build.state = "error";
+                                    },
+                                }
+                            )
+
+                            setInterval((function (self) {
+                                return () => {
+                                    $.ajax(
+                                        {
+                                            async: true,
+                                            url: `https://api.github.com/repos/${repository}/actions/runs`,
+                                            method: "GET",
+                                            headers: {
+                                                "Accept": "application/vnd.github.v3+json"
+                                            },
+                                            success: (data, status, xhr) => {
+                                                let run = data.workflow_runs[0];
+                                                if (run.status === "queued") {
+                                                    self.index.cards[card_id].build.state = "queued";
+                                                } else if (run.status === "completed") {
+                                                    if (run.conclusion === "success") {
+                                                        self.index.cards[card_id].build.state = "success";
+                                                    } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
+                                                        self.index.cards[card_id].build.state = "failed";
+                                                    }
+                                                } else if (run.status === "in_progress") {
+                                                    self.index.cards[card_id].build.state = "running";
+                                                }
+                                            },
+                                            error: (xhr, status, err) => {
+                                                self.index.cards[card_id].build.state = "error";
+                                            },
+                                        }
+                                    )
+                                }
+                            })(this), 30000);
+                        })
+                    })
+                }
+            });
+
+            vue.component('content-card', {
+                props: ['card'],
+                template: `
             <div class="col-sm-3">
                 <div class="card text-center" style="width: 18rem">
                     <div class="card-header">
                         <div class="row">
                             <div v-for="tag in card.tags" class="col">
-                                <span class="iconify" v-bind:data-icon="$root.tag_icons[tag]"></span>{{ tag }}
+                                <span class="iconify" v-bind:data-icon="$root.index.tag_icons[tag]"></span>{{ tag }}
                             </div>
                             <div v-if="'build' in card" class="col build-state" v-bind:repo="card.build.owner + '/' + card.build.repository" v-bind:card-id="card.id">
                                 <build-success v-show="card.build.state === 'success'"></build-success>
@@ -79,11 +168,11 @@
                 </div>
             </div>
             `
-        });
+            });
 
-        Vue.component('build-success', {
-            template:
-                `
+            vue.component('build-success', {
+                template:
+                    `
                 <div class="col">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
                         class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
@@ -93,30 +182,30 @@
                     </svg>
                 </div>
             `
-        });
-        Vue.component('build-queued', {
-            template:
-                `
+            });
+            vue.component('build-queued', {
+                template:
+                    `
                     <div class="col">
                         <div class="spinner-grow text-warning spinner-grow-sm" role="status"
                             data-toggle="tooltip" data-placement="top" title="有构建任务在队列中喵~">
                         </div>
                     </div>
                 `,
-        });
-        Vue.component('build-running', {
-            template:
-                `
+            });
+            vue.component('build-running', {
+                template:
+                    `
                     <div class="col">
                         <div class="spinner-border text-warning spinner-border-sm" role="status"
                             data-toggle="tooltip" data-placement="top" title="正在构建喵~">
                         </div>
                     </div>
                 `,
-        });
-        Vue.component('build-failed', {
-            template:
-                `
+            });
+            vue.component('build-failed', {
+                template:
+                    `
                     <div class="col">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
                             class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
@@ -126,10 +215,10 @@
                         </svg>
                     </div>
                 `,
-        });
-        Vue.component('fetch-error', {
-            template:
-                `
+            });
+            vue.component('fetch-error', {
+                template:
+                    `
                     <div class="col">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey"
                             class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
@@ -139,59 +228,8 @@
                         </svg>
                     </div>
                 `,
-        });
-
-        $.getJSON("index.json", (index_data, status, xhr) => {
-            let vue = new Vue({
-                el: '#main-frame',
-                data: index_data,
-                computed: {
-                    groupCards: function () {
-                        return _.chunk(this.cards, 4);
-                    }
-                },
-                mounted: function () {
-                    this.$nextTick(function () {
-                        $('[data-toggle="tooltip"]').tooltip()
-                        $(".build-state").each((_, elem) => {
-                            let repository = elem.getAttribute("repo");
-                            let card_id = elem.getAttribute("card-id");
-                            $.ajax(
-                                {
-                                    async: false,
-                                    url: `https://api.github.com/repos/${repository}/actions/runs`,
-                                    method: "GET",
-                                    headers: {
-                                        "Accept": "application/vnd.github.v3+json"
-                                    },
-                                    success: (data, status, xhr) => {
-                                        let run = data.workflow_runs[0];
-                                        if (run.status === "queued") {
-                                            this.cards[card_id].build.state = "queued";
-                                            this.$set(this.cards, card_id, this.cards[card_id]);
-                                        } else if (run.status === "completed") {
-                                            if (run.conclusion === "success") {
-                                                this.cards[card_id].build.state = "success";
-                                                this.$set(this.cards, card_id, this.cards[card_id]);
-                                            } else if (run.conclusion === "failure" || run.conclusion === "cancelled") {
-                                                this.cards[card_id].build.state = "failed";
-                                                this.$set(this.cards, card_id, this.cards[card_id]);
-                                            }
-                                        } else if (run.status === "in_progress") {
-                                            this.cards[card_id].build.state = "running";
-                                            this.$set(this.cards, card_id, this.cards[card_id]);
-                                        }
-                                    },
-                                    error: (xhr, status, err) => {
-                                        this.cards[card_id].build.state = "error";
-                                        this.$set(this.cards, card_id, this.cards[card_id]);
-                                    },
-                                }
-                            )
-                        })
-                    })
-                }
             });
+            vue.mount("#main-frame");
         });
     </script>
 </body>
