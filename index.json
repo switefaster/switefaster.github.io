@@ -49,10 +49,10 @@
         {
             "id": 2,
             "title": "Nederite",
-            "description": "在写的游戏引擎或者游戏，不是很确定。",
+            "description": "在写的游戏引擎或者游戏。目前弃坑跑路",
             "tags": [
                 "游戏",
-                "施工"
+                "弃坑"
             ],
             "build": {
                 "owner": "switefaster",
@@ -72,7 +72,7 @@
         {
             "id": 3,
             "title": "N2-Station",
-            "description": "N2 直播站后端，但是SBCK就是不用",
+            "description": "N2 直播站后端，但是未使用",
             "tags": [
                 "网站",
                 "后端"
@@ -99,7 +99,7 @@
         {
             "id": 4,
             "title": "Multi Pong",
-            "description": "Amethyst 写的多人对战 Pong，但是不爽所以弃坑了",
+            "description": "Amethyst 写的多人对战 Pong。弃坑，Bevy重写可能性微存",
             "tags": [
                 "游戏",
                 "弃坑"
@@ -123,11 +123,11 @@
     "friend_cards": [
         {
             "id": 0,
-            "title": "香肠的生物群系教程",
-            "description": "香肠倾注心血之作。教程目前仍未完成，非请勿入",
+            "title": "Yaossg",
+            "description": "香肠的主页",
             "tags": [
-                "教程",
-                "施工"
+                "网站",
+                "博客"
             ],
             "build": {
                 "owner": "Yaossg",
@@ -136,11 +136,11 @@
             "links": [
                 {
                     "icon": "logos:github-icon",
-                    "url": "https://github.com/Yaossg/biome"
+                    "url": "https://github.com/Yaossg/"
                 },
                 {
                     "icon": "akar-icons:book",
-                    "url": "https://yaossg.github.io/biome/"
+                    "url": "https://yaossg.com/"
                 }
             ]
         }
