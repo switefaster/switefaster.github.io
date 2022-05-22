@@ -1,154 +1,162 @@
 <!DOCTYPE HTML>
 <html lang="zh-Hans" class="sidebar-visible no-js light">
-    <head>
-        <!-- Book generated using mdBook -->
-        <meta charset="UTF-8">
-        <title>某不正经的WGPU教程</title>
-                <meta name="robots" content="noindex" />
-                
 
-        <!-- Custom HTML head -->
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>某不正经的WGPU教程</title>
+        <meta name="robots" content="noindex" />
         
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+    <!-- Custom HTML head -->
+    
 
-                <link rel="icon" href="favicon.svg">
-                        <link rel="shortcut icon" href="favicon.png">
-                <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-                <link rel="stylesheet" href="css/print.css" media="print">
-        
-        <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="fonts/fonts.css">
-        
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
 
-        <!-- Custom theme stylesheets -->
-                <link rel="stylesheet" href="extra-style.css">
-        
-            </head>
-    <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
+        <link rel="icon" href="favicon.svg">
+            <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+    
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="highlight.css">
+    <link rel="stylesheet" href="tomorrow-night.css">
+    <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
-            try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="extra-style.css">
+    
+    </head>
 
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
 
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
 
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
-            html.classList.remove('light')
-            html.classList.add(theme);
-            html.classList.add('js');
-        </script>
-
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
-            if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
-                sidebar = sidebar || 'visible';
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
-        </nav>
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
 
-        <div id="page-wrapper" class="page-wrapper">
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
 
-            <div class="page">
-                
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
-                    <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
-                                            </div>
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
 
-                    <h1 class="menu-title">某不正经的WGPU教程</h1>
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
 
-                    <div class="right-buttons">
-                                                <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
-                        </a>
-                                                                        <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
-                        </a>
-                                                
-                    </div>
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+            
+            <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                                    </div>
+
+                <h1 class="menu-title">某不正经的WGPU教程</h1>
+
+                <div class="right-buttons">
+                                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                                                            <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+                                        
                 </div>
+            </div>
 
-                                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
+                        <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
                 </div>
-                
-                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
-                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script>
+            </div>
+            
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                });
+            </script>
 
-                <div id="content" class="content">
-                    <main>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+            <div id="content" class="content">
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="说在前面"><a class="header" href="#说在前面">说在前面</a></h1>
 <h2 id="这是什么"><a class="header" href="#这是什么">这是什么？</a></h2>
 <p>这是一本WGPU教程（理论上），面向图形学初学者和闲的没事的酱油党。但是由于一时兴起，作者决定后续再写游戏开发的教程。目前该书正在施工中。</p>
@@ -158,8 +166,7 @@
 <blockquote>
 <p><strong>警告：</strong> 切忌将本教程当作一本正经的教程，否则后果自负。文中笔者可能会使用模糊不清甚至粗俗的语言，若有不适，请适度阅读。</p>
 </blockquote>
-<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发<mask>然而后者现在也进入维护模式了，因为WGPU</mask>，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦<mask>蛋疼</mask>，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<mask>
-<del>GL，狗都不用</del></mask></small></p>
+<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发<mask>然而后者现在也进入维护模式了，因为WGPU</mask>，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦<mask>蛋疼</mask>，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<mask><del>GL，狗都不用</del></mask></small></p>
 <p>WGPU 可能不是这些库中性能最高的，却绝对称得上是最易用的，也是笔者(下文中统称&quot;我&quot;)最喜欢的图形库。</p>
 <p>在这篇教程中，我会尽量用通俗易懂的语言向读者(下文中或许会简称&quot;你&quot;)介绍WGPU的基本使用。鉴于图形库的性质，我会相对详细地介绍其中涉及的数学知识以及图形库工作的方式，并且会提及到其他图形库中的写法。图形学初学者和其他图形库用户过来打酱油都可以放心食用。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
@@ -172,10 +179,10 @@
 <pre><code class="language-toml"># Cargo.toml
 # ...
 [dependencies]
-winit = &quot;0.25.0&quot;
+winit = &quot;0.26&quot;
 </code></pre>
 <p>然后创建窗口</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2018">#![windows_subsystem = &quot;window&quot;]
+<pre><pre class="playground"><code class="language-rust no_run edition2021">#![windows_subsystem = &quot;window&quot;]
 
 fn main() {
     let event_loop = winit::event_loop::EventLoop::new();
@@ -201,7 +208,7 @@ fn main() {
 <h1 id="事件发生"><a class="header" href="#事件发生">事件发生！</a></h1>
 <p>在上一节中，我们初始化了一个窗口。如果有读者将<code>todo!()</code>删去并运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
 <p>我们先来看一个例子</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2018">
+<pre><pre class="playground"><code class="language-rust no_run edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>event_loop.run(move |event, _, control_flow| match event {
@@ -256,7 +263,7 @@ fn main() {
 <li>如果这次循环用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>多呢？不妨假设这一次循环所耗的时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>我们整整缺少了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">⌋</span></span></span></span>次循环！一种简单的解决方案是，当场补上这<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>次循环的更新并且直接进入下一个循环，而补上的循环的更新间隔<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样可以一定程度上保证更新的正确性，并且如果后续更新没有再消耗大于<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的时间的话也能顺利地接上</li>
 </ul>
 <p>现在，我们来实现一下</p>
-<pre><pre class="playground"><code class="language-rust edition2018">use std::time::{Duration, Instant};
+<pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
 
 const TPS: f64 = 60.0;
 const TIMEOUT: f32 = 3.0;
@@ -288,7 +295,7 @@ fn main() {
 
 </code></pre></pre>
 <p>是不是非常简单呢？唯一值得注意的一点是我们并不用<code>sleep</code>来控制间隔，而不终止循环的运行。因此我们可以有不同的频率同时运行。而主循环内部就是运行的最快的部分了。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">use std::time::{Duration, Instant};
+<pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
 
 const TPS_0: f64 = 60.0;
 const TPS_1: f64 = 20.0;
@@ -336,8 +343,8 @@ fn main() {
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="图形学从入门到入土"><a class="header" href="#图形学从入门到入土">图形学，从入门到入土</a></h1>
 <h2 id="说在前面-1"><a class="header" href="#说在前面-1">说在前面</a></h2>
-<p><mask> <del>入什么门，直接入土得了</del> </mask></p>
-<p>本节将会对主流（底层）图形学引擎的基础概念和工作方式做一个 <strong>概要性</strong> 的介绍。读者可以在这一节学到图形学引擎的基础工作流程。但是本节将会省略大量在后面的章节叙述的细节内容，请有需要的读者自行查阅之后的章节。</p>
+<p><mask> <del>入什么门，直接入土得了</del> </mask>
+本节将会对主流（底层）图形学引擎的基础概念和工作方式做一个 <strong>概要性</strong> 的介绍。读者可以在这一节学到图形学引擎的基础工作流程。但是本节将会省略大量在后面的章节叙述的细节内容，请有需要的读者自行查阅之后的章节。</p>
 <h2 id="基本概念"><a class="header" href="#基本概念">基本概念</a></h2>
 <h3 id="帧缓冲-frame-buffer"><a class="header" href="#帧缓冲-frame-buffer">帧缓冲 <em>Frame Buffer</em></a></h3>
 <p>我们先来考虑一下要绘制一个图形的整体过程</p>
@@ -481,18 +488,19 @@ end
 
 [package]
 # ...
-resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu 0.10 是必要的
+resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
+# UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
 
 [dependencies]
-winit = &quot;0.25.0&quot;
-wgpu = &quot;0.10&quot;
+winit = &quot;0.26&quot;
+wgpu = &quot;0.12&quot;
 pollster = &quot;0.2&quot;
 </code></pre>
 <p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>winit</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>winit</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
 <p>准备完毕，我们可以开始了。</p>
 <h2 id="正式开始"><a class="header" href="#正式开始">正式开始</a></h2>
 <p>看过上一节以及上上节的读者应该已经知道，WGPU的一切应当从<code>wgpu::Instance</code>开始。WGPU的代码都相当直接，所以我们先直接看代码吧。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">fn main() {
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
     #[cfg(target_os = &quot;linux&quot;)]
     std::env::set_var(&quot;WINIT_UNIX_BACKEND&quot;, &quot;x11&quot;); // 默认的Wayland窗口太tm难看了，我强行设置成X11了
 
@@ -508,7 +516,7 @@ pollster = &quot;0.2&quot;
 }
 </code></pre></pre>
 <p>当然，上面这段代码没什么好解释的。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。于是，我们有了实例，该获取<code>Surface</code>了。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ...
@@ -523,7 +531,7 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
 <p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择集显还是核显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let adapter = instance
@@ -538,7 +546,7 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <span class="boring">}
 </span></code></pre></pre>
 <p>好，底层干部基本就位了，接下来我们就要请出我们的一线工人<code>Queue</code>和<code>Device</code>。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let (device, queue) = pollster::block_on(adapter.request_device(
@@ -555,7 +563,7 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <p>简单、直白、明了。当然，我们理所当然地注意到了<code>Features</code>和<code>Limits</code>。<code>Features</code>是显卡设备需要支持的功能，例如深度裁剪等等。而<code>Limits</code>是一些喜闻乐见的限制，比如允许创建的材质的数量之类。当WGPU无法创建满足条件的设备时，会果断丢出一个<code>Error</code>。当然，我们这里方便起见直接<code>unwrap()</code>了=_=</p>
 <p>当然，如果你没在这里声明你需要用到的功能而在后面的程序中使用到了，则WGPU会在执行此功能时panic。这样一定程度上避免了WGPU在不同的设备上有不同的行为。</p>
 <p>万事俱备！……吗？我们好像还没告诉WGPU咱们的帧缓冲得多大啊……</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut surface_config = SurfaceConfiguration {
@@ -571,7 +579,7 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 </span></code></pre></pre>
 <p>我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他最喜欢的格式。查询 <code>PresentMode</code> 的文档你会发现有 <code>Fifo</code>/<code>MailBox</code>/<code>Immediate</code> 三种。前两种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>event_loop.run(move |event, _, control_flow| {
@@ -622,7 +630,7 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <li>把渲染命令丢件队列里面</li>
 </ol>
 <p>这就是我们的代码将要做的。</p>
-<pre><pre class="playground"><code class="language-rust edition2018">
+<pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let output = surface.get_current_frame().unwrap().output;
@@ -651,51 +659,77 @@ let mut encoder =
 <p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
 <p>然后，我们暂时不用进行别的渲染操作，所以我们让编码器创建了个命令缓冲，然后把它丢进了队列。</p>
 <p><strong>SO EZ!</strong></p>
-<p>当然，有些东西还是需要我们注意的。从<code>Surface</code>请求的帧缓冲的生命周期是被WGPU监视的，一旦其<code>drop()</code>被调用，它就会立刻尝试将其从渲染位置置换出来而显示出去。在一些复杂的项目中，如果不注意其生命周期，WGPU会进行panic，因此我们需要注意这一点。另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你发射大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
+<p><del>当然，有些东西还是需要我们注意的。从<code>Surface</code>请求的帧缓冲的生命周期是被WGPU监视的，一旦其<code>drop()</code>被调用，它就会立刻尝试将其从渲染位置置换出来而显示出去。在一些复杂的项目中，如果不注意其生命周期，WGPU会进行panic，因此我们需要注意这一点。</del> <strong>从<code>0.11</code>开始改为手动调用<code>Surface::present()</code></strong> 另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
 <p>不出意外的话，我们的程序现在可以顺利运行，并且你会看到一片绿到发光的屏幕<mask>没有暗讽各位读者的意思，大概</mask>。于是，我们正式迈出了使用WGPU的第一步。不过请注意，我们激动人心的旅程才刚刚开始！</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="顶点像素着色器"><a class="header" href="#顶点像素着色器">顶点，像素，着色器！</a></h1>
+<p>从本章开始，我们将正式开始用WGPU画一些东西。不过，在此时间，我们需要先了解一下计算机是如何理解并绘制图形的。</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="七巧板图形与三角"><a class="header" href="#七巧板图形与三角">七巧板？——图形与三角</a></h1>
+<p>我们现在想在平面内确定一个图形，应该怎么做？不妨以三角形为例：</p>
+<p>在初中我们学过，确定三边，或者两边一夹角等等就可以确定一个三角形的形状。母庸置疑的是，确定三角形的形状需要至少3个已知量，而为了在平面上确定这个三角形，我们还需要三角形上某一点的坐标以及绕其的旋转角度。坐标需要两个量，所以总共至少需要6个量。换句话说，一个平面内的三角形具有6个自由度，6个线性不相关的量就能准确描述一个三角形。在计算机中，我们会很自然地选择三个顶点的坐标。</p>
+<p>同理，四边形具有8个自由度，例如4个顶点的坐标，我们就可以向计算机准确地传达我们需要的形状。</p>
+<p>那圆呢？</p>
+<p>你或许会说，圆不是只有3个自由度吗？这不简单，原点坐标和半径不就可以了？是，但是为了后续处理的方便，我们需要一个统一的描述方式，比如坐标。那为什么不直接随便选圆上三个点呢？但是这样我们就需要有更多的计算来从这三个点计算出整个圆所占的区域，<del>实在是有点憨</del>。</p>
+<p>最后，我们发现，想要处理起来方便，最好还是横平竖直的东西……</p>
+<p>于是，早起计算机图形学家们干脆选择了最简单的方法：都用三角形！那要是边缘看着不够圆滑咋办捏？那就加三角形的量呗……遂，我们就需要用这种类似七巧板的方式，使用微元法的思想，大致拼凑出我们想要的图形。当然，现在已经有各式各样的建模软件会帮我们自动处理这些过程。我们平常说的高模和低模，也是在代指三角形的数量(面数)。</p>
+<blockquote>
+<p>当然，三角形并不是我们唯一的选择。图形引擎通常也支持四边形和五边形等，不少游戏也使用混合不同面形状的模型来改善精度。然而不可否认的是，三角形仍然是业界使用最广泛的基本图形。</p>
+</blockquote>
+<p>事不宜迟，我们赶紧试着在窗口里面画一个三角形！</p>
 
-                    </main>
+                </main>
 
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-                        
-                        
-                        <div style="clear: both"></div>
-                    </nav>
-                </div>
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    
+                    
+                    <div style="clear: both"></div>
+                </nav>
+
+                <main>
+                    <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
+                        data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
+                        data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
+                        data-loading="lazy" crossorigin="anonymous" async>
+                        </script>
+                </main>
             </div>
-
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                            </nav>
-
         </div>
 
-        
-        
-        
-                <script type="text/javascript">
-            window.playground_copyable = true;
-        </script>
-        
-        
-                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            
+                    </nav>
 
-        <!-- Custom JS scripts -->
-                <script type="text/javascript" src="mermaid.min.js"></script>
-                <script type="text/javascript" src="mermaid-init.js"></script>
-        
-                        <script type="text/javascript">
-        window.addEventListener('load', function() {
+    </div>
+
+    
+    
+    
+        <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+    
+    
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Custom JS scripts -->
+        <script type="text/javascript" src="mermaid.min.js"></script>
+        <script type="text/javascript" src="mermaid-init.js"></script>
+    
+            <script type="text/javascript">
+        window.addEventListener('load', function () {
             window.setTimeout(window.print, 100);
         });
-        </script>
-                
-    </body>
+    </script>
+        
+</body>
+
 </html>
