@@ -48,29 +48,6 @@
         },
         {
             "id": 2,
-            "title": "Nederite",
-            "description": "在写的游戏引擎或者游戏。目前弃坑跑路",
-            "tags": [
-                "游戏",
-                "弃坑"
-            ],
-            "build": {
-                "owner": "switefaster",
-                "repository": "nederite"
-            },
-            "links": [
-                {
-                    "icon": "logos:github-icon",
-                    "url": "https://github.com/switefaster/nederite"
-                },
-                {
-                    "icon": "icon-park:ad-product",
-                    "url": "https://github.com/switefaster/nederite/releases"
-                }
-            ]
-        },
-        {
-            "id": 3,
             "title": "N2-Station",
             "description": "N2 直播站后端，但是未使用",
             "tags": [
@@ -97,7 +74,7 @@
             ]
         },
         {
-            "id": 4,
+            "id": 3,
             "title": "Multi Pong",
             "description": "Amethyst 写的多人对战 Pong。弃坑，Bevy重写可能性微存",
             "tags": [
