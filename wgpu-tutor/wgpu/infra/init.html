@@ -5,36 +5,29 @@
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>一切的起点——初始化 - 某不正经的WGPU教程</title>
-        
-
     <!-- Custom HTML head -->
-    
-
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../../favicon.svg">
-            <link rel="shortcut icon" href="../../favicon.png">
-        <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/chrome.css">
-        <link rel="stylesheet" href="../../css/print.css" media="print">
-    
+    <link rel="stylesheet" href="../../css/print.css" media="print">
     <!-- Fonts -->
     <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../../fonts/fonts.css">
-    
+    <link rel="stylesheet" href="../../fonts/fonts.css">
     <!-- Highlight.js Stylesheets -->
     <link rel="stylesheet" href="../../highlight.css">
     <link rel="stylesheet" href="../../tomorrow-night.css">
     <link rel="stylesheet" href="../../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../../extra-style.css">
-    
-    </head>
+    <link rel="stylesheet" href="../../extra-style.css">
+</head>
 
 <body>
     <!-- Provide site root to javascript -->
@@ -85,14 +78,14 @@
 
     <nav id="sidebar" class="sidebar" aria-label="Table of contents">
         <div class="sidebar-scrollbox">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="../../wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/init.html" class="active"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>        </div>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="../../wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/init.html" class="active"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
+        </div>
         <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
     </nav>
 
     <div id="page-wrapper" class="page-wrapper">
 
         <div class="page">
-            
             <div id="menu-bar-hover-placeholder"></div>
             <div id="menu-bar" class="menu-bar sticky bordered">
                 <div class="left-buttons">
@@ -112,27 +105,26 @@
                         <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
                         </li>
                     </ul>
-                                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
                         aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
                         aria-controls="searchbar">
                         <i class="fa fa-search"></i>
                     </button>
-                                    </div>
+                </div>
 
                 <h1 class="menu-title">某不正经的WGPU教程</h1>
 
                 <div class="right-buttons">
-                                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
                         <i id="print-button" class="fa fa-print"></i>
                     </a>
-                                                            <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
+                    <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
                         <i id="git-repository-button" class="fa fa-github"></i>
                     </a>
-                                        
                 </div>
             </div>
 
-                        <div id="search-wrapper" class="hidden">
+            <div id="search-wrapper" class="hidden">
                 <form id="searchbar-outer" class="searchbar-outer">
                     <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
                         aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -143,7 +135,6 @@
                     </ul>
                 </div>
             </div>
-            
             <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
             <script type="text/javascript">
                 document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -168,8 +159,8 @@ resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
 # UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
 
 [dependencies]
-winit = &quot;0.26&quot;
-wgpu = &quot;0.12&quot;
+winit = &quot;0.27&quot;
+wgpu = &quot;0.14&quot;
 pollster = &quot;0.2&quot;
 </code></pre>
 <p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>winit</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>winit</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
@@ -177,38 +168,34 @@ pollster = &quot;0.2&quot;
 <h2 id="正式开始"><a class="header" href="#正式开始">正式开始</a></h2>
 <p>看过上一节以及上上节的读者应该已经知道，WGPU的一切应当从<code>wgpu::Instance</code>开始。WGPU的代码都相当直接，所以我们先直接看代码吧。</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    #[cfg(target_os = &quot;linux&quot;)]
-    std::env::set_var(&quot;WINIT_UNIX_BACKEND&quot;, &quot;x11&quot;); // 默认的Wayland窗口太tm难看了，我强行设置成X11了
-
-    let event_loop = EventLoop::new();
-    let window = WindowBuilder::new()
-        .with_title(&quot;不想起名&quot;)
+    let event_loop = winit::event_loop::EventLoop::new();
+    let window = winit::window::WindowBuilder::new()
+        .with_title(&quot;Test Window&quot;)
         .build(&amp;event_loop)
         .unwrap();
 
-    let instance = wgpu::Instance::new(Backends::all());
+    let instance = wgpu::Instance::new(wgpu::Backends::PRIMARY); // 如果要在WSL里面使用，建议使用GL
 
     // ...
 }
 </code></pre></pre>
 <p>当然，上面这段代码没什么好解释的。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。于是，我们有了实例，该获取<code>Surface</code>了。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ...
 let surface = unsafe { instance.create_surface(&amp;window) };
-    let adapter = pollster::block_on(instance.request_adapter(&amp;RequestAdapterOptions {
-        power_preference: wgpu::PowerPreference::HighPerformance,
-        compatible_surface: Some(&amp;surface),
-    }))
-    .unwrap();
+let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
+    power_preference: wgpu::PowerPreference::HighPerformance,
+    compatible_surface: Some(&amp;surface),
+    force_fallback_adapter: false,
+}))
+.unwrap();
 <span class="boring">}
 </span></code></pre></pre>
 <p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
 <p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择集显还是核显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let adapter = instance
     .enumerate_adapters(wgpu::Backends::all())
@@ -222,14 +209,13 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <span class="boring">}
 </span></code></pre></pre>
 <p>好，底层干部基本就位了，接下来我们就要请出我们的一线工人<code>Queue</code>和<code>Device</code>。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let (device, queue) = pollster::block_on(adapter.request_device(
-        &amp;DeviceDescriptor {
-            label: None, // 如果你给他起个名字，调试的时候可能比较有用
-            features: wgpu::Features::empty(),
-            limits: wgpu::Limits::default(),
+        &amp;wgpu::DeviceDescriptor {
+            label: None,                  // 如果你给他起个名字，调试的时候可能比较有用
+            features: adapter.features(), // 根据需要的特性自行调整
+            limits: adapter.limits(),     // 根据需要的限定自行调整
         },
         None,
     ))
@@ -239,61 +225,60 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <p>简单、直白、明了。当然，我们理所当然地注意到了<code>Features</code>和<code>Limits</code>。<code>Features</code>是显卡设备需要支持的功能，例如深度裁剪等等。而<code>Limits</code>是一些喜闻乐见的限制，比如允许创建的材质的数量之类。当WGPU无法创建满足条件的设备时，会果断丢出一个<code>Error</code>。当然，我们这里方便起见直接<code>unwrap()</code>了=_=</p>
 <p>当然，如果你没在这里声明你需要用到的功能而在后面的程序中使用到了，则WGPU会在执行此功能时panic。这样一定程度上避免了WGPU在不同的设备上有不同的行为。</p>
 <p>万事俱备！……吗？我们好像还没告诉WGPU咱们的帧缓冲得多大啊……</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let mut surface_config = SurfaceConfiguration {
-        usage: TextureUsages::RENDER_ATTACHMENT,
-        format: surface.get_preferred_format(&amp;adapter).unwrap(),
+</span>let mut surface_config = wgpu::SurfaceConfiguration {
+        usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
+        format: surface.get_supported_formats(&amp;adapter)[0],
         width: window.inner_size().width,
         height: window.inner_size().height,
-        present_mode: wgpu::PresentMode::Fifo,
+        present_mode: wgpu::PresentMode::AutoVsync,
+        alpha_mode: wgpu::CompositeAlphaMode::Auto,
     };
 
-    surface.configure(&amp;device, &amp;surface_config);
+surface.configure(&amp;device, &amp;surface_config);
 <span class="boring">}
 </span></code></pre></pre>
-<p>我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他最喜欢的格式。查询 <code>PresentMode</code> 的文档你会发现有 <code>Fifo</code>/<code>MailBox</code>/<code>Immediate</code> 三种。前两种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。</p>
+<p>我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他最喜欢的格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>event_loop.run(move |event, _, control_flow| {
-        *control_flow = ControlFlow::Wait;
+    *control_flow = ControlFlow::Wait;
 
-        match event {
-            winit::event::Event::WindowEvent { event, window_id } if window.id() == window_id =&gt; {
-                match event {
-                    winit::event::WindowEvent::Resized(new_size) =&gt; {
-                        if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
-                            surface_config.width = new_size.width;
-                            surface_config.height = new_size.height;
-                            surface.configure(&amp;device, &amp;surface_config);
-                        }
+    match event {
+        winit::event::Event::WindowEvent { event, window_id } if window.id() == window_id =&gt; {
+            match event {
+                winit::event::WindowEvent::Resized(new_size) =&gt; {
+                    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
+                        surface_config.width = new_size.width;
+                        surface_config.height = new_size.height;
+                        surface.configure(&amp;device, &amp;surface_config);
                     }
-                    winit::event::WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
-                    winit::event::WindowEvent::ScaleFactorChanged {
-                        new_inner_size: new_size,
-                        ..
-                    } =&gt; {
-                        if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
-                            surface_config.width = new_size.width;
-                            surface_config.height = new_size.height;
-                            surface.configure(&amp;device, &amp;surface_config);
-                        }
-                    }
-                    _ =&gt; (),
                 }
+                winit::event::WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
+                winit::event::WindowEvent::ScaleFactorChanged {
+                    new_inner_size: new_size,
+                    ..
+                } =&gt; {
+                    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
+                        surface_config.width = new_size.width;
+                        surface_config.height = new_size.height;
+                        surface.configure(&amp;device, &amp;surface_config);
+                    }
+                }
+                _ =&gt; (),
             }
-            winit::event::Event::MainEventsCleared =&gt; {
-                window.request_redraw();
-            }
-            winit::event::Event::RedrawRequested(_) =&gt; {
-                // 哦！在这渲染
-            }
-            _ =&gt; (),
         }
-    });
+        winit::event::Event::MainEventsCleared =&gt; {
+            window.request_redraw();
+        }
+        winit::event::Event::RedrawRequested(_) =&gt; {
+            // 在这渲染  
+        }
+        _ =&gt; (),
+    }
+});
 <span class="boring">}
 </span></code></pre></pre>
 <p>上面的代码，说人话，就是在窗口大小变化的时候重新配置一下咱们的<code>Surface</code>。熟悉了渲染流程的读者可能已经猜到，如果不这么做，很有可能导致巨大的窗口上只寥寥显示了几个巨大的像素的惨剧……</p>
@@ -306,28 +291,31 @@ let surface = unsafe { instance.create_surface(&amp;window) };
 <li>把渲染命令丢件队列里面</li>
 </ol>
 <p>这就是我们的代码将要做的。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let output = surface.get_current_frame().unwrap().output;
-let view = output.texture.create_view(&amp;TextureViewDescriptor::default());
+</span>let output = surface.get_current_texture().unwrap();
+let view = output
+    .texture
+    .create_view(&amp;wgpu::TextureViewDescriptor::default());
 let mut encoder =
-                    device.create_command_encoder(&amp;CommandEncoderDescriptor::default());
-                { // 注意这个
-                    let _render_pass = encoder.begin_render_pass(&amp;RenderPassDescriptor {
-                        label: None,
-                        color_attachments: &amp;[RenderPassColorAttachment {
-                            view: &amp;view,
-                            resolve_target: None,
-                            ops: Operations {
-                                load: LoadOp::Clear(Color::GREEN),
-                                store: true,
-                            },
-                        }],
-                        depth_stencil_attachment: None,
-                    });
-                }
-                queue.submit(std::iter::once(encoder.finish()));
+    device.create_command_encoder(&amp;wgpu::CommandEncoderDescriptor::default());
+{
+    // 注意这个
+    let _render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
+        label: None,
+        color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
+            view: &amp;view,
+            resolve_target: None,
+            ops: wgpu::Operations {
+                load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
+                store: true,
+            },
+        })],
+        depth_stencil_attachment: None,
+    });
+}
+queue.submit(std::iter::once(encoder.finish()));
+output.present();
 <span class="boring">}
 </span></code></pre></pre>
 <p>也挺直白的，不是么？</p>
@@ -335,23 +323,21 @@ let mut encoder =
 <p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
 <p>然后，我们暂时不用进行别的渲染操作，所以我们让编码器创建了个命令缓冲，然后把它丢进了队列。</p>
 <p><strong>SO EZ!</strong></p>
-<p><del>当然，有些东西还是需要我们注意的。从<code>Surface</code>请求的帧缓冲的生命周期是被WGPU监视的，一旦其<code>drop()</code>被调用，它就会立刻尝试将其从渲染位置置换出来而显示出去。在一些复杂的项目中，如果不注意其生命周期，WGPU会进行panic，因此我们需要注意这一点。</del> <strong>从<code>0.11</code>开始改为手动调用<code>Surface::present()</code></strong> 另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
+<p><del>当然，有些东西还是需要我们注意的。从<code>Surface</code>请求的帧缓冲的生命周期是被WGPU监视的，一旦其<code>drop()</code>被调用，它就会立刻尝试将其从渲染位置置换出来而显示出去。在一些复杂的项目中，如果不注意其生命周期，WGPU会进行panic，因此我们需要注意这一点。</del> <strong>从<code>0.11</code>开始改为手动调用<code>SurfaceTexture::present()</code></strong> 另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
 <p>不出意外的话，我们的程序现在可以顺利运行，并且你会看到一片绿到发光的屏幕<mask>没有暗讽各位读者的意思，大概</mask>。于是，我们正式迈出了使用WGPU的第一步。不过请注意，我们激动人心的旅程才刚刚开始！</p>
 
                 </main>
 
                 <nav class="nav-wrapper" aria-label="Page navigation">
                     <!-- Mobile navigation buttons -->
-                                        <a rel="prev" href="../../wgpu/infra/wgpu.html" class="mobile-nav-chapters previous"
+                    <a rel="prev" href="../../wgpu/infra/wgpu.html" class="mobile-nav-chapters previous"
                         title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    
-                                        <a rel="next" href="../../wgpu/beginner/index.html" class="mobile-nav-chapters next"
+                    <a rel="next" href="../../wgpu/beginner/index.html" class="mobile-nav-chapters next"
                         title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                    
                     <div style="clear: both"></div>
                 </nav>
 
@@ -367,40 +353,31 @@ let mut encoder =
         </div>
 
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                        <a rel="prev" href="../../wgpu/infra/wgpu.html" class="nav-chapters previous" title="Previous chapter"
+            <a rel="prev" href="../../wgpu/infra/wgpu.html" class="nav-chapters previous" title="Previous chapter"
                 aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
-            
-                        <a rel="next" href="../../wgpu/beginner/index.html" class="nav-chapters next" title="Next chapter"
+            <a rel="next" href="../../wgpu/beginner/index.html" class="nav-chapters next" title="Next chapter"
                 aria-label="Next chapter" aria-keyshortcuts="Right">
                 <i class="fa fa-angle-right"></i>
             </a>
-                    </nav>
+        </nav>
 
     </div>
 
-    
-    
-    
-        <script type="text/javascript">
+    <script type="text/javascript">
         window.playground_copyable = true;
     </script>
-    
-    
-        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
-    
     <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Custom JS scripts -->
-        <script type="text/javascript" src="../../mermaid.min.js"></script>
-        <script type="text/javascript" src="../../mermaid-init.js"></script>
-    
-    
+    <script type="text/javascript" src="../../mermaid.min.js"></script>
+    <script type="text/javascript" src="../../mermaid-init.js"></script>
 </body>
 
 </html>
