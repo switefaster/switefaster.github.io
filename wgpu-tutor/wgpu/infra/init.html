@@ -5,7 +5,10 @@
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>一切的起点——初始化 - 某不正经的WGPU教程</title>
+
+
     <!-- Custom HTML head -->
+    
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +20,11 @@
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/chrome.css">
     <link rel="stylesheet" href="../../css/print.css" media="print">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
     <link rel="stylesheet" href="../../fonts/fonts.css">
+
     <!-- Highlight.js Stylesheets -->
     <link rel="stylesheet" href="../../highlight.css">
     <link rel="stylesheet" href="../../tomorrow-night.css">
@@ -27,6 +32,7 @@
 
     <!-- Custom theme stylesheets -->
     <link rel="stylesheet" href="../../extra-style.css">
+
 </head>
 
 <body>
@@ -86,7 +92,7 @@
     <div id="page-wrapper" class="page-wrapper">
 
         <div class="page">
-            <div id="menu-bar-hover-placeholder"></div>
+                        <div id="menu-bar-hover-placeholder"></div>
             <div id="menu-bar" class="menu-bar sticky bordered">
                 <div class="left-buttons">
                     <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
@@ -121,6 +127,7 @@
                     <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
                         <i id="git-repository-button" class="fa fa-github"></i>
                     </a>
+
                 </div>
             </div>
 
@@ -135,6 +142,7 @@
                     </ul>
                 </div>
             </div>
+
             <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
             <script type="text/javascript">
                 document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -163,7 +171,7 @@ winit = &quot;0.27&quot;
 wgpu = &quot;0.14&quot;
 pollster = &quot;0.2&quot;
 </code></pre>
-<p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>winit</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>winit</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
+<p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
 <p>准备完毕，我们可以开始了。</p>
 <h2 id="正式开始"><a class="header" href="#正式开始">正式开始</a></h2>
 <p>看过上一节以及上上节的读者应该已经知道，WGPU的一切应当从<code>wgpu::Instance</code>开始。WGPU的代码都相当直接，所以我们先直接看代码吧。</p>
@@ -177,8 +185,7 @@ pollster = &quot;0.2&quot;
     let instance = wgpu::Instance::new(wgpu::Backends::PRIMARY); // 如果要在WSL里面使用，建议使用GL
 
     // ...
-}
-</code></pre></pre>
+}</code></pre></pre>
 <p>当然，上面这段代码没什么好解释的。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。于是，我们有了实例，该获取<code>Surface</code>了。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -190,8 +197,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     force_fallback_adapter: false,
 }))
 .unwrap();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
 <p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择集显还是核显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
@@ -206,8 +212,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     .first()
     .unwrap()
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>好，底层干部基本就位了，接下来我们就要请出我们的一线工人<code>Queue</code>和<code>Device</code>。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -220,8 +225,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
         None,
     ))
     .unwrap();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>简单、直白、明了。当然，我们理所当然地注意到了<code>Features</code>和<code>Limits</code>。<code>Features</code>是显卡设备需要支持的功能，例如深度裁剪等等。而<code>Limits</code>是一些喜闻乐见的限制，比如允许创建的材质的数量之类。当WGPU无法创建满足条件的设备时，会果断丢出一个<code>Error</code>。当然，我们这里方便起见直接<code>unwrap()</code>了=_=</p>
 <p>当然，如果你没在这里声明你需要用到的功能而在后面的程序中使用到了，则WGPU会在执行此功能时panic。这样一定程度上避免了WGPU在不同的设备上有不同的行为。</p>
 <p>万事俱备！……吗？我们好像还没告诉WGPU咱们的帧缓冲得多大啊……</p>
@@ -237,8 +241,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     };
 
 surface.configure(&amp;device, &amp;surface_config);
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他最喜欢的格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -279,8 +282,7 @@ surface.configure(&amp;device, &amp;surface_config);
         _ =&gt; (),
     }
 });
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>上面的代码，说人话，就是在窗口大小变化的时候重新配置一下咱们的<code>Surface</code>。熟悉了渲染流程的读者可能已经猜到，如果不这么做，很有可能导致巨大的窗口上只寥寥显示了几个巨大的像素的惨剧……</p>
 <h2 id="万事俱备终于"><a class="header" href="#万事俱备终于">万事俱备，终于……</a></h2>
 <p>开始我们的渲染吧~</p>
@@ -316,8 +318,7 @@ let mut encoder =
 }
 queue.submit(std::iter::once(encoder.finish()));
 output.present();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>也挺直白的，不是么？</p>
 <p>我们来看看我们到底做了啥。</p>
 <p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
@@ -334,10 +335,12 @@ output.present();
                         title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="../../wgpu/beginner/index.html" class="mobile-nav-chapters next"
                         title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
+
                     <div style="clear: both"></div>
                 </nav>
 
@@ -357,6 +360,7 @@ output.present();
                 aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
+
             <a rel="next" href="../../wgpu/beginner/index.html" class="nav-chapters next" title="Next chapter"
                 aria-label="Next chapter" aria-keyshortcuts="Right">
                 <i class="fa fa-angle-right"></i>
@@ -365,12 +369,18 @@ output.present();
 
     </div>
 
+
+
+
     <script type="text/javascript">
         window.playground_copyable = true;
     </script>
+
+
     <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
@@ -378,6 +388,8 @@ output.present();
     <!-- Custom JS scripts -->
     <script type="text/javascript" src="../../mermaid.min.js"></script>
     <script type="text/javascript" src="../../mermaid-init.js"></script>
+
+
 </body>
 
 </html>

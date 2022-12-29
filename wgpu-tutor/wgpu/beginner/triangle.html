@@ -5,7 +5,10 @@
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>七巧板？——图形与三角 - 某不正经的WGPU教程</title>
+
+
     <!-- Custom HTML head -->
+    
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +20,11 @@
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/chrome.css">
     <link rel="stylesheet" href="../../css/print.css" media="print">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
     <link rel="stylesheet" href="../../fonts/fonts.css">
+
     <!-- Highlight.js Stylesheets -->
     <link rel="stylesheet" href="../../highlight.css">
     <link rel="stylesheet" href="../../tomorrow-night.css">
@@ -27,6 +32,7 @@
 
     <!-- Custom theme stylesheets -->
     <link rel="stylesheet" href="../../extra-style.css">
+
 </head>
 
 <body>
@@ -86,7 +92,7 @@
     <div id="page-wrapper" class="page-wrapper">
 
         <div class="page">
-            <div id="menu-bar-hover-placeholder"></div>
+                        <div id="menu-bar-hover-placeholder"></div>
             <div id="menu-bar" class="menu-bar sticky bordered">
                 <div class="left-buttons">
                     <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
@@ -121,6 +127,7 @@
                     <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
                         <i id="git-repository-button" class="fa fa-github"></i>
                     </a>
+
                 </div>
             </div>
 
@@ -135,6 +142,7 @@
                     </ul>
                 </div>
             </div>
+
             <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
             <script type="text/javascript">
                 document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -176,8 +184,7 @@ struct Vertex {
     position: [f32; 2],
     color: [f32; 3],
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>我们定义了一个顶点结构，其中包括顶点的坐标和顶点的颜色。其内容具体如何使用我们将在之后的章节详细讨论。同时注意到我们derive了<code>bytemuck::Pod</code>和<code>bytemuck::Zeroable</code>两个宏，他们将会允许我们安全地转换我们的结构为<code>&amp;[u8]</code>。当然，为此我们还引入了<code>#[repr(C)]</code>来保证我们内存的对齐是符合我们预期的。详情请读者自行参见<a href="https://docs.rs/bytemuck">bytemuck的文档</a>和<a href="https://doc.rust-lang.org/nomicon/">Rust Nomicon</a>。</p>
 <p>接下来，让我们进行一个三角形的编：</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -202,8 +209,7 @@ let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescr
     contents: bytemuck::cast_slice(&amp;triangle),
     usage: wgpu::BufferUsages::VERTEX,
 });
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>首先我们创建了一个顶点的数组，其次我们将其用<code>bytemuck</code>转化为字节后上传到了一个缓冲中。</p>
 <p>这里我们首次使用了<code>Device::create_buffer_init</code>。事实上，这是一个扩展函数，是不位于WebGPU标准中，WGPU库为了方便使用而添加的一些方法。类似这些的方法被定义在<code>DeviceExt</code>这个trait中。</p>
 <p>那么，<code>create_buffer_init</code>到底为我们干了什么呢？它主要干了这样两件事：</p>
@@ -256,8 +262,7 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
     multiview: None,
 });
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>哇塞，真多！而且是不是都是看不懂的新玩意……</p>
 <p>对此，我只能说：<em>你先别急，让我先急</em></p>
 <p>笔者也是非常的头大的！在这短短（？）的几行代码中，已知与未知交织在一起，令我无从下手。</p>
@@ -270,6 +275,8 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
                         title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
+
                     <div style="clear: both"></div>
                 </nav>
 
@@ -289,16 +296,23 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
                 aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
+
         </nav>
 
     </div>
 
+
+
+
     <script type="text/javascript">
         window.playground_copyable = true;
     </script>
+
+
     <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
@@ -306,6 +320,8 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
     <!-- Custom JS scripts -->
     <script type="text/javascript" src="../../mermaid.min.js"></script>
     <script type="text/javascript" src="../../mermaid-init.js"></script>
+
+
 </body>
 
 </html>

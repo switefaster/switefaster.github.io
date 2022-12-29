@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <title>某不正经的WGPU教程</title>
     <meta name="robots" content="noindex" />
+
+
     <!-- Custom HTML head -->
+    
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,9 +21,11 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/chrome.css">
     <link rel="stylesheet" href="css/print.css" media="print">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
     <link rel="stylesheet" href="fonts/fonts.css">
+
     <!-- Highlight.js Stylesheets -->
     <link rel="stylesheet" href="highlight.css">
     <link rel="stylesheet" href="tomorrow-night.css">
@@ -28,6 +33,7 @@
 
     <!-- Custom theme stylesheets -->
     <link rel="stylesheet" href="extra-style.css">
+
 </head>
 
 <body>
@@ -87,7 +93,7 @@
     <div id="page-wrapper" class="page-wrapper">
 
         <div class="page">
-            <div id="menu-bar-hover-placeholder"></div>
+                        <div id="menu-bar-hover-placeholder"></div>
             <div id="menu-bar" class="menu-bar sticky bordered">
                 <div class="left-buttons">
                     <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
@@ -122,6 +128,7 @@
                     <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
                         <i id="git-repository-button" class="fa fa-github"></i>
                     </a>
+
                 </div>
             </div>
 
@@ -136,6 +143,7 @@
                     </ul>
                 </div>
             </div>
+
             <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
             <script type="text/javascript">
                 document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -184,8 +192,7 @@ fn main() {
     event_loop.run(move |_event, _, _control_flow| {
         todo!()
     });
-}
-</code></pre></pre>
+}</code></pre></pre>
 <p>完事，走人。</p>
 <p>没错，只有短短三行，我们就完成了窗口初始化，念及此我不禁感叹winit的伟大。</p>
 <p>还是要解释一下上面的代码的，winit中的类型<code>winit::event_loop::EventLoop</code>是winit中用来传递窗口事件的类型，本身除了<code>EventLoop::run</code>以外没有什么特别值得关注的函数。值得注意的是<code>EventLoop</code>可以传入用户自定义的事件，详情请阅读<a href="https://docs.rs/winit/0.27.4/winit/event_loop/struct.EventLoop.html">EventLoop的文档</a>。</p>
@@ -197,7 +204,7 @@ fn main() {
 <p>下一节，我们将会介绍如何处理窗口发送的事件，并且确定程序循环的主体。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="事件发生"><a class="header" href="#事件发生">事件发生！</a></h1>
-<p>在上一节中，我们初始化了一个窗口。如果有读者将<code>todo!()</code>删去并运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
+<p>在上一节中，我们初始化了一个窗口。如果有读者将<code>todo!()</code>删去并运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
 <p>我们先来看一个例子</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -230,13 +237,12 @@ fn main() {
         }
         _ =&gt; {}
     });
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>这是一个渲染程序最基础的循环，现在我们来逐个分析这个回调中干了什么</p>
 <p>首先，我们用<code>match event {...}</code>来匹配事件，其中处理了四种事件：</p>
 <ul>
 <li><code>Event::DeviceEvent</code> 是 <code>Event</code> 的子事件，负责传递设备相关的信息，例如 <strong>鼠标移动</strong> <strong>鼠标点击</strong> <strong>键盘按键</strong> 等</li>
-<li><code>Event::WindowEvent</code> 是 <code>Event</code> 的子事件，负责传递窗口相关的信息，例如 <strong>窗口缩放</strong> <strong>窗口移动</strong> 等等，我们顺便在这把对窗口的关闭请求处理了（注意<code>control_flow</code>的用法），<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>终于有了用武之地</li>
+<li><code>Event::WindowEvent</code> 是 <code>Event</code> 的子事件，负责传递窗口相关的信息，例如 <strong>窗口缩放</strong> <strong>窗口移动</strong> 等等，我们顺便在这把对窗口的关闭请求处理了（注意<code>control_flow</code>的用法），<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>终于有了用武之地</li>
 <li><code>Event::RedrawRequested</code> 事件会在窗口被要求重新绘制窗口内容时被调用，这也将会是渲染部分被调用的位置</li>
 <li><code>Event::MainEventsCleared</code> 事件会在事件队列中的事件清空时被调用，我们在此进行一次重绘要求，这样程序就会尽可能快地进行渲染</li>
 <li>剩下的事件暂时管不着，我们直接<code>_</code></li>
@@ -247,10 +253,10 @@ fn main() {
 <h1 id="太快了"><a class="header" href="#太快了">太快了！</a></h1>
 <p>控制恒定的更新速度是游戏中常见的需求，这一节我们将介绍一种简单的控制更新频率的方法。</p>
 <p>玩过 <strong>Minecraft™</strong> 吗？Minecraft中的游戏逻辑循环是以20次/秒的频率进行的，称为 20 <strong>tps(<em>ticks per second</em>)</strong>，而渲染循环却以不同的频率（通常为60个画面（称为 <strong>帧</strong>）每秒，称为60 <strong>fps(<em>frames per second</em>)</strong>）刷新。较低的逻辑更新频率可以减少计算的负担，而更高的渲染频率则可以使游戏显得更加流畅。如果更新的速度不均匀，则可能使游戏显示的画面有违和的跳动。那么，我们应该如何控制更新的频率呢？</p>
-<p>考虑这样一个问题，我们希望一个循环以60次每秒的速度进行更新，那么每次循环的平均用时应当为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">60</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">sec</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0.016</span><span class="mord mathnormal">sec</span></span></span></span>，现在有两种情况:</p>
+<p>考虑这样一个问题，我们希望一个循环以60次每秒的速度进行更新，那么每次循环的平均用时应当为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">60</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">sec</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.016</span><span class="mord mathnormal">sec</span></span></span></span>，现在有两种情况:</p>
 <ul>
-<li>这次循环的用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>少，那我们自然可以等到时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，时再开始下一次循环。其中<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>是上一次循环结束的时间戳</li>
-<li>如果这次循环用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>多呢？不妨假设这一次循环所耗的时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>我们整整缺少了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">⌋</span></span></span></span>次循环！一种简单的解决方案是，当场补上这<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>次循环的更新并且直接进入下一个循环，而补上的循环的更新间隔<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样可以一定程度上保证更新的正确性，并且如果后续更新没有再消耗大于<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的时间的话也能顺利地接上</li>
+<li>这次循环的用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>少，那我们自然可以等到时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，时再开始下一次循环。其中<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>是上一次循环结束的时间戳</li>
+<li>如果这次循环用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>多呢？不妨假设这一次循环所耗的时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>我们整整缺少了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">⌋</span></span></span></span>次循环！一种简单的解决方案是，当场补上这<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>次循环的更新并且直接进入下一个循环，而补上的循环的更新间隔<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样可以一定程度上保证更新的正确性，并且如果后续更新没有再消耗大于<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的时间的话也能顺利地接上</li>
 </ul>
 <p>现在，我们来实现一下</p>
 <pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
@@ -282,7 +288,6 @@ fn main() {
         }
     }
 }
-
 </code></pre></pre>
 <p>是不是非常简单呢？唯一值得注意的一点是我们并不用<code>sleep</code>来控制间隔，而不终止循环的运行。因此我们可以有不同的频率同时运行。而主循环内部就是运行的最快的部分了。</p>
 <pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
@@ -323,7 +328,6 @@ fn main() {
         }
     }
 }
-
 </code></pre></pre>
 <p>放进 <code>EventLoop::run</code> 中也是同理，快去试试吧！</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
@@ -347,7 +351,7 @@ fn main() {
 </pre>
 <h3 id="交换链-swap-chain"><a class="header" href="#交换链-swap-chain">交换链 <em>Swap Chain</em></a></h3>
 <p>有没有接触过老式的显像管电视机？或者一些老电脑？如果有，那你一定对扫描纹不陌生。扫描纹，是因为图像更新不及时而产生的一种显示现象。</p>
-<p>我们先来说一个故事，假设你在和你的朋友玩一个游戏。现在你和你的朋友面前有一个 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 的棋盘，上面摆满了正面黑色，背面白色的棋子。你不能接触这个棋盘，但可以命令你的朋友翻转棋子，你的朋友不能自作主张，但是一定会听从你的命令，但是他不能同时翻转多个棋子。现在，你需要把全部棋子变白，然后交给评委检查。</p>
+<p>我们先来说一个故事，假设你在和你的朋友玩一个游戏。现在你和你的朋友面前有一个 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 的棋盘，上面摆满了正面黑色，背面白色的棋子。你不能接触这个棋盘，但可以命令你的朋友翻转棋子，你的朋友不能自作主张，但是一定会听从你的命令，但是他不能同时翻转多个棋子。现在，你需要把全部棋子变白，然后交给评委检查。</p>
 <p>于是，你向你的朋友下达命令：把全部棋子翻过来。但是你的朋友并不知道要以什么顺序翻转。你经过一番思考，认为天时地利人和，应该从左到右逐行翻转。</p>
 <p>于是，你的朋友开始操作了。尽管你的朋友手速非常快，一秒能翻四个棋子，但为了翻完整个棋盘，还是花了4秒时间。这期间，评委一直对着空气干瞪眼，等得黄花菜都凉了，于是对你们非常不满意。</p>
 <p>你怒了，既然评委那么喜欢看，那就让你的朋友当着评委的面翻棋子。于是评委看到了一个一行一行变白的棋盘。好在你人品爆棚，评委觉得还算可以接受。</p>
@@ -486,7 +490,7 @@ winit = &quot;0.27&quot;
 wgpu = &quot;0.14&quot;
 pollster = &quot;0.2&quot;
 </code></pre>
-<p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>winit</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>winit</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
+<p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
 <p>准备完毕，我们可以开始了。</p>
 <h2 id="正式开始"><a class="header" href="#正式开始">正式开始</a></h2>
 <p>看过上一节以及上上节的读者应该已经知道，WGPU的一切应当从<code>wgpu::Instance</code>开始。WGPU的代码都相当直接，所以我们先直接看代码吧。</p>
@@ -500,8 +504,7 @@ pollster = &quot;0.2&quot;
     let instance = wgpu::Instance::new(wgpu::Backends::PRIMARY); // 如果要在WSL里面使用，建议使用GL
 
     // ...
-}
-</code></pre></pre>
+}</code></pre></pre>
 <p>当然，上面这段代码没什么好解释的。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。于是，我们有了实例，该获取<code>Surface</code>了。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -513,8 +516,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     force_fallback_adapter: false,
 }))
 .unwrap();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
 <p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择集显还是核显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
@@ -529,8 +531,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     .first()
     .unwrap()
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>好，底层干部基本就位了，接下来我们就要请出我们的一线工人<code>Queue</code>和<code>Device</code>。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -543,8 +544,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
         None,
     ))
     .unwrap();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>简单、直白、明了。当然，我们理所当然地注意到了<code>Features</code>和<code>Limits</code>。<code>Features</code>是显卡设备需要支持的功能，例如深度裁剪等等。而<code>Limits</code>是一些喜闻乐见的限制，比如允许创建的材质的数量之类。当WGPU无法创建满足条件的设备时，会果断丢出一个<code>Error</code>。当然，我们这里方便起见直接<code>unwrap()</code>了=_=</p>
 <p>当然，如果你没在这里声明你需要用到的功能而在后面的程序中使用到了，则WGPU会在执行此功能时panic。这样一定程度上避免了WGPU在不同的设备上有不同的行为。</p>
 <p>万事俱备！……吗？我们好像还没告诉WGPU咱们的帧缓冲得多大啊……</p>
@@ -560,8 +560,7 @@ let adapter = pollster::block_on(instance.request_adapter(&amp;wgpu::RequestAdap
     };
 
 surface.configure(&amp;device, &amp;surface_config);
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他最喜欢的格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -602,8 +601,7 @@ surface.configure(&amp;device, &amp;surface_config);
         _ =&gt; (),
     }
 });
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>上面的代码，说人话，就是在窗口大小变化的时候重新配置一下咱们的<code>Surface</code>。熟悉了渲染流程的读者可能已经猜到，如果不这么做，很有可能导致巨大的窗口上只寥寥显示了几个巨大的像素的惨剧……</p>
 <h2 id="万事俱备终于"><a class="header" href="#万事俱备终于">万事俱备，终于……</a></h2>
 <p>开始我们的渲染吧~</p>
@@ -639,8 +637,7 @@ let mut encoder =
 }
 queue.submit(std::iter::once(encoder.finish()));
 output.present();
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>也挺直白的，不是么？</p>
 <p>我们来看看我们到底做了啥。</p>
 <p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
@@ -681,8 +678,7 @@ struct Vertex {
     position: [f32; 2],
     color: [f32; 3],
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>我们定义了一个顶点结构，其中包括顶点的坐标和顶点的颜色。其内容具体如何使用我们将在之后的章节详细讨论。同时注意到我们derive了<code>bytemuck::Pod</code>和<code>bytemuck::Zeroable</code>两个宏，他们将会允许我们安全地转换我们的结构为<code>&amp;[u8]</code>。当然，为此我们还引入了<code>#[repr(C)]</code>来保证我们内存的对齐是符合我们预期的。详情请读者自行参见<a href="https://docs.rs/bytemuck">bytemuck的文档</a>和<a href="https://doc.rust-lang.org/nomicon/">Rust Nomicon</a>。</p>
 <p>接下来，让我们进行一个三角形的编：</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -707,8 +703,7 @@ let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescr
     contents: bytemuck::cast_slice(&amp;triangle),
     usage: wgpu::BufferUsages::VERTEX,
 });
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>首先我们创建了一个顶点的数组，其次我们将其用<code>bytemuck</code>转化为字节后上传到了一个缓冲中。</p>
 <p>这里我们首次使用了<code>Device::create_buffer_init</code>。事实上，这是一个扩展函数，是不位于WebGPU标准中，WGPU库为了方便使用而添加的一些方法。类似这些的方法被定义在<code>DeviceExt</code>这个trait中。</p>
 <p>那么，<code>create_buffer_init</code>到底为我们干了什么呢？它主要干了这样两件事：</p>
@@ -761,8 +756,7 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
     multiview: None,
 });
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>哇塞，真多！而且是不是都是看不懂的新玩意……</p>
 <p>对此，我只能说：<em>你先别急，让我先急</em></p>
 <p>笔者也是非常的头大的！在这短短（？）的几行代码中，已知与未知交织在一起，令我无从下手。</p>
@@ -771,6 +765,8 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
 
                 <nav class="nav-wrapper" aria-label="Page navigation">
                     <!-- Mobile navigation buttons -->
+
+
                     <div style="clear: both"></div>
                 </nav>
 
@@ -786,16 +782,23 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
         </div>
 
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
         </nav>
 
     </div>
 
+
+
+
     <script type="text/javascript">
         window.playground_copyable = true;
     </script>
+
+
     <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="book.js" type="text/javascript" charset="utf-8"></script>
@@ -803,11 +806,13 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
     <!-- Custom JS scripts -->
     <script type="text/javascript" src="mermaid.min.js"></script>
     <script type="text/javascript" src="mermaid-init.js"></script>
+
     <script type="text/javascript">
         window.addEventListener('load', function () {
             window.setTimeout(window.print, 100);
         });
     </script>
+
 </body>
 
 </html>
