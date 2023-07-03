@@ -161,26 +161,23 @@
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>event_loop.run(move |event, _, control_flow| match event {
-        Event::DeviceEvent { ref event, .. } =&gt; {
+        Event::DeviceEvent { event, .. } =&gt; {
             unimplemented!()
         }
         Event::WindowEvent {
-            ref event,
+            event,
             window_id,
-        } =&gt; {
-            if window_id == window.id() {
-                match event {
-                    WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
-                    WindowEvent::Resized(physical_size) =&gt; {
-                        resize(physical_size);
-                    }
-                    WindowEvent::ScaleFactorChanged { new_inner_size, .. } =&gt; {
-                        resize(**new_inner_size);
-                    }
-                    _ =&gt; {}
+        } if window_id == window.id() =&gt;
+            match event {
+                WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
+                WindowEvent::Resized(physical_size) =&gt; {
+                    resize(physical_size);
                 }
+                WindowEvent::ScaleFactorChanged { new_inner_size, .. } =&gt; {
+                    resize(*new_inner_size);
+                }
+                _ =&gt; {}
             }
-        }
         Event::RedrawRequested(_) =&gt; {
             render();
         }
@@ -199,6 +196,9 @@
 <li><code>Event::MainEventsCleared</code> 事件会在事件队列中的事件清空时被调用，我们在此进行一次重绘要求，这样程序就会尽可能快地进行渲染</li>
 <li>剩下的事件暂时管不着，我们直接<code>_</code></li>
 </ul>
+<blockquote>
+<p>如果你翻阅了<code>Event</code>的文档，那么你或许发现了<code>WindowEvent</code>和<code>DeviceEvent</code>里面都有键盘、鼠标相关的事件。值得注意的是，<code>DeviceEvent</code>获取到的事件是直接来源于系统外设的信号的，因而并不受窗口聚焦等的限制。在游戏中，我们更倾向于使用后者，而在应用中我们更倾向于使用前者。</p>
+</blockquote>
 <p>这便是这个循环的主体，简单明了，却会是整个程序的主干，不容忽视。</p>
 <p>现在我们的程序已经能进行基本的循环了。下一小节我们会介绍如何维持定时长的更新，这并非必要，却是游戏中常见的需求，读者可以自行选择跳过与否。</p>
 

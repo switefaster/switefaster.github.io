@@ -174,9 +174,9 @@
 # ...
 bytemuck = &quot;1&quot;
 </code></pre>
-<p>这个库将会帮助我们将结构体直接转化为字节slice<code>&amp;[u8]</code>，并保证我们的操作是安全的。</p>
+<p>这个库将会帮助我们将结构体直接转化为字节数组切片<code>&amp;[u8]</code>，并保证我们的操作是安全的。</p>
 <p>我们来定义我们的顶点</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[repr(C)]
 #[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
@@ -187,7 +187,7 @@ struct Vertex {
 <span class="boring">}</span></code></pre></pre>
 <p>我们定义了一个顶点结构，其中包括顶点的坐标和顶点的颜色。其内容具体如何使用我们将在之后的章节详细讨论。同时注意到我们derive了<code>bytemuck::Pod</code>和<code>bytemuck::Zeroable</code>两个宏，他们将会允许我们安全地转换我们的结构为<code>&amp;[u8]</code>。当然，为此我们还引入了<code>#[repr(C)]</code>来保证我们内存的对齐是符合我们预期的。详情请读者自行参见<a href="https://docs.rs/bytemuck">bytemuck的文档</a>和<a href="https://doc.rust-lang.org/nomicon/">Rust Nomicon</a>。</p>
 <p>接下来，让我们进行一个三角形的编：</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let triangle = [
     Vertex {
@@ -211,6 +211,9 @@ let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescr
 });
 <span class="boring">}</span></code></pre></pre>
 <p>首先我们创建了一个顶点的数组，其次我们将其用<code>bytemuck</code>转化为字节后上传到了一个缓冲中。</p>
+<blockquote>
+<p>有些读者可能会好奇为何我们为三角形的顶点坐标选择了这几个数值。粗略地说，在WGPU中，我们会把一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>中的点线性映射到窗口的像素中。具体而言，<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>会被平移到窗口中央，而<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span>分别对应屏幕右方向和上方向。在渲染过程中涉及的各个坐标系将会在后面的章节详细讲述。</p>
+</blockquote>
 <p>这里我们首次使用了<code>Device::create_buffer_init</code>。事实上，这是一个扩展函数，是不位于WebGPU标准中，WGPU库为了方便使用而添加的一些方法。类似这些的方法被定义在<code>DeviceExt</code>这个trait中。</p>
 <p>那么，<code>create_buffer_init</code>到底为我们干了什么呢？它主要干了这样两件事：</p>
 <ol>
@@ -222,7 +225,7 @@ let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescr
 <p>你说得对，接下来我们将开始处理一些棘手的部分，这些部分和后面的章节挂钩。我会尽量通俗地解释这些概念。如果你有什么疑问，读下去，我相信都会得到解答。同时，我也欢迎大家在评论区提问。</p>
 <p>首先，我们得创建一个渲染管线（还记得吗，在<a href="../infra/graphics.html">之前的章节</a>的最后有提到），来告诉WGPU我们将如何渲染这个三角形。</p>
 <p>让我们开始吧：</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let pipeline_layout = device.create_pipeline_layout(&amp;wgpu::PipelineLayoutDescriptor {
     label: None,
@@ -263,9 +266,22 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
 });
 
 <span class="boring">}</span></code></pre></pre>
-<p>哇塞，真多！而且是不是都是看不懂的新玩意……</p>
-<p>对此，我只能说：<em>你先别急，让我先急</em></p>
-<p>笔者也是非常的头大的！在这短短（？）的几行代码中，已知与未知交织在一起，令我无从下手。</p>
+<p>这段代码涉及了众多之后才能理解的概念，我会尽量使用通俗的语言描述。</p>
+<p>首先我们需要为管线创建一个布局（<em>layout</em>），这个布局描述了我们之后将会向管线的着色器内传入什么样的额外数据。这里额外数据指任何顶点数据以外的用户指定的数据。由于我们现在并不需要向着色器内传入额外的数据，我们先全部留空。</p>
+<p>接下来，我们将我们的着色器文件载入到GPU中。在<a href="../infra/graphics.html">之前的章节</a>最后对渲染管线的描述中我们提到过，着色器是一种告诉GPU如何完成传入的顶点数据的变化和如何给像素着色等任务的语言。在接下来的几个章节中我们将会更详细地了解着色器。创建好着色器以后我们会得到着色器模块（<em>ShaderModule</em>），相当于对GPU内着色器资源的引用。在示例创建着色器的过程中，我们使用了<code>wgpu::include_wgsl!</code>这个宏。这个宏会在 <strong>编译期</strong> 将你的着色器载入到程序中，并用其创建一个<code>wgpu::ShaderModuleDescriptor</code>。如果你翻阅了<a href="https://docs.rs/wgpu/latest/wgpu/struct.ShaderModuleDescriptor.html">ShaderModuleDescriptor的文档</a>，会发现其中的<code>wgpu::ShaderSource</code>支持相当数量的着色器语言。归功于<a href="https://github.com/gfx-rs/naga">naga项目</a>，不同的着色器语言最终都会被转译成WGPU可以理解的格式。在接下来的教程中，我们只会使用<code>wgsl</code>。</p>
+<p>接下来我们就在正式创建渲染管线了。因为用途平凡或内容不会涉及，我们将不会在此深入解释下面几个字段的意义：</p>
+<ul>
+<li>label</li>
+<li>layout</li>
+<li>multisample</li>
+<li>multiview</li>
+</ul>
+<p>让我们把注意力放到剩下的几个字段上：</p>
+<p><em>vertex</em> 会用来描述该渲染管线对顶点数据的处理。在示例代码中，我们指定了着色器和着色器的入口点（也就是会被调用的着色器函数），还有对顶点缓冲的描述。你可能会好奇为什么顶点缓冲的描述是一个数组，这是因为一次渲染命令可以同时传入多个顶点缓冲，这被用于一些特殊的渲染中。让我们研究一下单个顶点缓冲的描述：</p>
+<ul>
+<li><em>array_stride</em> 描述多少字节表示一个顶点</li>
+<li><em>step_mode</em> 描述这个顶点缓冲内数据在什么情况步进一次。</li>
+</ul>
 
                 </main>
 

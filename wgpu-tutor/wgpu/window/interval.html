@@ -157,7 +157,7 @@
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="太快了"><a class="header" href="#太快了">太快了！</a></h1>
 <p>控制恒定的更新速度是游戏中常见的需求，这一节我们将介绍一种简单的控制更新频率的方法。</p>
-<p>玩过 <strong>Minecraft™</strong> 吗？Minecraft中的游戏逻辑循环是以20次/秒的频率进行的，称为 20 <strong>tps(<em>ticks per second</em>)</strong>，而渲染循环却以不同的频率（通常为60个画面（称为 <strong>帧</strong>）每秒，称为60 <strong>fps(<em>frames per second</em>)</strong>）刷新。较低的逻辑更新频率可以减少计算的负担，而更高的渲染频率则可以使游戏显得更加流畅。如果更新的速度不均匀，则可能使游戏显示的画面有违和的跳动。那么，我们应该如何控制更新的频率呢？</p>
+<p>玩过 <strong>Minecraft™</strong> 吗？Minecraft中的游戏逻辑循环是以20次/秒的频率进行的，称为 20 <strong>tps(<em>ticks per second</em>)</strong>，而渲染循环却以不同的频率（常见的为60个画面（称为 <strong>帧</strong>）每秒，称为60 <strong>fps(<em>frames per second</em>)</strong>）刷新。较低的逻辑更新频率可以减少计算的负担，而更高的渲染频率则可以使游戏显得更加流畅。如果更新的速度不均匀，则可能使游戏显示的画面有违和的跳动。那么，我们应该如何控制更新的频率呢？</p>
 <p>考虑这样一个问题，我们希望一个循环以60次每秒的速度进行更新，那么每次循环的平均用时应当为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">60</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">sec</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.016</span><span class="mord mathnormal">sec</span></span></span></span>，现在有两种情况:</p>
 <ul>
 <li>这次循环的用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>少，那我们自然可以等到时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，时再开始下一次循环。其中<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>是上一次循环结束的时间戳</li>
@@ -202,7 +202,15 @@ const TPS_1: f64 = 20.0;
 const TIMEOUT: f32 = 3.0;
 
 fn update(dt: Duration) {
-    println!(&quot;delta tau: {:?}&quot;, dt);
+    println!(&quot;60 tps delta tau: {:?}&quot;, dt);
+}
+
+fn slow_update(dt: Duration) {
+    println!(&quot;20 tps delta tau: {:?}&quot;, dt);
+}
+
+fn fast_update(dt: Duration) {
+    // 以最快可能速度运行的逻辑，通常不会使用
 }
 
 fn main() {
@@ -221,13 +229,14 @@ fn main() {
         lag_1 += dt;
         while lag_0 &gt; tau_0 {
             update(tau_0);
-            lag_0 -= tau;
+            lag_0 -= tau_0;
         }
         while lag_1 &gt; tau_1 {
             slow_update(tau_1);
-            lag_1 -= tau;
+            lag_1 -= tau_1;
         }
         fast_update(dt);
+        // 为了使其能够在 playground 中运行，加上了超时限制。在实际应用中并不需要这几行
         if begin.elapsed() &gt; timeout {
             break;
         }

@@ -156,17 +156,20 @@
                 <main>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="图形学从入门到入土"><a class="header" href="#图形学从入门到入土">图形学，从入门到入土</a></h1>
+<blockquote>
+<p>本章节含有较大量<code>mermaid-js</code>的可视化代码，如果你看到了裸露的<code>mermaid</code>代码块，请静等一段时间使得<code>mermaid</code>被正常加载。如果较长时间后仍然无法看到图形，请检查您所处的网络环境下<code>mermaid-js</code>有没有从<code>jsdelivr</code>成功加载，必要时请使用恰当的方式使其可以加载。</p>
+</blockquote>
 <h2 id="说在前面"><a class="header" href="#说在前面">说在前面</a></h2>
 <p><mask> <del>入什么门，直接入土得了</del> </mask>
 本节将会对主流（底层）图形学引擎的基础概念和工作方式做一个 <strong>概要性</strong> 的介绍。读者可以在这一节学到图形学引擎的基础工作流程。但是本节将会省略大量在后面的章节叙述的细节内容，请有需要的读者自行查阅之后的章节。</p>
 <h2 id="基本概念"><a class="header" href="#基本概念">基本概念</a></h2>
 <h3 id="帧缓冲-frame-buffer"><a class="header" href="#帧缓冲-frame-buffer">帧缓冲 <em>Frame Buffer</em></a></h3>
 <p>我们先来考虑一下要绘制一个图形的整体过程</p>
-<pre><code class="language-mermaid">graph LR
+<pre><code class="language-mermaid">flowchart LR
 图形数据 -- 某些过程 --&gt; 屏幕
 </code></pre>
 <p>我们知道，屏幕实际上是一系列的发光单元阵列（下文或称为 <strong>“像素”</strong>），屏幕依靠改变各发光单元（各组分）的亮度来显示不同的图形。因此，我们显示在屏幕（当然实际上操作系统会帮我们显示到对应的窗口）上的东西，实际上应该是一个矩阵，而矩阵元便是亮度。我们称存放这个矩阵的缓冲为 <strong>帧缓冲</strong></p>
-<pre><code class="language-mermaid">graph LR
+<pre><code class="language-mermaid">flowchart LR
 图形数据 -. 某些过程 .-&gt; 帧缓冲 --&gt; 屏幕
 </code></pre>
 <h3 id="交换链-swap-chain"><a class="header" href="#交换链-swap-chain">交换链 <em>Swap Chain</em></a></h3>
@@ -197,7 +200,7 @@
 <p>维护两个（或以上）的帧缓冲，在每一时刻，都有其中一个帧缓冲作为显示缓冲被发送到屏幕上，而另一缓冲则在后台接受程序填充。当填充结束时，置换显示缓冲的指针和置换缓冲的指针。</p>
 </blockquote>
 <p>普遍而言，程序填充缓冲（下文或称为 <strong>“渲染”</strong> ）的过程是远慢于指针交换的速度的，因而在两个缓冲的分工合作下，用户就不必在屏幕上痛苦地看到逐个填充像素的过程了。而 <strong>交换链</strong> 就是负责维护这个过程的对象。</p>
-<pre><code class="language-mermaid">graph LR
+<pre><code class="language-mermaid">flowchart LR
     O[程序] -. 某些过程 .-&gt; A([填充命令])
     O -. 某些过程 .-&gt; E([填充命令])
     C -- 显示 --&gt; D[屏幕]
@@ -226,10 +229,10 @@
 <h3 id="设备-device"><a class="header" href="#设备-device">设备 <em>Device</em></a></h3>
 <p>设备是表征一个硬件设备（比如一个GPU）的对象。在广大图形库（除了GL）中，都存在设备（或等价于设备的）对象。该对象通常用于各类需要在GPU上分配资源的对象的创建（例如 GPU上的数据缓冲，图像纹理等）。这也将是我们最常接触的对象之一。</p>
 <h3 id="队列-queue"><a class="header" href="#队列-queue">队列 <em>Queue</em></a></h3>
-<p>当然，队列可以指很多东西，具体而言，在本文中（除个别情况）代指 <strong>命令队列 <em>(Command Queue)</em></strong>。这可能对不少人是一个比较陌生的概念，却是Vulkan和DirectX12的核心概念之一。命令队列是为了方便并发渲染而引入的。正如其名称指示，命令队列就是GPU需要执行的命令的队列。命令队列是 <strong>线程安全</strong> 的，意味着它被允许在不同的线程间发送和访问（<code>Send + Sync</code>）。当然GPU上真正的命令队列本身并不是线程安全的，然而代码中的命令队列仅是操作GPU上命令队列的一个桥梁。我们通常会构筑一个由多条渲染命令组成的 <strong>命令缓冲 <em>(Command Buffer)</em></strong>，然后将其发送（<em>submit</em>)到命令队列中（这个过程是线程安全的）。GPU会依次执行其中的命令。这很显然是两个并行的过程，而且在CPU的操作并不非常耗时，因而在DirectX12和Vulkan中，有信号<code>Signal</code>(DirectX12)/<code>Semaphore</code>(Vulkan)和栅栏<code>Fence</code>的概念，来阻挡CPU的进度超前GPU过多。而在WGPU中，我们通常并不用关注这个问题。</p>
+<p>当然，队列可以指很多东西，具体而言，在本文中（除个别情况）代指 <strong>命令队列 <em>(Command Queue)</em></strong>。这可能对不少人是一个比较陌生的概念，却是Vulkan和DirectX12的核心概念之一。命令队列是为了方便并发渲染而引入的。正如其名称指示，命令队列就是GPU需要执行的命令的队列。命令队列是 <strong>线程安全</strong> 的，意味着它被允许在不同的线程间发送和访问（<code>Send + Sync</code>）。当然GPU上真正的命令队列本身并不是线程安全的，然而代码中的命令队列仅是操作GPU上命令队列的一个桥梁。我们通常会构筑一个由多条渲染命令组成的 <strong>命令缓冲 <em>(Command Buffer)</em></strong>，然后将其发送（<em>submit</em>）到命令队列中（这个过程是线程安全的）。GPU会依次执行其中的命令。这很显然是两个并行的过程，而且在CPU的操作并不非常耗时，因而在DirectX12和Vulkan中，有信号<code>Signal</code>(DirectX12)/<code>Semaphore</code>(Vulkan)和栅栏<code>Fence</code>的概念，来阻挡CPU的进度超前GPU过多。而在WGPU中，我们通常并不用关注这个问题。</p>
 <h3 id="关系"><a class="header" href="#关系">关系</a></h3>
 <p>上述各概念之间有一定程度的关系，如下图所示</p>
-<pre><code class="language-mermaid">graph LR
+<pre><code class="language-mermaid">flowchart LR
 图形API实例 -- 创建 --&gt; A[适配器] -- 创建 --&gt; B
 A -- &quot;创建 (WGPU)&quot; --&gt; C
 subgraph  GPU资源
@@ -246,8 +249,9 @@ end
 <h2 id="渲染流程概要"><a class="header" href="#渲染流程概要">渲染流程概要</a></h2>
 <p>由于详细过程会在后面的章节提及，本小节不涉及详细流程</p>
 <p>参见流程图：</p>
-<pre><code class="language-mermaid">graph TB
+<pre><code class="language-mermaid">flowchart TB
 subgraph  渲染管线
+direction TB
 图形数据 -- 顶点着色器/几何着色器/.. --&gt; 在帧缓冲上要渲染的图形信息 -- 光栅化 --&gt; 像素位置 -- 像素/片元着色器 --&gt; 颜色数据 -- 混合 --&gt; 帧缓冲
 end
 </code></pre>

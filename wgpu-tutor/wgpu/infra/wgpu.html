@@ -162,7 +162,7 @@
 <p><em><strong>Wgpu-rs is an idiomatic Rust wrapper over wgpu-core. It's designed to be suitable for general purpose graphics and computation needs of Rust community. <br>Wgpu-rs can target both the natively supported backends and WebAssembly directly.</strong></em></p>
 <p align="right">——wgpu.rs</p>
 </blockquote>
-<p><code>WGPU</code>视其语境可以代指不同的对象。在Rust社区以及本文中，通常代指<a href="https://github.com/gfx-rs/wgpu">wgpu-rs</a>。<code>wgpu-rs</code>是对<code>wgpu-core</code>的包装，后者是一个更加底层的包装层，负责直接与图形库底层进行交互。而<code>wgpu-core</code>又依赖于<code>wgpu-hal</code>，HAL是硬件抽象层(<em><strong>Hardware Abstraction Layer</strong></em>)的简称。顾名思义，HAL将各个图形库最核心的观念提取成了一个抽象层，并且后端由不同的底层库实现。这也是<code>wgpu-rs</code>得以在不改变代码的情况下改变运行底层的根本。不过由于其设计模式最接近于Vulkan，因此目前使用Vulkan底层才能得到最佳性能。</p>
+<p><strong>WGPU</strong> 视其语境可以代指不同的对象。在Rust社区以及本文中，通常代指<a href="https://github.com/gfx-rs/wgpu">wgpu-rs</a>。<code>wgpu-rs</code>是对<code>wgpu-core</code>的包装，后者是一个更加底层的包装层，负责直接与图形库底层进行交互。而<code>wgpu-core</code>又依赖于<code>wgpu-hal</code>，HAL是硬件抽象层(<em><strong>Hardware Abstraction Layer</strong></em>)的简称。顾名思义，HAL将各个图形库最核心的观念提取成了一个抽象层，并且后端由不同的底层库实现。这也是<code>wgpu-rs</code>得以在不改变代码的情况下改变运行底层的根本。不过由于其设计模式最接近于Vulkan，因此目前使用Vulkan底层才能得到最佳性能。</p>
 <p>事实上，WGPU名称的来源是<a href="https://www.w3.org/TR/webgpu/">WebGPU</a>标准。后者旨在为Web环境提供一个可以调用硬件GPU进行渲染和计算的标准。它的标准是为JavaScript设计的，这也解释了WGPU库中偶尔出现的一两个<code>async</code>函数，以及为何WGPU支持WebAssembly。<code>wgpu-rs</code>是<code>WebGPU</code>对Rust用户的包装，而其后的<code>wgpu-core</code>则亦成为了各浏览器实现<code>WebGPU</code>功能的后端。</p>
 <blockquote>
 <p>wgpu-core曾经依赖的是gfx-hal。后者是一个基于Vulkan设计的硬件抽象层。后来，wgpu开发组发现gfx-hal对于wgpu而言过于冗余，于是贴合wgpu的需求开发了wgpu-hal。目前gfx-hal进入了维护模式。</p>
