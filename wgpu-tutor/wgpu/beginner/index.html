@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js light">
+<html lang="zh-Hans" class="sidebar-visible no-js ayu">
 
 <head>
     <!-- Book generated using mdBook -->
@@ -39,7 +39,7 @@
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
         var path_to_root = "../../";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
     <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
         if (theme === null || theme === undefined) { theme = default_theme; }
         var html = document.querySelector('html');
         html.classList.remove('no-js')
-        html.classList.remove('light')
+        html.classList.remove('ayu')
         html.classList.add(theme);
         html.classList.add('js');
     </script>
@@ -104,11 +104,11 @@
                         <i class="fa fa-paint-brush"></i>
                     </button>
                     <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
                         </li>
                     </ul>
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
@@ -156,7 +156,7 @@
                 <main>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="顶点像素着色器"><a class="header" href="#顶点像素着色器">顶点，像素，着色器！</a></h1>
-<p>从本章开始，我们将正式开始用WGPU画一些东西。不过，在此时间，我们需要先了解一下计算机是如何理解并绘制图形的。</p>
+<p>从本章开始，我们将正式开始用WGPU画一些东西。不过，在此之前，我们需要先了解一下计算机是如何理解并绘制图形的。</p>
 <h2 id="软件推荐"><a class="header" href="#软件推荐">软件推荐</a></h2>
 <p><a href="https://renderdoc.org/">RenderDoc</a> 可以在图形软件运行中截获快照并查看各种缓冲和材质的状态，也可以对着色器的运行进行调试。是图形程序调试的不二之选。</p>
 
@@ -181,8 +181,8 @@
                     <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
                         data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
                         data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
-                        data-loading="lazy" crossorigin="anonymous" async>
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
                         </script>
                 </main>
             </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js light">
+<html lang="zh-Hans" class="sidebar-visible no-js ayu">
 
 <head>
     <!-- Book generated using mdBook -->
@@ -39,7 +39,7 @@
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
         var path_to_root = "";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
     <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
         if (theme === null || theme === undefined) { theme = default_theme; }
         var html = document.querySelector('html');
         html.classList.remove('no-js')
-        html.classList.remove('light')
+        html.classList.remove('ayu')
         html.classList.add(theme);
         html.classList.add('js');
     </script>
@@ -104,11 +104,11 @@
                         <i class="fa fa-paint-brush"></i>
                     </button>
                     <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
                         </li>
                     </ul>
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
@@ -158,6 +158,8 @@
 <h1 id="说在前面"><a class="header" href="#说在前面">说在前面</a></h1>
 <h2 id="这是什么"><a class="header" href="#这是什么">这是什么？</a></h2>
 <p>这是一本WGPU教程（理论上），面向图形学初学者和闲的没事的酱油党。但是由于一时兴起，作者决定后续再写游戏开发的教程。目前该书正在施工中。</p>
+<h2 id="示例代码"><a class="header" href="#示例代码">示例代码</a></h2>
+<p>可以执行的示例代码在<a href="https://github.com/switefaster/wgpu-tutor">本书源代码仓库</a>的<code>wgpu-tutor-src</code>文件夹内。</p>
 
                 </main>
 
@@ -176,8 +178,8 @@
                     <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
                         data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
                         data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
-                        data-loading="lazy" crossorigin="anonymous" async>
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
                         </script>
                 </main>
             </div>

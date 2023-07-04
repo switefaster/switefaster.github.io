@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js light">
+<html lang="zh-Hans" class="sidebar-visible no-js ayu">
 
 <head>
     <!-- Book generated using mdBook -->
@@ -39,7 +39,7 @@
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
         var path_to_root = "../../";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
     <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
         if (theme === null || theme === undefined) { theme = default_theme; }
         var html = document.querySelector('html');
         html.classList.remove('no-js')
-        html.classList.remove('light')
+        html.classList.remove('ayu')
         html.classList.add(theme);
         html.classList.add('js');
     </script>
@@ -104,11 +104,11 @@
                         <i class="fa fa-paint-brush"></i>
                     </button>
                     <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
                         </li>
                     </ul>
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
@@ -333,8 +333,11 @@ output.present();
 <p>我们来看看我们到底做了啥。</p>
 <p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
 <p>然后，我们暂时不用进行别的渲染操作，所以我们让编码器创建了个命令缓冲，然后把它丢进了队列。</p>
+<blockquote>
+<p>为了强调<code>Queue::submit</code>接受的是迭代器，我使用了<code>std::iter::once</code>，然而我们实际上可以直接使用<code>Some(encoder.finish())</code>，因为<code>Option&lt;T&gt;</code>实现了<code>IntoIterator&lt;Item=T&gt;</code></p>
+</blockquote>
 <p><strong>SO EZ!</strong></p>
-<p><del>当然，有些东西还是需要我们注意的。从<code>Surface</code>请求的帧缓冲的生命周期是被WGPU监视的，一旦其<code>drop()</code>被调用，它就会立刻尝试将其从渲染位置置换出来而显示出去。在一些复杂的项目中，如果不注意其生命周期，WGPU会进行panic，因此我们需要注意这一点。</del> <strong>从<code>0.11</code>开始改为手动调用<code>SurfaceTexture::present()</code></strong> 另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
+<p>另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
 <p>不出意外的话，我们的程序现在可以顺利运行，并且你会看到一片绿到发光的屏幕<mask>没有暗讽各位读者的意思，大概</mask>。于是，我们正式迈出了使用WGPU的第一步。不过请注意，我们激动人心的旅程才刚刚开始！</p>
 
                 </main>
@@ -358,8 +361,8 @@ output.present();
                     <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
                         data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
                         data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
-                        data-loading="lazy" crossorigin="anonymous" async>
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
                         </script>
                 </main>
             </div>

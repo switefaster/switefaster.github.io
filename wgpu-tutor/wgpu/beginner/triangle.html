@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js light">
+<html lang="zh-Hans" class="sidebar-visible no-js ayu">
 
 <head>
     <!-- Book generated using mdBook -->
@@ -39,7 +39,7 @@
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
         var path_to_root = "../../";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
     <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
         if (theme === null || theme === undefined) { theme = default_theme; }
         var html = document.querySelector('html');
         html.classList.remove('no-js')
-        html.classList.remove('light')
+        html.classList.remove('ayu')
         html.classList.add(theme);
         html.classList.add('js');
     </script>
@@ -104,11 +104,11 @@
                         <i class="fa fa-paint-brush"></i>
                     </button>
                     <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
                         </li>
                     </ul>
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
@@ -156,6 +156,7 @@
                 <main>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="七巧板图形与三角"><a class="header" href="#七巧板图形与三角">七巧板？——图形与三角</a></h1>
+<h2 id="理论"><a class="header" href="#理论">理论</a></h2>
 <p>我们现在想在平面内确定一个图形，应该怎么做？不妨以三角形为例：</p>
 <p>在初中我们学过，确定三边，或者两边一夹角等等就可以确定一个三角形的形状。母庸置疑的是，确定三角形的形状需要至少3个已知量，而为了在平面上确定这个三角形，我们还需要三角形上某一点的坐标以及绕其的旋转角度。坐标需要两个量，所以总共至少需要6个量。换句话说，一个平面内的三角形具有6个自由度，6个线性不相关的量就能准确描述一个三角形。在计算机中，我们会很自然地选择三个顶点的坐标。</p>
 <p>同理，四边形具有8个自由度，例如4个顶点的坐标，我们就可以向计算机准确地传达我们需要的形状。</p>
@@ -166,6 +167,7 @@
 <blockquote>
 <p>当然，三角形并不是我们唯一的选择。图形引擎通常也支持四边形和五边形等，不少游戏也使用混合不同面形状的模型来改善精度。然而不可否认的是，三角形仍然是业界使用最广泛的基本图形。</p>
 </blockquote>
+<h2 id="上手操作"><a class="header" href="#上手操作">上手操作！</a></h2>
 <p>事不宜迟，我们赶紧试着在窗口里面画一个三角形！</p>
 <p>在这之前，我们先引入一个方便我们使用的库<code>bytemuck</code>。</p>
 <pre><code class="language-toml"># Cargo.toml
@@ -277,11 +279,180 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
 <li>multiview</li>
 </ul>
 <p>让我们把注意力放到剩下的几个字段上：</p>
-<p><em>vertex</em> 会用来描述该渲染管线对顶点数据的处理。在示例代码中，我们指定了着色器和着色器的入口点（也就是会被调用的着色器函数），还有对顶点缓冲的描述。你可能会好奇为什么顶点缓冲的描述是一个数组，这是因为一次渲染命令可以同时传入多个顶点缓冲，这被用于一些特殊的渲染中。让我们研究一下单个顶点缓冲的描述：</p>
+<p><em>vertex</em> 会用来描述该渲染管线对顶点数据的处理，也就是<a href="../infra/graphics.html#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A6%81">渲染流程概要</a>里前两个节点之间的部分。在示例代码中，我们指定了着色器存在的模块<code>module</code>和着色器的入口点<code>entry_point</code>（也就是会被调用的着色器函数，过会我们会在着色器中看到我们指定的名字），还有对顶点缓冲的描述。你可能会好奇为什么顶点缓冲的描述是一个数组，这是因为一次渲染命令可以同时传入多个顶点缓冲，这被用于一些特殊的渲染中。让我们研究一下单个顶点缓冲的描述：</p>
 <ul>
-<li><em>array_stride</em> 描述多少字节表示一个顶点</li>
-<li><em>step_mode</em> 描述这个顶点缓冲内数据在什么情况步进一次。</li>
+<li><em>array_stride</em> 描述多少字节表示一个顶点，在我们的情况下自然是每个<code>Vertex</code>结构在内存中的大小</li>
+<li><em>step_mode</em> 描述这个顶点缓冲内数据在什么情况步进一次并传入顶点着色器处理。这句话听上去莫名其妙，难道顶点缓冲不是一个一个顶点传入的吗？不完全是。目前<code>wgpu::VertexStepMode</code>有两个可能值，分别是<code>VertexStepMode::Vertex</code>和<code>VertexStepMode::Instance</code>。前者便是我们直觉意义上的顶点，后者则是我们称为<strong>实例(<em>Instance</em>)</strong>。在之后我们发起渲染请求时，除了指定顶点范围外，还会指定实例范围。在最终渲染时会对每个实例步进一次实例顶点缓冲，然后进行对顶点的处理。在批量绘制静态物品时可以用实例顶点缓冲来储存姿态数据来获得更高的效率。其效果类似下面这段代码：</li>
 </ul>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>const INSTANCES: usize = 100;
+const VERTICES: usize = 3;
+
+struct PerVertexData {
+    //每个顶点的数据，在GPU中就是顶点缓冲内每隔一个stride存放的内容
+}
+
+struct PerInstanceData {
+    //每个实例的数据，在GPU中就是实例顶点缓冲内每隔一个stride存放的内容
+}
+
+struct VertexShaderOutput {
+    //顶点着色器的输出内容
+}
+
+fn vertex_shader(vertex: PerVertexData, instance: PerInstanceData) -&gt; VertexShaderOutput {
+    //处理顶点数据并输出
+    unimplemented!()
+}
+
+let vertex_buffer = [PerVertexData; VERTICES];
+let instance_buffer = [PerInstanceData; INSTANCES];
+
+for i in 0..INSTANCES {
+    for j in 0..VERTICES {
+        let output_vertex = vertex_shader(vertex_buffer[j], instance_buffer[i]);
+        // ...
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>
+<p><em>attributes</em> 接受一个<code>wgpu::VertexAttribute</code>数组切片。其作用是告诉WGPU如何理解每个顶点的数据。在我们的例程中，一个顶点数据在内存中是五个连续存放的单精度浮点，其中前两个描述顶点坐标，后三个描述顶点颜色。在每一个<code>wgpu::VertexAttribute</code>中，我们需要指定下面这几个量：</p>
+<ul>
+<li><em>format</em> 接受一个<code>wgpu::VertexFormat</code>枚举类型。其描述顶点数据中这一部分应当如何对应到顶点着色器理解的类型。例如我们为顶点坐标选择<code>VertexFormat::Float32x2</code>，这个类型会直接将两个单精度浮点长度（<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span>字节）的数据对应到着色器中的二维单精度浮点向量中。除此之外还有很多类型，请读者自行翻看<a href="https://docs.rs/wgpu/latest/wgpu/enum.VertexFormat.html">VertexFormat的文档</a></li>
+<li><em>offset</em> 表示我们描述的部分应当从单个顶点内存数据的何处算起，这个量和 <em>format</em> 对应的数据大小一起指定了这个属性的内存区域。例如我们有一个顶点数据的字节数组<code>vertex_bytes: &amp;[u8]</code>，那么我们的数据便是<code>vertex_bytes[offset..(offset + format.size())]</code></li>
+<li><em>shader_location</em> 是一个<code>u32</code>类型，指定我们的数据对应在顶点着色器输入中的“位置”，我们之后将会在顶点着色器中看到其对应的量</li>
+</ul>
+<p>而在例程中，我们使用了WGPU提供的一个非常方便的工具宏<code>wgpu::vertex_attr_array!</code>，其中会接受一个<code>loc =&gt; format</code>形式的列表，<code>loc</code>对应 <em>shader_location</em> 而<code>format</code>就对应 <em>format</em> 。<em>offset</em> 会由宏内部自动计算，算法是将列表前面每一项的<code>VertexFormat::size()</code>累加。因此，只要你的单个顶点数据中的各个部分排布是连续的，就可以使用这个宏！</p>
+<p>在我们的例程中，手写的效果如下：</p>
+</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[
+    wgpu::VertexAttribute { // 坐标
+        format: wgpu::VertexFormat::Float32x2,
+        offset: 0 as _,
+        shader_location: 0,
+    },
+    wgpu::VertexAttribute { // 颜色
+        format: wgpu::VertexFormat::Float32x3,
+        offset: 8 as _,
+        shader_location: 1,
+    },
+]
+<span class="boring">}</span></code></pre></pre>
+<hr />
+<h3 id="松散的顶点数据存储"><a class="header" href="#松散的顶点数据存储">松散的顶点数据存储</a></h3>
+<blockquote>
+<p><strong>注意：</strong> 此部分为之前 <strong>学习过别的图形API</strong> 的读者准备，涉及一些3D渲染的内容。建议初学的读者先<a href="#%E5%86%85%E5%AE%B9%E4%BB%8E%E8%BF%99%E9%87%8C%E7%BB%A7%E7%BB%AD">跳过</a>这一段。</p>
+</blockquote>
+<p>之前学习过OpenGL的读者可能见到过另一种传入顶点数据的方法，即将不同的顶点数据的成分存放在不同的缓冲中，各自组分于内存中是连续的。WGPU也可以做到这一点！为了实现这种做法，我们需要定义多个 <em>vertex</em> 中的<code>wgpu::VertexBufferLayout</code>。不妨设我们的一个顶点由下面三个量组成（类型采用<code>GLSL</code>）：</p>
+<ul>
+<li>位置 <code>layout(location=0) in vec3 position</code></li>
+<li>贴图UV <code>layout(location=1) in vec2 tex_coord</code></li>
+<li>法向量 <code>layout(location=2) in vec3 normal</code></li>
+</ul>
+<blockquote>
+<p><code>layout(location=x)</code> 对应于前文的 <code>wgpu::VertexAttribute.shader_location: x</code></p>
+</blockquote>
+<p>那么我们的<code>wgpu::VertexState.buffers</code>应当赋予以下值</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[
+    wgpu::VertexBufferLayout {
+        array_stride: std::mem::size_of::&lt;[f32; 3]&gt;() as _,
+        step_mode: wgpu::VertexStepMode::Vertex,
+        attributes: &amp;wgpu::vertex_attr_array![0 =&gt; Float32x3]
+    },
+    wgpu::VertexBufferLayout {
+        array_stride: std::mem::size_of::&lt;[f32; 2]&gt;() as _,
+        step_mode: wgpu::VertexStepMode::Vertex,
+        attributes: &amp;wgpu::vertex_attr_array![1 =&gt; Float32x2]
+    },
+    wgpu::VertexBufferLayout {
+        array_stride: std::mem::size_of::&lt;[f32; 3]&gt;() as _,
+        step_mode: wgpu::VertexStepMode::Vertex,
+        attributes: &amp;wgpu::vertex_attr_array![2 =&gt; Float32x3]
+    },
+]
+<span class="boring">}</span></code></pre></pre>
+<p>之后渲染时在对应的槽位绑定数据缓冲即可。</p>
+<hr />
+<h3 id="内容从这里继续"><a class="header" href="#内容从这里继续">内容从这里继续</a></h3>
+<p><em>primitive</em> 是对渲染采用的基础形状的描述。看看<code>wgpu::PrimitiveState</code>里面都有什么！</p>
+<ul>
+<li><em>topology</em> 是一个<code>wgpu::PrimitiveTopology</code>枚举类型，负责描述我们的顶点数据应当被理解为什么几何图形，目前WGPU仅支持点、线和三角形。读者可以注意到除了点以外的形状都有一个 <code>*Strip</code> 变种。简单来说，非<code>Strip</code>的类型会将顶点数据划分成不交的一个一个子集，以<code>PrimitiveTopology::TriangleList</code>为例，便是三个三个理解为一个三角形，因此顶点缓冲中顶点的数量也必须是3的整数倍。而<code>Strip</code>类型则相当于一个滑动窗口，在三角形的情况会尝试从每一个顶点开始往后取三个点（如果可能的话）理解成一个三角形，因而除了顶点数量至少得组成一个三角形以外并没有明显的限制（当然，为了保证面的朝向相同，顶点取出后排列的顺序会有一些调整，详情请参照<a href="https://docs.rs/wgpu/latest/wgpu/enum.PrimitiveTopology.html">文档</a>）。<code>Strip</code>类型的用途在于用尽可能少的顶点数量描述一个连成一片的区域。不过，似乎现实情况下出于泛用性的考虑用得并不是很多。该字段默认为<code>TriangleList</code></li>
+<li><em>strip_index_format</em> 在使用<code>Strip</code>类型的图形时索引缓冲的类型。索引缓冲的概念我们将会在下一节学习，目前可以不用在意</li>
+<li><em>front_face</em> 图形的定向。默认为逆时针取正向，符合右手螺旋规则。在我们的例程给出的缓冲中，由于顶点是上方<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>右下<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>左下的顺序给出的，我们的三角形是被判定为背向，也就是背对屏幕的。该选项在下一个字段 <em>cull_mode</em> 启用时发挥作用</li>
+<li><em>cull_mode</em> 剔除模式。默认为<code>None</code>，即不剔除。若开启剔除模式，我们可以选择剔除正向图形或者背向图形。通常我们选择剔除背向图形，因为假定我们选取的正向正确对应了曲面的外法向量，在一个连续不自交的闭合曲面上，一定存在正向图形遮挡了背向图形。然而如果只绘制一个不闭合的图形，那么我们就会有一些方向使得原本看得到的图形被剔除掉。该选项是为了减少绘制看不到的图形而造成的渲染资源浪费设立的，请根据需求选择。</li>
+<li><em>unclipped_depth</em> 选择深度是否被裁剪到<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>。关于深度的详细知识我们会在3D渲染学习。</li>
+<li><em>polygon_mode</em> 多边形模式。这个枚举类型可以决定多边形将怎样被对应到像素上。默认为<code>PolygonMode::Fill</code>，也就是填充。根据需求可以选择<code>PolygonMode::Line</code>或<code>PolygonMode::Point</code>，分别只绘制边线和顶点。注意使用后两者需要启用对应的特性，详情请看<a href="https://docs.rs/wgpu/latest/wgpu/enum.PolygonMode.html">文档</a></li>
+<li><em>conservative</em> 保守光栅化。如果设置为真，则这个多边形最后到屏幕上的投影一定会被其生成的所有像素包含。这可能会导致一些多边形的边缘看着比较粗糙难看。仅当使用<code>PolygonMode::Fill</code>时有效，且需要开启对应特性，请看<a href="https://docs.rs/wgpu/latest/wgpu/struct.PrimitiveState.html">文档</a></li>
+</ul>
+<p><em>depth_stencil</em> 是控制我们称为深度模板缓冲的一个功能的选项，让我们在3D渲染的章节再介绍他吧！</p>
+<p><em>fragment</em> 是渲染管线中负责将最终确定要在窗口和屏幕中显示的部分上色的控制，也就是<a href="../infra/graphics.html#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A6%81">渲染流程概要</a>里最后两个节点之间的部分。他可以为<code>None</code>，因为有些情况我们完全不需要输出具体的像素。这虽然听上去很奇怪，但是我们将会在本书中用到这个技巧！其中抛去平凡的和 <em>vertex</em> 意义相同的字段以外，我们还剩下一个<code>target</code>字段。<code>target</code>字段是一个数组切片，因为WGPU支持用一组顶点数据使用不同的片元着色器对多个渲染目标进行输出，从而存储不同的量到最终的输出缓冲里面。目前为止我们只需要输出到唯一一个我们作为帧缓冲的目标里面，所以我们只需要乖乖写入一个<code>wgpu::ColorTargetState</code>即可。</p>
+<p>那么<code>wgpu::ColorTargetState</code>又描述了一些什么呢？</p>
+<ul>
+<li><em>format</em> 表示将会输出到的目标缓冲的格式。既然我们是要输出到<code>Surface</code>维护的帧缓冲，那我们自然要使用和<code>Surface</code>相同的格式</li>
+<li><em>blend</em> 描述如何把这次渲染输出的像素颜色和之前存在于缓冲中的像素颜色混合。通常是用于带透明度图片的渲染，也可以用于一些特效的制作。熟悉图片处理的读者可能知道例如正片叠底之类的混合效果，实际上便是对应该字段描述的内容。对于该字段的细节，我们不妨在接下来的章节介绍</li>
+<li><em>write_mask</em> 对这个目标的写入操作的哪些通道有效。是一个<code>BitSet</code>，每一位分别代表RGBA通道</li>
+</ul>
+<p>很好！我们终于讲完了这个冗长的渲染管线初始化的内容。想必大家读也读累了，喝口水休息一下吧。</p>
+<p>最后我们要干的事就很简单了，告诉GPU渲染我们的顶点缓冲。</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// ...
+
+let mut render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
+    label: None,
+    color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
+        view: &amp;view,
+        resolve_target: None,
+        ops: wgpu::Operations {
+            load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
+            store: true,
+        },
+    })],
+    depth_stencil_attachment: None,
+});
+
+render_pass.set_pipeline(&amp;pipeline);
+render_pass.set_vertex_buffer(0, vertices_buffer.slice(..));
+render_pass.draw(0..3, 0..1);
+<span class="boring">}</span></code></pre></pre>
+<p>我们告诉WGPU使用刚刚我们创建的渲染管线，然后将槽位0（对应<code>wgpu::RenderPipelineDescriptor.vertex.buffers</code>里面的索引，因为我们只有一个元素所以就是0）的顶点缓冲设置为我们创建的顶点缓冲的全部（是的，你可以在这里切出一部分顶点缓冲来用），最后我们指定了渲染顶点的范围（因为我们缓冲内仅有三个顶点来描述我们要画的三角形，需要用到全体顶点，所以是<code>0..3</code>，有些需要优化的渲染可以在这里选出顶点缓冲的一部分进行渲染）和实例（我们没有实例缓冲，而且只需要画一个，所以是<code>0..1</code>）并创建了渲染命令。</p>
+<p>哦，我们好像忘了写着色器了：</p>
+<pre><code class="language-wgsl">// triangle.wgsl
+
+// 暂时不要在意这些@是干什么的
+struct VertexOut {
+    @builtin(position) position: vec4&lt;f32&gt;,
+    @location(0) color: vec3&lt;f32&gt;,
+}
+
+//下面两个函数的函数名就是创建管线的时候指定的 entry_point
+
+//顶点着色器中 @location(x) 里面的 x 对应了 wgpu::VertexAttribute.shader_location
+@vertex
+fn vs_main(@location(0) position: vec2&lt;f32&gt;, @location(1) color: vec3&lt;f32&gt;) -&gt; VertexOut {
+    var out: VertexOut;
+    out.position = vec4&lt;f32&gt;(position, 0.0, 1.0);
+    out.color = color;
+    return out;
+}
+
+@fragment
+fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
+    return vec4&lt;f32&gt;(pin.color, 1.0);
+}
+</code></pre>
+<p>为了给本章接下来的章节留一些内容，我们并不会详细解释这个着色器在干什么。不过读者大概可以看出来，我们仅仅是将传进来的顶点位置变成了一个四维的坐标并原样传了出去，并在片元着色器里面直接将顶点传入的颜色当作了输出的颜色。</p>
+<p>将着色器放置于适当的位置并编译运行，我们成功在绿的发光的屏幕上看到了白得瞎眼的三角形。这是我们的图形学生涯中令人难忘的第一个三角形！为什么不喝点可乐🥤庆祝一下呢？</p>
+<blockquote>
+<p><strong>提示：</strong> 如果出了问题，别忘了和<a href="https://github.com/switefaster/wgpu-tutor">仓库</a>里面能跑的代码核对一下</p>
+</blockquote>
 
                 </main>
 
@@ -300,8 +471,8 @@ let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor
                     <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
                         data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
                         data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
-                        data-loading="lazy" crossorigin="anonymous" async>
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
                         </script>
                 </main>
             </div>

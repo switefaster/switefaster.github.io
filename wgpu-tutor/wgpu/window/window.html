@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js light">
+<html lang="zh-Hans" class="sidebar-visible no-js ayu">
 
 <head>
     <!-- Book generated using mdBook -->
@@ -39,7 +39,7 @@
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
         var path_to_root = "../../";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
     <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
         if (theme === null || theme === undefined) { theme = default_theme; }
         var html = document.querySelector('html');
         html.classList.remove('no-js')
-        html.classList.remove('light')
+        html.classList.remove('ayu')
         html.classList.add(theme);
         html.classList.add('js');
     </script>
@@ -104,11 +104,11 @@
                         <i class="fa fa-paint-brush"></i>
                     </button>
                     <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
                         </li>
                     </ul>
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
@@ -182,7 +182,7 @@ fn main() {
 <p><code>winit::window::Window</code>便是窗口的主体了，主要负责保管窗口句柄，窗口大小，光标位置等的数据，具体可以设置以及获取的数据请参见<a href="https://docs.rs/winit/latest/winit/window/struct.Window.html">Window的文档</a>和<a href="https://docs.rs/winit/latest/winit/window/struct.WindowBuilder.html">WindowBuilder的文档</a>。值得一提的是<code>Window</code>实现了<code>HasRawWindowHandle</code>，所以可以直接将<code>&amp;Window</code>作为各类图形库的窗口句柄输入。</p>
 <p><code>EventLoop::run</code>接受<code>F: 'static + FnMut(Event&lt;'_, T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;, &amp;mut ControlFlow)</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是可以<code>Deref</code>出<code>&amp;EventLoop</code>的一个包装，主要方便用户在事件处理过程中创建新的窗口，而第三个参数负责控制窗口状态，用法例如<code>*control_flow = ControlFlow::Exit</code>。在一次回调结束后，winit会根据ControlFlow的值改变窗口的状态，比如关闭窗口等。<mask>一切都是borrow checker的选择</mask></p>
 <blockquote>
-<p><strong>提示</strong>：开头的<code>#![windows_subsystem = &quot;window&quot;]</code>标签将会在Windows平台编译时将入口点改为<code>WINMAIN</code>，因而使得程序启动时不会弹出一个CMD。不需要的读者可以自行删去这一行。其他平台不会受到该标签的影响。</p>
+<p><strong>提示：</strong> 开头的<code>#![windows_subsystem = &quot;window&quot;]</code>标签将会在Windows平台编译时将入口点改为<code>WINMAIN</code>，因而使得程序启动时不会弹出一个CMD。不需要的读者可以自行删去这一行。其他平台不会受到该标签的影响。</p>
 </blockquote>
 <p>下一节，我们将会介绍如何处理窗口发送的事件，并且确定程序循环的主体。</p>
 
@@ -207,8 +207,8 @@ fn main() {
                     <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
                         data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
                         data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="zh-CN"
-                        data-loading="lazy" crossorigin="anonymous" async>
+                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
                         </script>
                 </main>
             </div>
