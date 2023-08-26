@@ -4,8 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>某不正经的WGPU教程</title>
-    <meta name="robots" content="noindex" />
+    <title>一闪一闪亮晶晶——像素与窗口 - 某不正经的WGPU教程</title>
 
 
     <!-- Custom HTML head -->
@@ -15,31 +14,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff" />
 
-    <link rel="icon" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/chrome.css">
-    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="highlight.css">
-    <link rel="stylesheet" href="tomorrow-night.css">
-    <link rel="stylesheet" href="ayu-highlight.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
-    <link rel="stylesheet" href="extra-style.css">
+    <link rel="stylesheet" href="../../extra-style.css">
 
 </head>
 
 <body>
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
-        var path_to_root = "";
+        var path_to_root = "../../";
         var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
     </script>
 
@@ -85,7 +84,7 @@
 
     <nav id="sidebar" class="sidebar" aria-label="Table of contents">
         <div class="sidebar-scrollbox">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="wgpu/beginner/pixel.html"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="../../wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/pixel.html" class="active"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
         </div>
         <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
     </nav>
@@ -122,7 +121,7 @@
                 <h1 class="menu-title">某不正经的WGPU教程</h1>
 
                 <div class="right-buttons">
-                    <a href="print.html" title="Print this book" aria-label="Print this book">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
                         <i id="print-button" class="fa fa-print"></i>
                     </a>
                     <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
@@ -156,832 +155,6 @@
             <div id="content" class="content">
                 <main>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="说在前面"><a class="header" href="#说在前面">说在前面</a></h1>
-<h2 id="这是什么"><a class="header" href="#这是什么">这是什么？</a></h2>
-<p>这是一本WGPU教程（理论上），面向图形学初学者和闲的没事的酱油党。但是由于一时兴起，作者决定后续再写游戏开发的教程。目前该书正在施工中。</p>
-<h2 id="示例代码"><a class="header" href="#示例代码">示例代码</a></h2>
-<p>可以执行的示例代码在<a href="https://github.com/switefaster/wgpu-tutor">本书源代码仓库</a>的<code>wgpu-tutor-src</code>文件夹内。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="引言"><a class="header" href="#引言">引言</a></h1>
-<p><strong>阅读本文需要<a href="https://www.rust-lang.org">Rust</a>基础，以及一小部分<a href="https://rust-lang.github.io/async-book/">Rust Async</a>的知识，未满足要求者请阅读<a href="https://doc.rust-lang.org/book/">Rust Book</a></strong></p>
-<blockquote>
-<p><strong>警告：</strong> 切忌将本教程当作一本正经的教程，否则后果自负。文中笔者可能会使用模糊不清甚至粗俗的语言，若有不适，请适度阅读。</p>
-</blockquote>
-<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发<mask>然而后者现在也进入维护模式了，因为WGPU</mask>，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦<mask>蛋疼</mask>，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<mask><del>GL，狗都不用</del></mask></small></p>
-<p>WGPU 可能不是这些库中性能最高的，却绝对称得上是最易用的，也是笔者(下文中统称&quot;我&quot;)最喜欢的图形库。</p>
-<p>在这篇教程中，我会尽量用通俗易懂的语言向读者(下文中或许会简称&quot;你&quot;)介绍WGPU的基本使用。鉴于图形库的性质，我会相对详细地介绍其中涉及的数学知识以及图形库工作的方式，并且会提及到其他图形库中的写法。图形学初学者和其他图形库用户过来打酱油都可以放心食用。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="程序窗口和循环"><a class="header" href="#程序窗口和循环">程序，窗口和循环</a></h1>
-<p>在我们开始激动人心的WGPU之旅前，我们需要为其准备一个舞台，也就是窗口。写过其他图形应用程序的读者应该知道，不同平台对窗口初始化的方式千差万别，而句柄的差异又让后续的图形库初始化难以统一。在Rust中，多亏了<a href="https://github.com/rust-windowing/winit">winit</a>和<a href="https://github.com/rust-windowing/raw-window-handle">RawWindowHandle</a>的包装，用户得以避免为每个平台写一份代码的悲伤状况(甚至支持Android和iOS)。在本章节中，我们将介绍使用winit初始化窗口和控制循环的方式。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="窗口初始化"><a class="header" href="#窗口初始化">窗口初始化</a></h1>
-<p>现在我们将介绍如何用winit初始化窗口。</p>
-<p>首先我们需要将winit加入到依赖中</p>
-<pre><code class="language-toml"># Cargo.toml
-# ...
-[dependencies]
-winit = &quot;0.28&quot;
-</code></pre>
-<p>然后创建窗口</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021">#![windows_subsystem = &quot;window&quot;]
-
-fn main() {
-    let event_loop = winit::event_loop::EventLoop::new();
-    let _window = winit::window::WindowBuilder::new()
-        .with_title(&quot;标题&quot;)
-        .build(&amp;event_loop)
-        .unwrap();
-    event_loop.run(move |_event, _, _control_flow| {
-        todo!()
-    });
-}</code></pre></pre>
-<p>完事，走人。</p>
-<p>没错，只有短短三行，我们就完成了窗口初始化，念及此我不禁感叹winit的伟大。</p>
-<p>还是要解释一下上面的代码的，winit中的类型<code>winit::event_loop::EventLoop</code>是winit中用来传递窗口事件的类型，本身除了<code>EventLoop::run</code>以外没有什么特别值得关注的函数。值得注意的是<code>EventLoop</code>可以传入用户自定义的事件，详情请阅读<a href="https://docs.rs/winit/latest/winit/event_loop/struct.EventLoop.html">EventLoop的文档</a>。</p>
-<p><code>winit::window::Window</code>便是窗口的主体了，主要负责保管窗口句柄，窗口大小，光标位置等的数据，具体可以设置以及获取的数据请参见<a href="https://docs.rs/winit/latest/winit/window/struct.Window.html">Window的文档</a>和<a href="https://docs.rs/winit/latest/winit/window/struct.WindowBuilder.html">WindowBuilder的文档</a>。值得一提的是<code>Window</code>实现了<code>HasRawWindowHandle</code>，所以可以直接将<code>&amp;Window</code>作为各类图形库的窗口句柄输入。</p>
-<p><code>EventLoop::run</code>接受<code>F: 'static + FnMut(Event&lt;'_, T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;, &amp;mut ControlFlow)</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是可以<code>Deref</code>出<code>&amp;EventLoop</code>的一个包装，主要方便用户在事件处理过程中创建新的窗口，而第三个参数负责控制窗口状态，用法例如<code>*control_flow = ControlFlow::Exit</code>。在一次回调结束后，winit会根据ControlFlow的值改变窗口的状态，比如关闭窗口等。<mask>一切都是borrow checker的选择</mask></p>
-<blockquote>
-<p><strong>提示：</strong> 开头的<code>#![windows_subsystem = &quot;window&quot;]</code>标签将会在Windows平台编译时将入口点改为<code>WINMAIN</code>，因而使得程序启动时不会弹出一个CMD。不需要的读者可以自行删去这一行。其他平台不会受到该标签的影响。</p>
-</blockquote>
-<p>下一节，我们将会介绍如何处理窗口发送的事件，并且确定程序循环的主体。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="事件发生"><a class="header" href="#事件发生">事件发生！</a></h1>
-<p>在上一节中，我们初始化了一个窗口。如果有读者将<code>todo!()</code>删去并运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
-<p>我们先来看一个例子</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>event_loop.run(move |event, _, control_flow| match event {
-        Event::DeviceEvent { event, .. } =&gt; {
-            unimplemented!()
-        }
-        Event::WindowEvent {
-            event,
-            window_id,
-        } if window_id == window.id() =&gt;
-            match event {
-                WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
-                WindowEvent::Resized(physical_size) =&gt; {
-                    resize(physical_size);
-                }
-                WindowEvent::ScaleFactorChanged { new_inner_size, .. } =&gt; {
-                    resize(*new_inner_size);
-                }
-                _ =&gt; {}
-            }
-        Event::RedrawRequested(_) =&gt; {
-            render();
-        }
-        Event::MainEventsCleared =&gt; {
-            window.request_redraw();
-        }
-        _ =&gt; {}
-    });
-<span class="boring">}</span></code></pre></pre>
-<p>这是一个渲染程序最基础的循环，现在我们来逐个分析这个回调中干了什么</p>
-<p>首先，我们用<code>match event {...}</code>来匹配事件，其中处理了四种事件：</p>
-<ul>
-<li><code>Event::DeviceEvent</code> 是 <code>Event</code> 的子事件，负责传递设备相关的信息，例如 <strong>鼠标移动</strong> <strong>鼠标点击</strong> <strong>键盘按键</strong> 等</li>
-<li><code>Event::WindowEvent</code> 是 <code>Event</code> 的子事件，负责传递窗口相关的信息，例如 <strong>窗口缩放</strong> <strong>窗口移动</strong> 等等，我们顺便在这把对窗口的关闭请求处理了（注意<code>control_flow</code>的用法），<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>终于有了用武之地</li>
-<li><code>Event::RedrawRequested</code> 事件会在窗口被要求重新绘制窗口内容时被调用，这也将会是渲染部分被调用的位置</li>
-<li><code>Event::MainEventsCleared</code> 事件会在事件队列中的事件清空时被调用，我们在此进行一次重绘要求，这样程序就会尽可能快地进行渲染</li>
-<li>剩下的事件暂时管不着，我们直接<code>_</code></li>
-</ul>
-<blockquote>
-<p>如果你翻阅了<code>Event</code>的文档，那么你或许发现了<code>WindowEvent</code>和<code>DeviceEvent</code>里面都有键盘、鼠标相关的事件。值得注意的是，<code>DeviceEvent</code>获取到的事件是直接来源于系统外设的信号的，因而并不受窗口聚焦等的限制。在游戏中，我们更倾向于使用后者，而在应用中我们更倾向于使用前者。</p>
-</blockquote>
-<p>这便是这个循环的主体，简单明了，却会是整个程序的主干，不容忽视。</p>
-<p>现在我们的程序已经能进行基本的循环了。下一小节我们会介绍如何维持定时长的更新，这并非必要，却是游戏中常见的需求，读者可以自行选择跳过与否。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="太快了"><a class="header" href="#太快了">太快了！</a></h1>
-<p>控制恒定的更新速度是游戏中常见的需求，这一节我们将介绍一种简单的控制更新频率的方法。</p>
-<p>玩过 <strong>Minecraft™</strong> 吗？Minecraft中的游戏逻辑循环是以20次/秒的频率进行的，称为 20 <strong>tps(<em>ticks per second</em>)</strong>，而渲染循环却以不同的频率（常见的为60个画面（称为 <strong>帧</strong>）每秒，称为60 <strong>fps(<em>frames per second</em>)</strong>）刷新。较低的逻辑更新频率可以减少计算的负担，而更高的渲染频率则可以使游戏显得更加流畅。如果更新的速度不均匀，则可能使游戏显示的画面有违和的跳动。那么，我们应该如何控制更新的频率呢？</p>
-<p>考虑这样一个问题，我们希望一个循环以60次每秒的速度进行更新，那么每次循环的平均用时应当为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">60</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">sec</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.016</span><span class="mord mathnormal">sec</span></span></span></span>，现在有两种情况:</p>
-<ul>
-<li>这次循环的用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>少，那我们自然可以等到时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，时再开始下一次循环。其中<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>是上一次循环结束的时间戳</li>
-<li>如果这次循环用时比<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>多呢？不妨假设这一次循环所耗的时间为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>我们整整缺少了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">⌋</span></span></span></span>次循环！一种简单的解决方案是，当场补上这<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>次循环的更新并且直接进入下一个循环，而补上的循环的更新间隔<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样可以一定程度上保证更新的正确性，并且如果后续更新没有再消耗大于<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的时间的话也能顺利地接上</li>
-</ul>
-<p>现在，我们来实现一下</p>
-<pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
-
-const TPS: f64 = 60.0;
-const TIMEOUT: f32 = 3.0;
-
-fn update(dt: Duration) {
-    println!(&quot;delta tau: {:?}&quot;, dt);
-}
-
-fn main() {
-    let tau = Duration::from_secs_f64(1.0 / TPS);
-    let timeout = Duration::from_secs_f32(TIMEOUT);
-    let begin = Instant::now();
-    let mut now = Instant::now();
-    let mut lag = Duration::ZERO;
-
-    loop {
-        let dt = now.elapsed();
-        now = Instant::now();
-        lag += dt;
-        while lag &gt; tau {
-            update(tau);
-            lag -= tau;
-        }
-        if begin.elapsed() &gt; timeout {
-            break;
-        }
-    }
-}
-</code></pre></pre>
-<p>是不是非常简单呢？唯一值得注意的一点是我们并不用<code>sleep</code>来控制间隔，而不终止循环的运行。因此我们可以有不同的频率同时运行。而主循环内部就是运行的最快的部分了。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">use std::time::{Duration, Instant};
-
-const TPS_0: f64 = 60.0;
-const TPS_1: f64 = 20.0;
-const TIMEOUT: f32 = 3.0;
-
-fn update(dt: Duration) {
-    println!(&quot;60 tps delta tau: {:?}&quot;, dt);
-}
-
-fn slow_update(dt: Duration) {
-    println!(&quot;20 tps delta tau: {:?}&quot;, dt);
-}
-
-fn fast_update(dt: Duration) {
-    // 以最快可能速度运行的逻辑，通常不会使用
-}
-
-fn main() {
-    let tau_0 = Duration::from_secs_f64(1.0 / TPS_0);
-    let tau_1 = Duration::from_secs_f64(1.0 / TPS_1);
-    let timeout = Duration::from_secs_f32(TIMEOUT);
-    let begin = Instant::now();
-    let mut now = Instant::now();
-    let mut lag_0 = Duration::ZERO;
-    let mut lag_1 = Duration::ZERO;
-
-    loop {
-        let dt = now.elapsed();
-        now = Instant::now();
-        lag_0 += dt;
-        lag_1 += dt;
-        while lag_0 &gt; tau_0 {
-            update(tau_0);
-            lag_0 -= tau_0;
-        }
-        while lag_1 &gt; tau_1 {
-            slow_update(tau_1);
-            lag_1 -= tau_1;
-        }
-        fast_update(dt);
-        // 为了使其能够在 playground 中运行，加上了超时限制。在实际应用中并不需要这几行
-        if begin.elapsed() &gt; timeout {
-            break;
-        }
-    }
-}
-</code></pre></pre>
-<p>放进 <code>EventLoop::run</code> 中也是同理，快去试试吧！</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="设备队列交换链"><a class="header" href="#设备队列交换链">设备，队列，交换链？</a></h1>
-<p>从这一章开始，我们将正式进入WGPU的使用。本章将先介绍图形学库的基本工作方式，随后将再次介绍WGPU这个库和其基本的结构。最后，我们将为上一章创建的窗口初始化WGPU环境，并且做好渲染的准备工作。</p>
-<p>于本章我希望读者可以对图形学引擎的工作方式有更深的理解，并且初步熟悉WGPU的结构。本章可能更偏向于理论和文字。<mask>理论，有用吗？</mask></p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="图形学从入门到入土"><a class="header" href="#图形学从入门到入土">图形学，从入门到入土</a></h1>
-<blockquote>
-<p><strong>注意：</strong> 本章节含有较大量<code>mermaid-js</code>的可视化代码，如果你看到了裸露的<code>mermaid</code>代码块，请静等一段时间使得<code>mermaid</code>被正常加载。如果较长时间后仍然无法看到图形，请检查您所处的网络环境下<code>mermaid-js</code>有没有从<code>jsdelivr</code>成功加载，必要时请使用恰当的方式使其可以加载。</p>
-</blockquote>
-<h2 id="说在前面-1"><a class="header" href="#说在前面-1">说在前面</a></h2>
-<p><mask> <del>入什么门，直接入土得了</del> </mask>
-本节将会对主流（底层）图形学引擎的基础概念和工作方式做一个 <strong>概要性</strong> 的介绍。读者可以在这一节学到图形学引擎的基础工作流程。但是本节将会省略大量在后面的章节叙述的细节内容，请有需要的读者自行查阅之后的章节。</p>
-<h2 id="基本概念"><a class="header" href="#基本概念">基本概念</a></h2>
-<h3 id="帧缓冲-frame-buffer"><a class="header" href="#帧缓冲-frame-buffer">帧缓冲 <em>Frame Buffer</em></a></h3>
-<p>我们先来考虑一下要绘制一个图形的整体过程</p>
-<pre><code class="language-mermaid">flowchart LR
-图形数据 -- 某些过程 --&gt; 屏幕
-</code></pre>
-<p>我们知道，屏幕实际上是一系列的发光单元阵列（下文或称为 <strong>“像素”</strong>），屏幕依靠改变各发光单元（各组分）的亮度来显示不同的图形。因此，我们显示在屏幕（当然实际上操作系统会帮我们显示到对应的窗口）上的东西，实际上应该是一个矩阵，而矩阵元便是亮度。我们称存放这个矩阵的缓冲为 <strong>帧缓冲</strong></p>
-<pre><code class="language-mermaid">flowchart LR
-图形数据 -. 某些过程 .-&gt; 帧缓冲 --&gt; 屏幕
-</code></pre>
-<h3 id="交换链-swap-chain"><a class="header" href="#交换链-swap-chain">交换链 <em>Swap Chain</em></a></h3>
-<p>有没有接触过老式的显像管电视机？或者一些老电脑？如果有，那你一定对扫描纹不陌生。扫描纹，是因为图像更新不及时而产生的一种显示现象。</p>
-<p>我们先来说一个故事，假设你在和你的朋友玩一个游戏。现在你和你的朋友面前有一个 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 的棋盘，上面摆满了正面黑色，背面白色的棋子。你不能接触这个棋盘，但可以命令你的朋友翻转棋子，你的朋友不能自作主张，但是一定会听从你的命令，但是他不能同时翻转多个棋子。现在，你需要把全部棋子变白，然后交给评委检查。</p>
-<p>于是，你向你的朋友下达命令：把全部棋子翻过来。但是你的朋友并不知道要以什么顺序翻转。你经过一番思考，认为天时地利人和，应该从左到右逐行翻转。</p>
-<p>于是，你的朋友开始操作了。尽管你的朋友手速非常快，一秒能翻四个棋子，但为了翻完整个棋盘，还是花了4秒时间。这期间，评委一直对着空气干瞪眼，等得黄花菜都凉了，于是对你们非常不满意。</p>
-<p>你怒了，既然评委那么喜欢看，那就让你的朋友当着评委的面翻棋子。于是评委看到了一个一行一行变白的棋盘。好在你人品爆棚，评委觉得还算可以接受。</p>
-<p>然后评委又下达了一个任务，他想看到黑白不停交换的棋盘。于是你如法炮制，对朋友下达命令</p>
-<ol>
-<li>把全部棋子从左到右翻白</li>
-<li>然后把全部棋子从左到右翻黑</li>
-<li>回到第一步</li>
-</ol>
-<p>于是你的朋友照做，评委看到了一个四秒渐渐变成全白，再花四秒变成全黑的棋盘。评委对你的动态美学大受震撼，并且给你打了0分。</p>
-<p>于是你嚷嚷道：<strong>你是故意找茬是不是？<em>一个</em> 棋盘怎么可能做到你的要求</strong></p>
-<p>好在你不是开水果摊的，评委也不姓刘。他好好思考了一下，认为你说得对。于是他又给了你一个棋盘和16个棋子，但是这次评委会自己随机提出要显示的图形。</p>
-<p>然后你思考了一下，发现可以这么干：</p>
-<ul>
-<li>命令你的朋友在棋盘A上翻转出评委要求的图形</li>
-<li>把翻转好的棋盘B小心地交给评委，耗时大约4秒</li>
-<li>把棋盘A交给评委，把棋盘B交给朋友，接受评委要求的新图形</li>
-<li>重复上述步骤</li>
-</ul>
-<p>于是，评委眼前就总有一个翻好的棋盘。评委非常满意，并且告诉你奖金会在笔者找到女朋友时发到你的徽信，你满意地离开了。</p>
-<p>上述故事看似扯淡，实则<mask>就是扯淡</mask>蕴含了交换链概念的基础思想。将棋盘当作屏幕，将翻棋子的过程理解为程序在给帧缓冲填色。于是上述过程可以概括为：</p>
-<blockquote>
-<p>维护两个（或以上）的帧缓冲，在每一时刻，都有其中一个帧缓冲作为显示缓冲被发送到屏幕上，而另一缓冲则在后台接受程序填充。当填充结束时，置换显示缓冲的指针和置换缓冲的指针。</p>
-</blockquote>
-<p>普遍而言，程序填充缓冲（下文或称为 <strong>“渲染”</strong> ）的过程是远慢于指针交换的速度的，因而在两个缓冲的分工合作下，用户就不必在屏幕上痛苦地看到逐个填充像素的过程了。而 <strong>交换链</strong> 就是负责维护这个过程的对象。</p>
-<pre><code class="language-mermaid">flowchart LR
-    O[程序] -. 某些过程 .-&gt; A([填充命令])
-    O -. 某些过程 .-&gt; E([填充命令])
-    C -- 显示 --&gt; D[屏幕]
-    F -- 显示 --&gt; D
-    B -.-&gt; D
-    G -.-&gt; D
-    subgraph  第N+1帧
-        subgraph  交换链
-            E -.- F[帧缓冲A]
-            E -- 渲染 --&gt; G[帧缓冲B]
-        end
-    end
-    subgraph  第N帧
-        subgraph  交换链
-            A -- 渲染 --&gt; B[帧缓冲A]
-            A -.-&gt; C[帧缓冲B]
-        end
-    end
-    
-</code></pre>
-<blockquote>
-<p>非常值得一提的是，WGPU 0.10 起，交换链和屏幕(<code>Surface</code>)被封装到了一起，不过并不影响大体的工作机制。</p>
-</blockquote>
-<h3 id="适配器-adapter"><a class="header" href="#适配器-adapter">适配器 <em>Adapter</em></a></h3>
-<p>有时候，一台电脑可能有多张显卡（或集显，这里指能被驱动识别为显卡的设备）。适配器是你的操作系统与各个硬件设备之间的桥梁。</p>
-<h3 id="设备-device"><a class="header" href="#设备-device">设备 <em>Device</em></a></h3>
-<p>设备是表征一个硬件设备（比如一个GPU）的对象。在广大图形库（除了GL）中，都存在设备（或等价于设备的）对象。该对象通常用于各类需要在GPU上分配资源的对象的创建（例如 GPU上的数据缓冲，图像纹理等）。这也将是我们最常接触的对象之一。一个 <em>Adapter</em> 可以创建多个设备，哪怕其使用的都是同一个硬件，但是彼此之间的资源是独立的。</p>
-<h3 id="队列-queue"><a class="header" href="#队列-queue">队列 <em>Queue</em></a></h3>
-<p>当然，队列可以指很多东西，具体而言，在本文中（除个别情况）代指 <strong>命令队列 <em>(Command Queue)</em></strong>。这可能对不少人是一个比较陌生的概念，却是Vulkan和DirectX12的核心概念之一。命令队列是为了方便并发渲染而引入的。正如其名称指示，命令队列就是GPU需要执行的命令的队列。命令队列是 <strong>线程安全</strong> 的，意味着它被允许在不同的线程间发送和访问（<code>Send + Sync</code>）。当然GPU上真正的命令队列本身并不是线程安全的，然而代码中的命令队列仅是操作GPU上命令队列的一个桥梁。我们通常会构筑一个由多条渲染命令组成的 <strong>命令缓冲 <em>(Command Buffer)</em></strong>，然后将其发送（<em>submit</em>）到命令队列中（这个过程是线程安全的）。GPU会依次执行其中的命令。这很显然是两个并行的过程，而且在CPU的操作并不非常耗时，因而在DirectX12和Vulkan中，有信号<code>Signal</code>(DirectX12)/<code>Semaphore</code>(Vulkan)和栅栏<code>Fence</code>的概念，来阻挡CPU的进度超前GPU过多。而在WGPU中，我们通常并不用关注这个问题。</p>
-<h3 id="关系"><a class="header" href="#关系">关系</a></h3>
-<p>上述各概念之间有一定程度的关系，如下图所示</p>
-<pre><code class="language-mermaid">flowchart LR
-图形API实例 -- 创建 --&gt; A[适配器] -- 创建 --&gt; B
-A -- &quot;创建 (WGPU)&quot; --&gt; C
-subgraph  GPU资源
-B[设备]
-C[队列]
-B -- &quot;创建 (DirectX12)&quot; --&gt; C
-B -- 创建 --&gt; D[交换链] -- 包含 --&gt; F[帧缓冲]
-B -- 创建 --&gt; E[命令缓冲]
-E -- 发送到 --&gt; C
-C -- 控制 --&gt; O[GPU]
-O -- 输出到 --&gt; F
-end
-</code></pre>
-<h2 id="渲染流程概要"><a class="header" href="#渲染流程概要">渲染流程概要</a></h2>
-<p>由于详细过程会在后面的章节提及，本小节不涉及详细流程</p>
-<p>参见流程图：</p>
-<pre><code class="language-mermaid">flowchart TB
-subgraph  渲染管线
-direction TB
-图形数据 -- 顶点着色器/几何着色器/.. --&gt; 在帧缓冲上要渲染的图形信息 -- 光栅化 --&gt; 像素位置 -- 像素/片元着色器 --&gt; 颜色数据 -- 混合 --&gt; 帧缓冲
-end
-</code></pre>
-<ul>
-<li>顶点着色器阶段将原始的模型数据进行一些变换后生成需要在帧缓冲上渲染的图形信息</li>
-<li>光栅化是将图形信息转化为帧缓冲上对应像素区域的过程</li>
-<li>片元（像素）着色器将决定各个像素应该填充什么颜色</li>
-<li>在混合阶段，该图形渲染出的像素数据会和该帧缓冲上已渲染像素的数据进行混合。这个过程通常用于控制一些叠加效果（例如透明度）的渲染。</li>
-</ul>
-<p>通常，我们会将上面叙述的流程称为一个 <strong>渲染管线(<em>Graphics Pipeline</em>)</strong></p>
-<p>本节的内容至此结束，下一节，我们将着重介绍 WGPU 这个库。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="认识-wgpu"><a class="header" href="#认识-wgpu">认识 WGPU</a></h1>
-<p>从本节开始，我们将正式开始接触<code>WGPU</code>这个库。这一小节只是对库的介绍，并没有过多知识。</p>
-<h2 id="什么是wgpu"><a class="header" href="#什么是wgpu">什么是WGPU？</a></h2>
-<blockquote>
-<p><em><strong>Wgpu-rs is an idiomatic Rust wrapper over wgpu-core. It's designed to be suitable for general purpose graphics and computation needs of Rust community. <br>Wgpu-rs can target both the natively supported backends and WebAssembly directly.</strong></em></p>
-<p align="right">——wgpu.rs</p>
-</blockquote>
-<p><strong>WGPU</strong> 视其语境可以代指不同的对象。在Rust社区以及本文中，通常代指<a href="https://github.com/gfx-rs/wgpu">wgpu-rs</a>。<code>wgpu-rs</code>是对<code>wgpu-core</code>的包装，后者是一个更加底层的包装层，负责直接与图形库底层进行交互。而<code>wgpu-core</code>又依赖于<code>wgpu-hal</code>，HAL是硬件抽象层(<em><strong>Hardware Abstraction Layer</strong></em>)的简称。顾名思义，HAL将各个图形库最核心的观念提取成了一个抽象层，并且后端由不同的底层库实现。这也是<code>wgpu-rs</code>得以在不改变代码的情况下改变运行底层的根本。不过由于其设计模式最接近于Vulkan，因此目前使用Vulkan底层才能得到最佳性能。</p>
-<p>事实上，WGPU名称的来源是<a href="https://www.w3.org/TR/webgpu/">WebGPU</a>标准。后者旨在为Web环境提供一个可以调用硬件GPU进行渲染和计算的标准。它的标准是为JavaScript设计的，这也解释了WGPU库中偶尔出现的一两个<code>async</code>函数，以及为何WGPU支持WebAssembly。<code>wgpu-rs</code>是<code>WebGPU</code>对Rust用户的包装，而其后的<code>wgpu-core</code>则亦成为了一些浏览器实现<code>WebGPU</code>功能的后端（如 <em>FireFox</em>）。</p>
-<blockquote>
-<p>wgpu-core曾经依赖的是gfx-hal。后者是一个基于Vulkan设计的硬件抽象层。后来，wgpu开发组发现gfx-hal对于wgpu而言过于冗余，于是贴合wgpu的需求开发了wgpu-hal。目前gfx-hal进入了维护模式。</p>
-</blockquote>
-<hr />
-<blockquote>
-<p><em>Chrome</em> 浏览器使用的WebGPU实现并非<code>wgpu-core</code>而是C++编写的<a href="https://dawn.googlesource.com/dawn">Dawn</a></p>
-</blockquote>
-<p>当然，在本书中，我们只会涉及到<code>wgpu-rs</code>的部分。</p>
-<h2 id="它长什么样"><a class="header" href="#它长什么样">它长什么样？</a></h2>
-<p>我们来看一眼<a href="https://docs.rs/wgpu/">wgpu的文档</a>。可以发现，能用的大部分结构都在<code>wgpu::</code>根模块下。只有少部分实用工具在<code>wgpu::util::</code>模块下。所以你大部分时候只要输入<code>wgpu::</code>就能找到你想要的东西。</p>
-<p>在文档的一长串结构列表中，我们可以看到熟悉的几个身影，例如</p>
-<ul>
-<li><code>wgpu::Instance</code></li>
-<li><code>wgpu::Adapter</code></li>
-<li><code>wgpu::Device</code></li>
-<li><code>wgpu::Queue</code></li>
-<li><code>wgpu::CommandBuffer</code></li>
-<li>etc.</li>
-</ul>
-<p>诚然，他们对应了上一节所讲述的内容。当然，更多的还有我们暂不熟悉的结构，我们将会在之后小节的学习中逐渐认识他们。</p>
-<h2 id="可能可以用到的链接"><a class="header" href="#可能可以用到的链接">可能可以用到的链接</a></h2>
-<ul>
-<li><a href="https://docs.rs/wgpu/">wgpu的文档</a></li>
-<li><a href="https://wgpu.rs/">wgpu的主页</a></li>
-<li><a href="https://github.com/gfx-rs/wgpu/blob/master/CHANGELOG.md">wgpu的CHANGELOG</a></li>
-<li><a href="https://sotrh.github.io/learn-wgpu/">sotrh的英文WGPU教程</a></li>
-</ul>
-<p>本小节至此结束，下一节，我们将正式开始初始化WGPU并开始我们的渲染旅途。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="一切的起点初始化"><a class="header" href="#一切的起点初始化">一切的起点——初始化</a></h1>
-<p>本小节，我们将正式开始初始化WGPU，并且用其给我们的窗口染上颜色。</p>
-<h2 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h2>
-<p>当然，在开始之前我们需要添加一些依赖！</p>
-<pre><code class="language-toml"># Cargo.toml
-
-[package]
-# ...
-resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
-# UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
-
-[dependencies]
-winit = &quot;0.28&quot;
-wgpu = &quot;0.16&quot;
-pollster = &quot;0.3&quot;
-</code></pre>
-<p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
-<p>准备完毕，我们可以开始了。</p>
-<h2 id="正式开始"><a class="header" href="#正式开始">正式开始</a></h2>
-<p>看过上一节以及上上节的读者应该已经知道，WGPU的一切应当从<code>wgpu::Instance</code>开始。WGPU的代码都相当直接，所以我们先直接看代码吧。</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021">use pollster::FutureExt; // 有了这个我们就可以对任意Future使用block_on()了
-
-fn main() {
-    let event_loop = winit::event_loop::EventLoop::new();
-    let window = winit::window::WindowBuilder::new()
-        .with_title(&quot;Test Window&quot;)
-        .build(&amp;event_loop)
-        .unwrap();
-
-    let instance = wgpu::Instance::new(wgpu::InstanceDescriptor {
-        backends: wgpu::Backends::PRIMARY,
-        dx12_shader_compiler: wgpu::Dx12Compiler::Fxc,
-    }); // 如果要在WSL里面使用，建议使用GL
-
-    // ...
-}</code></pre></pre>
-<p><code>wgpu::InstanceDescriptor</code>描述了我们需要创建的实例的基本信息。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。<code>dx12_shader_compiler</code>则指定由<code>DirectX</code>使用的着色器语言<code>HLSL</code>的编译器。我们通篇都会使用<code>WGSL</code>，也不需要特殊的<code>HLSL</code>配置，便可以选择自带的<code>Fxc</code>。接下来，我们有了实例，该获取<code>Surface</code>了</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// ...
-let surface = unsafe { instance.create_surface(&amp;window).unwrap() };
-let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
-        power_preference: wgpu::PowerPreference::HighPerformance,
-        compatible_surface: Some(&amp;surface),
-        force_fallback_adapter: false,
-    })
-    .block_on()
-    .unwrap();
-<span class="boring">}</span></code></pre></pre>
-<p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
-<p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择独显还是集显，看你咯。</p>
-<p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let adapter = instance
-    .enumerate_adapters(wgpu::Backends::all())
-    .filter(|adapter| {
-        // 筛选你需要的适配器
-    })
-    .first()
-    .unwrap()
-
-<span class="boring">}</span></code></pre></pre>
-<p>好，底层干部基本就位了，接下来我们就要请出我们的一线工人<code>Queue</code>和<code>Device</code>。</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let (device, queue) = adapter.request_device(
-        &amp;wgpu::DeviceDescriptor {
-            label: None,                  // 如果你给他起个名字，调试的时候可能比较有用
-            features: adapter.features(), // 根据需要的特性自行调整
-            limits: adapter.limits(),     // 根据需要的限定自行调整
-        },
-        None,
-    )
-    .block_on()
-    .unwrap();
-<span class="boring">}</span></code></pre></pre>
-<p>简单、直白、明了。当然，我们理所当然地注意到了<code>Features</code>和<code>Limits</code>。<code>Features</code>是显卡设备需要支持的功能，例如深度裁剪等等。而<code>Limits</code>是一些喜闻乐见的限制，比如允许创建的材质的数量之类。当WGPU无法创建满足条件的设备时，会果断丢出一个<code>Error</code>。当然，我们这里方便起见直接<code>unwrap()</code>了=_=</p>
-<p>当然，如果你没在这里声明你需要用到的功能而在后面的程序中使用到了，则WGPU会在执行此功能时panic。这样一定程度上避免了WGPU在不同的设备上有不同的行为。</p>
-<p>万事俱备！……吗？我们好像还没告诉WGPU咱们的帧缓冲得多大啊……</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let capabilities = surface.get_capabilities(&amp;adapter);
-
-let mut surface_config = wgpu::SurfaceConfiguration {
-        usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
-        format: capabilities.formats[0],
-        width: window.inner_size().width,
-        height: window.inner_size().height,
-        present_mode: wgpu::PresentMode::AutoVsync,
-        alpha_mode: wgpu::CompositeAlphaMode::Auto,
-        view_formats: vec![],
-    };
-
-surface.configure(&amp;device, &amp;surface_config);
-<span class="boring">}</span></code></pre></pre>
-<p>我们先获取了我们的<code>Surface</code>的<code>SurfaceCapabilities</code>，其中包含了我们的设备和平面支持的像素格式、呈现模式和alpha值模式。
-我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他能用的像素格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。<code>view_formats</code>则规定了我们创建帧缓冲视图时可以使用哪些格式。是的，视图的格式可以和缓冲本身不同。但是我们通常只会用到格式相同的情况，而这种情况永远都是被支持的，所以我们留空就行了。</p>
-<p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>event_loop.run(move |event, _, control_flow| {
-    *control_flow = ControlFlow::Wait;
-
-    match event {
-        winit::event::Event::WindowEvent { event, window_id } if window.id() == window_id =&gt; {
-            match event {
-                winit::event::WindowEvent::Resized(new_size) =&gt; {
-                    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
-                        surface_config.width = new_size.width;
-                        surface_config.height = new_size.height;
-                        surface.configure(&amp;device, &amp;surface_config);
-                    }
-                }
-                winit::event::WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
-                winit::event::WindowEvent::ScaleFactorChanged {
-                    new_inner_size: new_size,
-                    ..
-                } =&gt; {
-                    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
-                        surface_config.width = new_size.width;
-                        surface_config.height = new_size.height;
-                        surface.configure(&amp;device, &amp;surface_config);
-                    }
-                }
-                _ =&gt; (),
-            }
-        }
-        winit::event::Event::MainEventsCleared =&gt; {
-            window.request_redraw();
-        }
-        winit::event::Event::RedrawRequested(_) =&gt; {
-            // 在这渲染  
-        }
-        _ =&gt; (),
-    }
-});
-<span class="boring">}</span></code></pre></pre>
-<p>上面的代码，说人话，就是在窗口大小变化的时候重新配置一下咱们的<code>Surface</code>。熟悉了渲染流程的读者可能已经猜到，如果不这么做，很有可能导致巨大的窗口上只寥寥显示了几个巨大的像素的惨剧……</p>
-<h2 id="万事俱备终于"><a class="header" href="#万事俱备终于">万事俱备，终于……</a></h2>
-<p>开始我们的渲染吧~</p>
-<p>渲染一个窗口需要几步？<mask>好几步</mask></p>
-<ol>
-<li>获取要渲染对象的视图</li>
-<li>发送渲染命令</li>
-<li>把渲染命令丢件队列里面</li>
-</ol>
-<p>这就是我们的代码将要做的。</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let output = surface.get_current_texture().unwrap();
-let view = output
-    .texture
-    .create_view(&amp;wgpu::TextureViewDescriptor::default());
-let mut encoder =
-    device.create_command_encoder(&amp;wgpu::CommandEncoderDescriptor::default());
-{
-    // 注意这个 '{'
-    let _render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
-        label: None,
-        color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
-            view: &amp;view,
-            resolve_target: None,
-            ops: wgpu::Operations {
-                load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
-                store: true,
-            },
-        })],
-        depth_stencil_attachment: None,
-    });
-}
-queue.submit(std::iter::once(encoder.finish()));
-output.present();
-<span class="boring">}</span></code></pre></pre>
-<p>也挺直白的，不是么？</p>
-<p>我们来看看我们到底做了啥。</p>
-<p>首先，我们向<code>Surface</code>请求了交换链中的下一个帧缓冲，然后创建了它的视图。接下来。我们创建了一个命令编码器，来创建一个命令缓冲。然后，我们开始了一个渲染阶段，并且告诉WGPU我们需要渲染到哪些<code>RENDER_ATTACHMENT</code>上面，顺便告诉WGPU怎么清除这些渲染对象，包括在读取的时候清除并设置默认值，然后对其的操作要写入到缓冲中。<code>resolve_target</code> 是MSAA可能会使用到的技术，我们在此不做赘述。<code>depth_stencil_attachment</code> 将在后文提及并使用。</p>
-<p>然后，我们暂时不用进行别的渲染操作，所以我们让编码器创建了个命令缓冲，然后把它丢进了队列。</p>
-<blockquote>
-<p>为了强调<code>Queue::submit</code>接受的是迭代器，我使用了<code>std::iter::once</code>，然而我们实际上可以直接使用<code>Some(encoder.finish())</code>，因为<code>Option&lt;T&gt;</code>实现了<code>IntoIterator&lt;Item=T&gt;</code></p>
-</blockquote>
-<p><strong>SO EZ!</strong></p>
-<p>另外值得我们注意的是，为了内存安全需要，当然也是因为其内部操作的必要，<code>RenderPass</code> 内部保留着一个 <code>&amp;mut CommandEncoder</code>，换而言之，我们的编码器的数据是流入<code>RenderPass</code>中的，因此我们需要稍微控制其生命周期，以防止Rust编译器对你狂暴鸿儒大量错误。这也是为什么我们打了一组看似多余的<code>{}</code>。</p>
-<p>不出意外的话，我们的程序现在可以顺利运行，并且你会看到一片绿到发光的屏幕<mask>没有暗讽各位读者的意思，大概</mask>。于是，我们正式迈出了使用WGPU的第一步。不过请注意，我们激动人心的旅程才刚刚开始！</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="顶点像素着色器"><a class="header" href="#顶点像素着色器">顶点，像素，着色器！</a></h1>
-<p>从本章开始，我们将正式开始用WGPU画一些东西。不过，在此之前，我们需要先了解一下计算机是如何理解并绘制图形的。</p>
-<h2 id="软件推荐"><a class="header" href="#软件推荐">软件推荐</a></h2>
-<p><a href="https://renderdoc.org/">RenderDoc</a> 可以在图形软件运行中截获快照并查看各种缓冲和材质的状态，也可以对着色器的运行进行调试。是图形程序调试的不二之选。</p>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="七巧板图形与三角"><a class="header" href="#七巧板图形与三角">七巧板？——图形与三角</a></h1>
-<h2 id="理论"><a class="header" href="#理论">理论</a></h2>
-<p>我们现在想在平面内确定一个图形，应该怎么做？不妨以三角形为例：</p>
-<p>在初中我们学过，确定三边，或者两边一夹角等等就可以确定一个三角形的形状。母庸置疑的是，确定三角形的形状需要至少3个已知量，而为了在平面上确定这个三角形，我们还需要三角形上某一点的坐标以及绕其的旋转角度。坐标需要两个量，所以总共至少需要6个量。换句话说，一个平面内的三角形具有6个自由度，6个线性不相关的量就能准确描述一个三角形。在计算机中，我们会很自然地选择三个顶点的坐标。</p>
-<p>同理，四边形具有8个自由度，例如4个顶点的坐标，我们就可以向计算机准确地传达我们需要的形状。</p>
-<p>那圆呢？</p>
-<p>你或许会说，圆不是只有3个自由度吗？这不简单，原点坐标和半径不就可以了？是，但是为了后续处理的方便，我们需要一个统一的描述方式，比如坐标。那为什么不直接随便选圆上三个点呢（这里出现了6个量，但是这并不影响圆的自由度是3。因为不同的三个点可以确定同一个圆，是对称性使然）？但是这样我们就需要有更多的计算来从这三个点计算出整个圆所占的区域，<del>实在是有点憨</del>。</p>
-<p>最后，我们发现，想要处理起来方便，最好还是横平竖直的东西……</p>
-<p>于是，早期计算机图形学家们干脆选择了最简单的方法：都用三角形！那要是边缘看着不够圆滑咋办捏？那就加三角形的量呗……遂，我们就需要用这种类似七巧板的方式，使用微元法的思想，大致拼凑出我们想要的图形。当然，现在已经有各式各样的建模软件会帮我们自动处理这些过程。我们平常说的高模和低模，也是在代指三角形的数量(面数)。</p>
-<blockquote>
-<p>当然，三角形并不是我们唯一的选择。图形引擎通常也支持四边形和五边形等，不少游戏也使用混合不同面形状的模型来改善精度。然而不可否认的是，三角形仍然是业界使用最广泛的基本图形。</p>
-</blockquote>
-<h2 id="上手操作"><a class="header" href="#上手操作">上手操作！</a></h2>
-<p>事不宜迟，我们赶紧试着在窗口里面画一个三角形！</p>
-<p>在这之前，我们先引入一个方便我们使用的库<code>bytemuck</code>。</p>
-<pre><code class="language-toml"># Cargo.toml
-
-[dependencies]
-# ...
-bytemuck = &quot;1&quot;
-</code></pre>
-<p>这个库将会帮助我们将结构体直接转化为字节数组切片<code>&amp;[u8]</code>，并保证我们的操作是安全的。</p>
-<p>我们来定义我们的顶点</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[repr(C)]
-#[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
-struct Vertex {
-    position: [f32; 2],
-    color: [f32; 3],
-}
-<span class="boring">}</span></code></pre></pre>
-<p>我们定义了一个顶点结构，其中包括顶点的坐标和顶点的颜色。其内容具体如何使用我们将在之后的章节详细讨论。同时注意到我们derive了<code>bytemuck::Pod</code>和<code>bytemuck::Zeroable</code>两个宏，他们将会允许我们安全地转换我们的结构为<code>&amp;[u8]</code>。当然，为此我们还引入了<code>#[repr(C)]</code>来保证我们内存的对齐是符合我们预期的。详情请读者自行参见<a href="https://docs.rs/bytemuck">bytemuck的文档</a>和<a href="https://doc.rust-lang.org/nomicon/">Rust Nomicon</a>。</p>
-<p>接下来，让我们进行一个三角形的编：</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let triangle = [
-    Vertex {
-        position: [0.0, 0.5],
-        color: [1.0, 1.0, 1.0],
-    },
-    Vertex {
-        position: [0.5, -0.5],
-        color: [1.0, 1.0, 1.0],
-    },
-    Vertex {
-        position: [-0.5, -0.5],
-        color: [1.0, 1.0, 1.0],
-    },
-];
-
-let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescriptor {
-    label: None,
-    contents: bytemuck::cast_slice(&amp;triangle),
-    usage: wgpu::BufferUsages::VERTEX,
-});
-<span class="boring">}</span></code></pre></pre>
-<p>首先我们创建了一个顶点的数组，其次我们将其用<code>bytemuck</code>转化为字节后上传到了一个缓冲中。</p>
-<blockquote>
-<p>有些读者可能会好奇为何我们为三角形的顶点坐标选择了这几个数值。粗略地说，在WGPU中，我们会把一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>中的点线性映射到窗口的像素中。具体而言，<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>会被平移到窗口中央，而<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span>分别对应屏幕右方向和上方向。在渲染过程中涉及的各个坐标系将会在后面的章节详细讲述。</p>
-</blockquote>
-<p>这里我们首次使用了<code>Device::create_buffer_init</code>。事实上，这是一个扩展函数，是不位于WebGPU标准中，WGPU库为了方便使用而添加的一些方法。类似这些的方法被定义在<code>DeviceExt</code>这个trait中。</p>
-<p>那么，<code>create_buffer_init</code>到底为我们干了什么呢？它主要干了这样两件事：</p>
-<ol>
-<li>创建一个 <strong>合适</strong> 大小的缓冲</li>
-<li>把我们的数据扔进去</li>
-</ol>
-<p>通过翻阅代码（我也鼓励读者如此操作），我们可以发现<code>create_buffer_init</code>的所作所为不外乎上面两件事。那么为什么我要强调 <strong>合适</strong> 大小的缓冲呢？这和Vulkan等WGPU使用的底层API的限定有关。如果我们查看<code>create_buffer_init</code>实现中的注释，我们会发现如果要拷贝数据进入缓冲中（换句话说，有<code>BufferUsages::COPY</code>），Vulkan要求创建的缓冲的大小必须是<code>COPY_BUFFER_ALIGNMENT</code>的倍数。<code>create_buffer_init</code>会自动帮我们把缓冲的大小垫（<em>padding</em>）到距离我们传入的数据大小大于且最近的满足要求的大小。换句话说，我们通过这个方法创建的缓冲未必就是我们传入的数据的大小！如果读者需要更精确地控制缓冲的大小，我们建议使用<code>create_buffer</code>方法并手动上传数据。</p>
-<p>接下来，你可能会兴致冲冲地去准备把三角形画出来。可是，WGPU怎么知道怎么理解我们上传的数据呢？如你所见，我们仅仅是上传了很多字节而已。不出意外的话，我们应当得手动描述缓冲的形状（<em>layout</em>）才对。</p>
-<p>你说得对，接下来我们将开始处理一些棘手的部分，这些部分和后面的章节挂钩。我会尽量通俗地解释这些概念。如果你有什么疑问，读下去，我相信都会得到解答。同时，我也欢迎大家在评论区提问。</p>
-<p>首先，我们得创建一个渲染管线（还记得吗，在<a href="wgpu/beginner/../infra/graphics.html">之前的章节</a>的最后有提到），来告诉WGPU我们将如何渲染这个三角形。</p>
-<p>让我们开始吧：</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let pipeline_layout = device.create_pipeline_layout(&amp;wgpu::PipelineLayoutDescriptor {
-    label: None,
-    bind_group_layouts: &amp;[],
-    push_constant_ranges: &amp;[],
-});
-
-let shader_module = device.create_shader_module(wgpu::include_wgsl!(&quot;triangle/triangle.wgsl&quot;));
-
-let pipeline = device.create_render_pipeline(&amp;wgpu::RenderPipelineDescriptor {
-    label: None,
-    layout: Some(&amp;pipeline_layout),
-    vertex: wgpu::VertexState {
-        module: &amp;shader_module,
-        entry_point: &quot;vs_main&quot;,
-        buffers: &amp;[wgpu::VertexBufferLayout {
-            array_stride: std::mem::size_of::&lt;Vertex&gt;() as _,
-            step_mode: wgpu::VertexStepMode::Vertex,
-            attributes: &amp;wgpu::vertex_attr_array![
-                0 =&gt; Float32x2,
-                1 =&gt; Float32x3
-            ],
-        }],
-    },
-    primitive: wgpu::PrimitiveState::default(),
-    depth_stencil: None,
-    multisample: wgpu::MultisampleState::default(),
-    fragment: Some(wgpu::FragmentState {
-        module: &amp;shader_module,
-        entry_point: &quot;fs_main&quot;,
-        targets: &amp;[Some(wgpu::ColorTargetState {
-            format: surface_config.format,
-            blend: None,
-            write_mask: wgpu::ColorWrites::ALL,
-        })],
-    }),
-    multiview: None,
-});
-
-<span class="boring">}</span></code></pre></pre>
-<p>这段代码涉及了众多之后才能理解的概念，我会尽量使用通俗的语言描述。</p>
-<p>首先我们需要为管线创建一个布局（<em>layout</em>），这个布局描述了我们之后将会向管线的着色器内传入什么样的额外数据。这里额外数据指任何顶点数据以外的用户指定的数据。由于我们现在并不需要向着色器内传入额外的数据，我们先全部留空。</p>
-<p>接下来，我们将我们的着色器文件载入到GPU中。在<a href="wgpu/beginner/../infra/graphics.html">之前的章节</a>最后对渲染管线的描述中我们提到过，着色器是一种告诉GPU如何完成传入的顶点数据的变化和如何给像素着色等任务的语言。在接下来的几个章节中我们将会更详细地了解着色器。创建好着色器以后我们会得到着色器模块（<em>ShaderModule</em>），相当于对GPU内着色器资源的引用。在示例创建着色器的过程中，我们使用了<code>wgpu::include_wgsl!</code>这个宏。这个宏会在 <strong>编译期</strong> 将你的着色器载入到程序中，并用其创建一个<code>wgpu::ShaderModuleDescriptor</code>。如果你翻阅了<a href="https://docs.rs/wgpu/latest/wgpu/struct.ShaderModuleDescriptor.html">ShaderModuleDescriptor的文档</a>，会发现其中的<code>wgpu::ShaderSource</code>支持相当数量的着色器语言。归功于<a href="https://github.com/gfx-rs/naga">naga项目</a>，不同的着色器语言最终都会被转译成WGPU可以理解的格式。在接下来的教程中，我们只会使用<code>wgsl</code>。</p>
-<p>接下来我们就在正式创建渲染管线了。因为用途平凡或内容不会涉及，我们将不会在此深入解释下面几个字段的意义：</p>
-<ul>
-<li>label</li>
-<li>layout</li>
-<li>multisample</li>
-<li>multiview</li>
-</ul>
-<p>让我们把注意力放到剩下的几个字段上：</p>
-<p><em>vertex</em> 会用来描述该渲染管线对顶点数据的处理，也就是<a href="wgpu/beginner/../infra/graphics.html#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A6%81">渲染流程概要</a>里前两个节点之间的部分。在示例代码中，我们指定了着色器存在的模块<code>module</code>和着色器的入口点<code>entry_point</code>（也就是会被调用的着色器函数，过会我们会在着色器中看到我们指定的名字），还有对顶点缓冲的描述。你可能会好奇为什么顶点缓冲的描述是一个数组，这是因为一次渲染命令可以同时传入多个顶点缓冲，这被用于一些特殊的渲染中。让我们研究一下单个顶点缓冲的描述：</p>
-<ul>
-<li><em>array_stride</em> 描述多少字节表示一个顶点，在我们的情况下自然是每个<code>Vertex</code>结构在内存中的大小</li>
-<li><em>step_mode</em> 描述这个顶点缓冲内数据在什么情况步进一次并传入顶点着色器处理。这句话听上去莫名其妙，难道顶点缓冲不是一个一个顶点传入的吗？不完全是。目前<code>wgpu::VertexStepMode</code>有两个可能值，分别是<code>VertexStepMode::Vertex</code>和<code>VertexStepMode::Instance</code>。前者便是我们直觉意义上的顶点，后者则是我们称为<strong>实例(<em>Instance</em>)</strong>。在之后我们发起渲染请求时，除了指定顶点范围外，还会指定实例范围。在最终渲染时会对每个实例步进一次实例顶点缓冲，然后进行对顶点的处理。在批量绘制静态物品时可以用实例顶点缓冲来储存姿态数据来获得更高的效率。其效果类似下面这段代码：</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>const INSTANCES: usize = 100;
-const VERTICES: usize = 3;
-
-struct PerVertexData {
-    //每个顶点的数据，在GPU中就是顶点缓冲内每隔一个stride存放的内容
-}
-
-struct PerInstanceData {
-    //每个实例的数据，在GPU中就是实例顶点缓冲内每隔一个stride存放的内容
-}
-
-struct VertexShaderOutput {
-    //顶点着色器的输出内容
-}
-
-fn vertex_shader(vertex: PerVertexData, instance: PerInstanceData) -&gt; VertexShaderOutput {
-    //处理顶点数据并输出
-    unimplemented!()
-}
-
-let vertex_buffer = [PerVertexData; VERTICES];
-let instance_buffer = [PerInstanceData; INSTANCES];
-
-for i in 0..INSTANCES {
-    for j in 0..VERTICES {
-        let output_vertex = vertex_shader(vertex_buffer[j], instance_buffer[i]);
-        // ...
-    }
-}
-<span class="boring">}</span></code></pre></pre>
-<ul>
-<li>
-<p><em>attributes</em> 接受一个<code>wgpu::VertexAttribute</code>数组切片。其作用是告诉WGPU如何理解每个顶点的数据。在我们的例程中，一个顶点数据在内存中是五个连续存放的单精度浮点，其中前两个描述顶点坐标，后三个描述顶点颜色。在每一个<code>wgpu::VertexAttribute</code>中，我们需要指定下面这几个量：</p>
-<ul>
-<li><em>format</em> 接受一个<code>wgpu::VertexFormat</code>枚举类型。其描述顶点数据中这一部分应当如何对应到顶点着色器理解的类型。例如我们为顶点坐标选择<code>VertexFormat::Float32x2</code>，这个类型会直接将两个单精度浮点长度（<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span>字节）的数据对应到着色器中的二维单精度浮点向量中。除此之外还有很多类型，请读者自行翻看<a href="https://docs.rs/wgpu/latest/wgpu/enum.VertexFormat.html">VertexFormat的文档</a></li>
-<li><em>offset</em> 表示我们描述的部分应当从单个顶点内存数据的何处算起，这个量和 <em>format</em> 对应的数据大小一起指定了这个属性的内存区域。例如我们有一个顶点数据的字节数组<code>vertex_bytes: &amp;[u8]</code>，那么我们的数据便是<code>vertex_bytes[offset..(offset + format.size())]</code></li>
-<li><em>shader_location</em> 是一个<code>u32</code>类型，指定我们的数据对应在顶点着色器输入中的“位置”，我们之后将会在顶点着色器中看到其对应的量</li>
-</ul>
-<p>而在例程中，我们使用了WGPU提供的一个非常方便的工具宏<code>wgpu::vertex_attr_array!</code>，其中会接受一个<code>loc =&gt; format</code>形式的列表，<code>loc</code>对应 <em>shader_location</em> 而<code>format</code>就对应 <em>format</em> 。<em>offset</em> 会由宏内部自动计算，算法是将列表前面每一项的<code>VertexFormat::size()</code>累加。因此，只要你的单个顶点数据中的各个部分排布是连续的，就可以使用这个宏！</p>
-<p>在我们的例程中，手写的效果如下：</p>
-</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>[
-    wgpu::VertexAttribute { // 坐标
-        format: wgpu::VertexFormat::Float32x2,
-        offset: 0 as _,
-        shader_location: 0,
-    },
-    wgpu::VertexAttribute { // 颜色
-        format: wgpu::VertexFormat::Float32x3,
-        offset: 8 as _,
-        shader_location: 1,
-    },
-]
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<h3 id="松散的顶点数据存储"><a class="header" href="#松散的顶点数据存储">松散的顶点数据存储</a></h3>
-<blockquote>
-<p><strong>注意：</strong> 此部分为之前 <strong>学习过别的图形API</strong> 的读者准备，涉及一些3D渲染的内容。建议初学的读者先<a href="wgpu/beginner/triangle.html#%E5%86%85%E5%AE%B9%E4%BB%8E%E8%BF%99%E9%87%8C%E7%BB%A7%E7%BB%AD">跳过</a>这一段。</p>
-</blockquote>
-<p>之前学习过OpenGL的读者可能见到过另一种传入顶点数据的方法，即将不同的顶点数据的成分存放在不同的缓冲中，各自组分于内存中是连续的。WGPU也可以做到这一点！为了实现这种做法，我们需要定义多个 <em>vertex</em> 中的<code>wgpu::VertexBufferLayout</code>。不妨设我们的一个顶点由下面三个量组成（类型采用<code>GLSL</code>）：</p>
-<ul>
-<li>位置 <code>layout(location=0) in vec3 position</code></li>
-<li>贴图UV <code>layout(location=1) in vec2 tex_coord</code></li>
-<li>法向量 <code>layout(location=2) in vec3 normal</code></li>
-</ul>
-<blockquote>
-<p><code>layout(location=x)</code> 对应于前文的 <code>wgpu::VertexAttribute.shader_location: x</code></p>
-</blockquote>
-<p>那么我们的<code>wgpu::VertexState.buffers</code>应当赋予以下值</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>[
-    wgpu::VertexBufferLayout {
-        array_stride: std::mem::size_of::&lt;[f32; 3]&gt;() as _,
-        step_mode: wgpu::VertexStepMode::Vertex,
-        attributes: &amp;wgpu::vertex_attr_array![0 =&gt; Float32x3]
-    },
-    wgpu::VertexBufferLayout {
-        array_stride: std::mem::size_of::&lt;[f32; 2]&gt;() as _,
-        step_mode: wgpu::VertexStepMode::Vertex,
-        attributes: &amp;wgpu::vertex_attr_array![1 =&gt; Float32x2]
-    },
-    wgpu::VertexBufferLayout {
-        array_stride: std::mem::size_of::&lt;[f32; 3]&gt;() as _,
-        step_mode: wgpu::VertexStepMode::Vertex,
-        attributes: &amp;wgpu::vertex_attr_array![2 =&gt; Float32x3]
-    },
-]
-<span class="boring">}</span></code></pre></pre>
-<p>之后渲染时在对应的槽位绑定数据缓冲即可。</p>
-<hr />
-<h3 id="内容从这里继续"><a class="header" href="#内容从这里继续">内容从这里继续</a></h3>
-<p><em>primitive</em> 是对渲染采用的基础形状的描述。看看<code>wgpu::PrimitiveState</code>里面都有什么！</p>
-<ul>
-<li><em>topology</em> 是一个<code>wgpu::PrimitiveTopology</code>枚举类型，负责描述我们的顶点数据应当被理解为什么几何图形，目前WGPU仅支持点、线和三角形。读者可以注意到除了点以外的形状都有一个 <code>*Strip</code> 变种。简单来说，非<code>Strip</code>的类型会将顶点数据划分成不交的一个一个子集，以<code>PrimitiveTopology::TriangleList</code>为例，便是三个三个理解为一个三角形，因此顶点缓冲中顶点的数量也必须是3的整数倍。而<code>Strip</code>类型则相当于一个滑动窗口，在三角形的情况会尝试从每一个顶点开始往后取三个点（如果可能的话）理解成一个三角形，因而除了顶点数量至少得组成一个三角形以外并没有明显的限制（当然，为了保证面的朝向相同，顶点取出后排列的顺序会有一些调整，详情请参照<a href="https://docs.rs/wgpu/latest/wgpu/enum.PrimitiveTopology.html">文档</a>）。<code>Strip</code>类型的用途在于用尽可能少的顶点数量描述一个连成一片的区域。不过，似乎现实情况下出于泛用性的考虑用得并不是很多。该字段默认为<code>TriangleList</code></li>
-<li><em>strip_index_format</em> 在使用<code>Strip</code>类型的图形时索引缓冲的类型。索引缓冲的概念我们将会在下一节学习，目前可以不用在意</li>
-<li><em>front_face</em> 图形的定向。默认为逆时针取正向，符合右手螺旋规则。在我们的例程给出的缓冲中，由于顶点是上方<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>右下<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>左下的顺序给出的，我们的三角形是被判定为背向，也就是背对屏幕的。该选项在下一个字段 <em>cull_mode</em> 启用时发挥作用</li>
-<li><em>cull_mode</em> 剔除模式。默认为<code>None</code>，即不剔除。若开启剔除模式，我们可以选择剔除正向图形或者背向图形。通常我们选择剔除背向图形，因为假定我们选取的正向正确对应了曲面的外法向量，在一个连续不自交的闭合曲面上，一定存在正向图形遮挡了背向图形。然而如果只绘制一个不闭合的图形，那么我们就会有一些方向使得原本看得到的图形被剔除掉。该选项是为了减少绘制看不到的图形而造成的渲染资源浪费设立的，请根据需求选择。</li>
-<li><em>unclipped_depth</em> 选择深度是否被裁剪到<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>。关于深度的详细知识我们会在3D渲染学习。</li>
-<li><em>polygon_mode</em> 多边形模式。这个枚举类型可以决定多边形将怎样被对应到像素上。默认为<code>PolygonMode::Fill</code>，也就是填充。根据需求可以选择<code>PolygonMode::Line</code>或<code>PolygonMode::Point</code>，分别只绘制边线和顶点。注意使用后两者需要启用对应的特性，详情请看<a href="https://docs.rs/wgpu/latest/wgpu/enum.PolygonMode.html">文档</a></li>
-<li><em>conservative</em> 保守光栅化。如果设置为真，则这个多边形最后到屏幕上的投影一定会被其生成的所有像素包含。这可能会导致一些多边形的边缘看着比较粗糙难看。仅当使用<code>PolygonMode::Fill</code>时有效，且需要开启对应特性，请看<a href="https://docs.rs/wgpu/latest/wgpu/struct.PrimitiveState.html">文档</a></li>
-</ul>
-<p><em>depth_stencil</em> 是控制我们称为深度模板缓冲的一个功能的选项，让我们在3D渲染的章节再介绍他吧！</p>
-<p><em>fragment</em> 是渲染管线中负责将最终确定要在窗口和屏幕中显示的部分上色的控制，也就是<a href="wgpu/beginner/../infra/graphics.html#%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A6%81">渲染流程概要</a>里最后两个节点之间的部分。他可以为<code>None</code>，因为有些情况我们完全不需要输出具体的像素。这虽然听上去很奇怪，但是我们将会在本书中用到这个技巧！其中抛去平凡的和 <em>vertex</em> 意义相同的字段以外，我们还剩下一个<code>target</code>字段。<code>target</code>字段是一个数组切片，因为WGPU支持用一组顶点数据使用不同的片元着色器对多个渲染目标进行输出，从而存储不同的量到最终的输出缓冲里面。目前为止我们只需要输出到唯一一个我们作为帧缓冲的目标里面，所以我们只需要乖乖写入一个<code>wgpu::ColorTargetState</code>即可。</p>
-<p>那么<code>wgpu::ColorTargetState</code>又描述了一些什么呢？</p>
-<ul>
-<li><em>format</em> 表示将会输出到的目标缓冲的格式。既然我们是要输出到<code>Surface</code>维护的帧缓冲，那我们自然要使用和<code>Surface</code>相同的格式</li>
-<li><em>blend</em> 描述如何把这次渲染输出的像素颜色和之前存在于缓冲中的像素颜色混合。通常是用于带透明度图片的渲染，也可以用于一些特效的制作。熟悉图片处理的读者可能知道例如正片叠底之类的混合效果，实际上便是对应该字段描述的内容。对于该字段的细节，我们不妨在接下来的章节介绍</li>
-<li><em>write_mask</em> 对这个目标的写入操作的哪些通道有效。是一个<code>BitSet</code>，每一位分别代表RGBA通道</li>
-</ul>
-<p>很好！我们终于讲完了这个冗长的渲染管线初始化的内容。想必大家读也读累了，喝口水休息一下吧。</p>
-<p>最后我们要干的事就很简单了，告诉GPU渲染我们的顶点缓冲。</p>
-<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// ...
-
-let mut render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
-    label: None,
-    color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
-        view: &amp;view,
-        resolve_target: None,
-        ops: wgpu::Operations {
-            load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
-            store: true,
-        },
-    })],
-    depth_stencil_attachment: None,
-});
-
-render_pass.set_pipeline(&amp;pipeline);
-render_pass.set_vertex_buffer(0, vertices_buffer.slice(..));
-render_pass.draw(0..3, 0..1);
-<span class="boring">}</span></code></pre></pre>
-<p>我们告诉WGPU使用刚刚我们创建的渲染管线，然后将槽位0（对应<code>wgpu::RenderPipelineDescriptor.vertex.buffers</code>里面的索引，因为我们只有一个元素所以就是0）的顶点缓冲设置为我们创建的顶点缓冲的全部（是的，你可以在这里切出一部分顶点缓冲来用），最后我们指定了渲染顶点的范围（因为我们缓冲内仅有三个顶点来描述我们要画的三角形，需要用到全体顶点，所以是<code>0..3</code>，有些需要优化的渲染可以在这里选出顶点缓冲的一部分进行渲染）和实例（我们没有实例缓冲，而且只需要画一个，所以是<code>0..1</code>）并创建了渲染命令。</p>
-<p>哦，我们好像忘了写着色器了：</p>
-<pre><code class="language-wgsl">// triangle.wgsl
-
-// 暂时不要在意这些@是干什么的
-struct VertexOut {
-    @builtin(position) position: vec4&lt;f32&gt;,
-    @location(0) color: vec3&lt;f32&gt;,
-}
-
-//下面两个函数的函数名就是创建管线的时候指定的 entry_point
-
-//顶点着色器中 @location(x) 里面的 x 对应了 wgpu::VertexAttribute.shader_location
-@vertex
-fn vs_main(@location(0) position: vec2&lt;f32&gt;, @location(1) color: vec3&lt;f32&gt;) -&gt; VertexOut {
-    var out: VertexOut;
-    out.position = vec4&lt;f32&gt;(position, 0.0, 1.0);
-    out.color = color;
-    return out;
-}
-
-@fragment
-fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
-    return vec4&lt;f32&gt;(pin.color, 1.0);
-}
-</code></pre>
-<p>为了给本章接下来的章节留一些内容，我们并不会详细解释这个着色器在干什么。不过读者大概可以看出来，我们仅仅是将传进来的顶点位置变成了一个四维的坐标并原样传了出去，并在片元着色器里面直接将顶点传入的颜色当作了输出的颜色。</p>
-<p>将着色器放置于适当的位置并编译运行，我们成功在绿的发光的屏幕上看到了白得瞎眼的三角形。这是我们的图形学生涯中令人难忘的第一个三角形！为什么不喝点可乐🥤庆祝一下呢？</p>
-<blockquote>
-<p><strong>提示：</strong> 如果出了问题，别忘了和<a href="https://github.com/switefaster/wgpu-tutor">仓库</a>里面能跑的代码核对一下</p>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="一闪一闪亮晶晶像素与窗口"><a class="header" href="#一闪一闪亮晶晶像素与窗口">一闪一闪亮晶晶——像素与窗口</a></h1>
 <p>如有些读者已经察觉的，我们的渲染过程中充斥着各种各样的坐标系。在这一个大章节的后面，我们会花更多章节解释各种坐标系和之间的关系。然而，我们目前为止只涉及了二维的渲染，从而涉及的坐标系大幅减少。在这个章节，我想向读者介绍我们目前主要接触到的几个坐标系。</p>
 <h2 id="在图形学我能看到各种各样的坐标"><a class="header" href="#在图形学我能看到各种各样的坐标">在图形学，我能看到各种各样的坐标</a></h2>
@@ -1001,7 +174,7 @@ fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9934em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>是一个缩放加上平移。但平移并不是一个线性变换，这怎么办呢？</p>
 <blockquote>
-<p>下面是给有线代基础同学的数学内容，不感兴趣可以选择<a href="wgpu/beginner/pixel.html#%E4%B8%8B%E8%AF%BE">跳过</a></p>
+<p>下面是给有线代基础同学的数学内容，不感兴趣可以选择<a href="#%E4%B8%8B%E8%AF%BE">跳过</a></p>
 </blockquote>
 <h3 id="理塘dj的完美数学教室"><a class="header" href="#理塘dj的完美数学教室">理塘DJ的完美数学教室</a></h3>
 <p>在数学中，线性变换配上平移组成的变换被称为 <strong>仿射变换(<em>Affine Transformation</em>)</strong>，而仿射变换也是可以用矩阵表示的！一般地说，如果我们想表示一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>上的平移<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord mathbf">p</span></span></span></span>，那么我们使用一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>维向量表示<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em;"></span><span class="mord mathbf">x</span></span></span></span></p>
@@ -1039,6 +212,10 @@ cgmath = &quot;0.18&quot;
 
                 <nav class="nav-wrapper" aria-label="Page navigation">
                     <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../wgpu/beginner/triangle.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
 
                     <div style="clear: both"></div>
@@ -1056,6 +233,10 @@ cgmath = &quot;0.18&quot;
         </div>
 
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../wgpu/beginner/triangle.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
 
         </nav>
 
@@ -1069,13 +250,13 @@ cgmath = &quot;0.18&quot;
     </script>
 
 
-    <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
 
-    <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-    <script src="book.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Custom JS scripts -->
 
@@ -1098,11 +279,6 @@ cgmath = &quot;0.18&quot;
         mermaid.initialize({ startOnLoad: true })
     </script>
 
-    <script type="text/javascript">
-        window.addEventListener('load', function () {
-            window.setTimeout(window.print, 100);
-        });
-    </script>
 
 </body>
 
