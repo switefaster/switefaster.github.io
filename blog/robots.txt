@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://switefaster.githu.io/blog/sitemap.xml
+Sitemap: https://switefaster.github.io/blog/sitemap.xml
