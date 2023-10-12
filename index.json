@@ -33,12 +33,12 @@
             ],
             "build": {
                 "owner": "switefaster",
-                "repository": "blog-hexo"
+                "repository": "swlog"
             },
             "links": [
                 {
                     "icon": "logos:github-icon",
-                    "url": "https://github.com/switefaster/blog-hexo"
+                    "url": "https://github.com/switefaster/swlog"
                 },
                 {
                     "icon": "akar-icons:link",
