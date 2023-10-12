@@ -51,8 +51,8 @@
             "title": "N2-Station",
             "description": "N2 直播站后端，但是未使用",
             "tags": [
-                "网站",
-                "后端"
+                "后端",
+                "弃坑"
             ],
             "build": {
                 "owner": "M1k0t0",
@@ -75,24 +75,39 @@
         },
         {
             "id": 3,
-            "title": "Multi Pong",
-            "description": "Amethyst 写的多人对战 Pong。弃坑，Bevy重写可能性微存",
+            "title": "BotJS",
+            "description": "一个可以给机器人编程的Minecraft Mod，目前还在prototype阶段",
             "tags": [
-                "游戏",
-                "弃坑"
+                "MC",
+                "施工"
             ],
             "build": {
-                "owner": "switefaster",
-                "repository": "multi_pong"
+                "owner": "SFS-Studio",
+                "repository": "BotJS"
             },
             "links": [
                 {
                     "icon": "logos:github-icon",
-                    "url": "https://github.com/switefaster/multi_pong"
-                },
+                    "url": "https://github.com/SFS-Studio/BotJS/tree/latest-rhino-mth"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "GREMS",
+            "description": "使用GPU加速的FDTD电磁场模拟器",
+            "tags": [
+                "物理",
+                "计算"
+            ],
+            "build": {
+                "owner": "switefaster",
+                "repository": "grems"
+            },
+            "links": [
                 {
-                    "icon": "icon-park:ad-product",
-                    "url": "https://github.com/switefaster/multi_pong/releases"
+                    "icon": "logos:github-icon",
+                    "url": "https://github.com/switefaster/grems"
                 }
             ]
         }
@@ -130,6 +145,9 @@
         "施工": "ion:construct-outline",
         "游戏": "akar-icons:game-controller",
         "后端": "bx:bxs-server",
-        "弃坑": "akar-icons:stop"
+        "弃坑": "akar-icons:stop",
+        "MC": "mdi:minecraft",
+        "物理": "eos-icons:atom-electron",
+        "计算": "ph:calculator-bold"
     }
 }

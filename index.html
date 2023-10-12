@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="three-dots.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
@@ -123,9 +124,10 @@
                             let card_id = elem.getAttribute("card-id");
                             let is_friend = elem.getAttribute("is-friend");
                             let card = (is_friend === "true") ? this.index.friend_cards[card_id] : this.index.cards[card_id];
+                            card.build.state = "loading";
                             $.ajax(
                                 {
-                                    async: false,
+                                    async: true,
                                     url: `https://api.github.com/repos/${repository}/actions/runs`,
                                     method: "GET",
                                     headers: {
@@ -133,6 +135,10 @@
                                     },
                                     success: (data, status, xhr) => {
                                         let run = data.workflow_runs[0];
+                                        if (run == undefined) {
+                                            card.build.state = "error";
+                                            return;
+                                        }
                                         if (run.status === "queued") {
                                             card.build.state = "queued";
                                         } else if (run.status === "completed") {
@@ -195,7 +201,8 @@
                             <div v-for="tag in card.tags" class="col">
                                 <span class="iconify" v-bind:data-icon="$root.index.tag_icons[tag]"></span>{{ tag }}
                             </div>
-                            <div v-if="'build' in card" class="col build-state" v-bind:repo="card.build.owner + '/' + card.build.repository" v-bind:is-friend="friend" v-bind:card-id="card.id">
+                            <div class="d-flex justify-content-center align-items-center" v-if="'build' in card" class="col build-state" v-bind:repo="card.build.owner + '/' + card.build.repository" v-bind:is-friend="friend" v-bind:card-id="card.id">
+                                <build-loading v-show="card.build.state === 'loading'"></build-loading>
                                 <build-success v-show="card.build.state === 'success'"></build-success>
                                 <build-queued v-show="card.build.state === 'queued'"></build-queued>
                                 <build-running v-show="card.build.state === 'running'"></build-running>
@@ -228,63 +235,62 @@
             `
             });
 
+            vue.component('build-loading', {
+                template:
+                    `
+                <div class="dot-flashing" data-toggle="tooltip" data-placement="top"
+                    title="正在加载构建状态">
+                </div>
+            `
+            });
+
             vue.component('build-success', {
                 template:
                     `
-                <div class="col">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
-                        class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                        title="构建完成了喵">
-                        <path
-                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                    </svg>
-                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
+                    class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                    title="构建完成了喵">
+                    <path
+                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                </svg>
             `
             });
             vue.component('build-queued', {
                 template:
                     `
-                    <div class="col">
-                        <div class="spinner-grow text-warning spinner-grow-sm" role="status"
-                            data-toggle="tooltip" data-placement="top" title="有构建任务在队列中喵~">
-                        </div>
-                    </div>
+                <div class="spinner-grow text-warning spinner-grow-sm" role="status"
+                        data-toggle="tooltip" data-placement="top" title="有构建任务在队列中喵~">
+                </div>
                 `,
             });
             vue.component('build-running', {
                 template:
                     `
-                    <div class="col">
-                        <div class="spinner-border text-warning spinner-border-sm" role="status"
-                            data-toggle="tooltip" data-placement="top" title="正在构建喵~">
-                        </div>
-                    </div>
+                <div class="spinner-border text-warning spinner-border-sm" role="status"
+                    data-toggle="tooltip" data-placement="top" title="正在构建喵~">
+                </div>
                 `,
             });
             vue.component('build-failed', {
                 template:
                     `
-                    <div class="col">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
-                            class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                            title="构建失败了QWQ">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red"
+                    class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                    title="构建失败了QWQ">
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
                 `,
             });
             vue.component('fetch-error', {
                 template:
                     `
-                    <div class="col">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey"
-                            class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
-                            title="获取失败了QWQ">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey"
+                    class="bi bi-check" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top"
+                    title="获取失败了QWQ">
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
                 `,
             });
             vue.mount("#main-frame");
