@@ -192,7 +192,7 @@
 <p>我们先来看一个例子</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, target| match event {
+</span>event_loop.run(|event, target| match event {
         Event::DeviceEvent { event, .. } =&gt; {
             unimplemented!()
         },

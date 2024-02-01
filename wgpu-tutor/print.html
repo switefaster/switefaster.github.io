@@ -212,8 +212,7 @@
 <pre><code class="language-toml"># Cargo.toml
 # ...
 [dependencies]
-winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
-# wgpu 0.18 的 RawWindowHandle 版本是 0.5。如果有编译失败，可以试试 cargo update 然后再试试
+winit = &quot;0.29&quot;
 </code></pre>
 <p>然后创建窗口</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021">#![windows_subsystem = &quot;window&quot;]
@@ -224,7 +223,7 @@ fn main() {
         .with_title(&quot;标题&quot;)
         .build(&amp;event_loop).unwrap();
 
-    event_loop.run(move |event, target| match event {
+    event_loop.run(|event, target| match event {
         _ =&gt; (),
     }).unwrap();
 
@@ -245,7 +244,7 @@ fn main() {
 <p>我们先来看一个例子</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, target| match event {
+</span>event_loop.run(|event, target| match event {
         Event::DeviceEvent { event, .. } =&gt; {
             unimplemented!()
         },
@@ -540,8 +539,8 @@ resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
 # UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
 
 [dependencies]
-winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
-wgpu = &quot;0.18&quot;
+winit = &quot;0.29&quot;
+wgpu = &quot;0.19&quot;
 pollster = &quot;0.3&quot;
 </code></pre>
 <p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
@@ -569,7 +568,7 @@ fn main() {
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ...
-let surface = unsafe { instance.create_surface(&amp;window).unwrap() };
+let surface = instance.create_surface(&amp;window).unwrap();
 let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
         power_preference: wgpu::PowerPreference::HighPerformance,
         compatible_surface: Some(&amp;surface),
@@ -578,8 +577,7 @@ let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
     .block_on()
     .unwrap();
 <span class="boring">}</span></code></pre></pre>
-<p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
-<p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择独显还是集显，看你咯。</p>
+<p>我们接着获取适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择独显还是集显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -598,8 +596,8 @@ let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
 </span>let (device, queue) = adapter.request_device(
         &amp;wgpu::DeviceDescriptor {
             label: None,                  // 如果你给他起个名字，调试的时候可能比较有用
-            features: adapter.features(), // 根据需要的特性自行调整
-            limits: adapter.limits(),     // 根据需要的限定自行调整
+            required_features: adapter.features(), // 根据需要的特性自行调整
+            required_limits: adapter.limits(),     // 根据需要的限定自行调整
         },
         None,
     )
@@ -621,16 +619,17 @@ let mut surface_config = wgpu::SurfaceConfiguration {
         present_mode: wgpu::PresentMode::AutoVsync,
         alpha_mode: wgpu::CompositeAlphaMode::Auto,
         view_formats: vec![],
+        desired_maximum_frame_latency: 2,
     };
 
 surface.configure(&amp;device, &amp;surface_config);
 <span class="boring">}</span></code></pre></pre>
 <p>我们先获取了我们的<code>Surface</code>的<code>SurfaceCapabilities</code>，其中包含了我们的设备和平面支持的像素格式、呈现模式和alpha值模式。
-我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他能用的像素格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。<code>view_formats</code>则规定了我们创建帧缓冲视图时可以使用哪些格式。是的，视图的格式可以和缓冲本身不同。但是我们通常只会用到格式相同的情况，而这种情况永远都是被支持的，所以我们留空就行了。</p>
+我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他能用的像素格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。<code>view_formats</code>则规定了我们创建帧缓冲视图时可以使用哪些格式。而<code>desired_maximum_frame_latency</code>则会决定交换链将提前渲染多少帧的内容，我们这里设为<code>2</code>，那么交换链维护的样子就是我们上章所示了。是的，视图的格式可以和缓冲本身不同。但是我们通常只会用到格式相同的情况，而这种情况永远都是被支持的，所以我们留空就行了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, target| {
+</span>event_loop.run(|event, target| {
     target.set_control_flow(ControlFlow::Wait);
 
     match event {
@@ -1071,16 +1070,35 @@ fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
 # ...
 cgmath = &quot;0.18&quot;
 </code></pre>
+<p>我们先更新一下我们的顶点数据：</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let triangle = [
+    Vertex {
+        position: [50.0, 100.0],
+        color: [1.0, 1.0, 1.0],
+    },
+    Vertex {
+        position: [0.0, 0.0],
+        color: [1.0, 1.0, 1.0],
+    },
+    Vertex {
+        position: [100.0, 0.0],
+        color: [1.0, 1.0, 1.0],
+    },
+];
+<span class="boring">}</span></code></pre></pre>
+<p>记住，经过我们的操作后，我们现在采取的是窗口的像素坐标：原点在窗口左下角，单位为像素。因此，这个三角形是一个顶点位于窗口左下角，底边贴着窗口底边，底为100像素，高为100像素的白色三角形。</p>
 <p>然后在初始化代码中的某一段生成矩阵并把它写入缓冲</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>/*
-let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescriptor {
+</span>let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescriptor {
     label: None,
     contents: bytemuck::cast_slice(&amp;triangle),
     usage: wgpu::BufferUsages::VERTEX,
 });
-*/
+
+// 从这里继续
 
 let window_dimension = window.inner_size();
 
@@ -1162,7 +1180,126 @@ let matrix_bind_group = device.create_bind_group(&amp;wgpu::BindGroupDescriptor 
     }],
 });
 <span class="boring">}</span></code></pre></pre>
-<p>如你所见，我们的绑定组布局和绑定组都拥有多个入口点(<em>entry</em>)，而且他们得是对应的。这就是说，一个绑定组可以同时传入多种不同的数据。因此，我们可以用绑定组将一些永远同时出现的数据放在一起传入（比如渲染一个物体时，我们可以将其姿态和材质放在同一个绑定组传入）。每个不管是绑定组布局还是绑定组， <em>entry</em> 都拥有一个<code>binding</code>字段，其指示着色器之后将索引该绑定组里面的数据，我们之后将会看到这一点。</p>
+<p>如你所见，我们的绑定组布局和绑定组都拥有多个条目(<em>entry</em>)，而且他们得是对应的。这就是说，一个绑定组可以同时传入多种不同的数据。因此，我们可以用绑定组将一些永远同时出现的数据放在一起传入（比如渲染一个物体时，我们可以将其姿态和材质放在同一个绑定组传入）。每个不管是绑定组布局还是绑定组， <em>entry</em> 都拥有一个<code>binding</code>字段，其指示着色器之后将索引该绑定组里面的数据，我们之后将会看到这一点。</p>
+<p>太棒了，现在我们可以更新我们的管线布局来告诉WGPU我们想要在使用这个管线时传入这一种绑定组了：</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let pipeline_layout = device.create_pipeline_layout(&amp;wgpu::PipelineLayoutDescriptor {
+    label: None,
+    bind_group_layouts: &amp;[&amp;matrix_bind_group_layout], // 改动了这里
+    push_constant_ranges: &amp;[],
+});
+<span class="boring">}</span></code></pre></pre>
+<h3 id="数组顺序"><a class="header" href="#数组顺序">数组顺序</a></h3>
+<p>尽管我们这里并不需要传入多个绑定组布局，但是我仍需要提醒的是，在传入多个绑定组布局时，<code>bind_group_layouts</code>中元素的顺序必须和绑定组的槽位编号一致。之后我们需要用传入多个绑定组时会再强调这一点。</p>
+<p>也别忘了更新我们的着色器：</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let shader_module =
+    device.create_shader_module(wgpu::include_wgsl!(&quot;triangle/triangle-pixel.wgsl&quot;));
+<span class="boring">}</span></code></pre></pre>
+<p>渲染管线本身的创造则并没有什么需要改动的地方。</p>
+<p>最后在渲染之前记得设置一下绑定组</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut render_pass =
+    encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
+        label: None,
+        color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
+        view: &amp;view,
+            resolve_target: None,
+            ops: wgpu::Operations {
+                load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
+                store: wgpu::StoreOp::Store,
+            },
+        })],
+        depth_stencil_attachment: None,
+        timestamp_writes: None,
+        occlusion_query_set: None,
+    });
+render_pass.set_pipeline(&amp;pipeline);
+render_pass.set_vertex_buffer(0, vertices_buffer.slice(..));
+render_pass.set_bind_group(0, &amp;matrix_bind_group, &amp;[]); // 在这里绑定
+render_pass.draw(0..3, 0..1);
+<span class="boring">}</span></code></pre></pre>
+<p>设置绑定组的第一个参数是绑定组的槽位，和<a href="wgpu/beginner/pixel.html#%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F">这里所说</a>是对应的，第二个参数是对绑定组的引用（注意不是布局，只有绑定组本身才负责掌管具体的数据），第三个参数则是动态偏移需要的，我们用不到。</p>
+<p>原则上只要在你更新了着色器的内容（在下文）以后，我们的渲染其实已经符合我们的预期了：我们会看到一个贴在屏幕左下角的，底边和高都是100像素的三角形。然而一旦窗口的大小发生变化，我们的矩阵也是需要更新的：因为它的值依赖于窗口的长和宽。为了无论如何缩放窗口，我们都能有正确的三角形大小，我们需要的合适的时候更新矩阵缓冲的内容。而这个更新，正应该发生在窗口大小缩放时：</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>winit::event::WindowEvent::Resized(new_size) =&gt; {
+    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
+        surface_config.width = new_size.width;
+        surface_config.height = new_size.height;
+        surface.configure(&amp;device, &amp;surface_config);
+
+        // 新增内容
+        let pixel_matrix = cgmath::Matrix4::new(
+            2.0 as f32 / new_size.width as f32,
+            0.,
+            0.,
+            0.,
+            0.,
+            2.0 / new_size.height as f32,
+            0.,
+            0.,
+            0.,
+            0.,
+            1.,
+            0.,
+            -1.,
+            -1.,
+            0.,
+            1.,
+        );
+        queue.write_buffer(
+            &amp;projection_buffer,
+            0,
+            bytemuck::cast_slice(&amp;&lt;cgmath::Matrix4&lt;f32&gt; as Into&lt;
+                [[f32; 4]; 4],
+            &gt;&gt;::into(
+                pixel_matrix
+            )),
+        );
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>几乎就是我们创造矩阵缓冲时代码的翻版。<code>Queue::write_buffer</code>会在当前队列的最开始，也就是下一次渲染开始之前，插入一条上传缓冲的指令。它的第一个参数是需要写入的缓冲的引用，第二条是写入位置从缓冲开始位置的偏移值（这个参数是为了方便局部更新），第三个参数是需要写入的字节数据。</p>
+<p>最后我们来看一下着色器需要有什么变化：</p>
+<pre><code class="language-wgsl">// triangle/triangle-pixel.wgsl
+
+struct VertexOut {
+    @builtin(position) position: vec4&lt;f32&gt;,
+    @location(0) color: vec3&lt;f32&gt;,
+}
+
+@group(0)
+@binding(0)
+var&lt;uniform&gt; u_projection: mat4x4&lt;f32&gt;;
+
+@vertex
+fn vs_main(@location(0) position: vec2&lt;f32&gt;, @location(1) color: vec3&lt;f32&gt;) -&gt; VertexOut {
+    var out: VertexOut;
+    out.position = u_projection * vec4&lt;f32&gt;(position, 0.0, 1.0);
+    out.color = color;
+    return out;
+}
+
+@fragment
+fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
+    return vec4&lt;f32&gt;(pin.color, 1.0);
+}
+</code></pre>
+<p>我们仍然暂时忽略在上一节便出现过的各种<code>@location</code>和<code>@builtin</code>，因为这是下一节的内容，而把注意力集中在多出来的部分。首先我们可以注意到的改动是</p>
+<pre><code class="language-wgsl">@group(0)
+@binding(0)
+var&lt;uniform&gt; u_projection: mat4x4&lt;f32&gt;;
+</code></pre>
+<p>这一部分会负责接收从绑定组传来的数据。<code>@group(0)</code>表示我们的绑定组会从槽位<code>0</code>被传入，与<a href="wgpu/beginner/pixel.html#%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F">这里所说</a>对应，也和<code>render_pass.set_bind_group</code>的参数对应。而<code>@binding(0)</code>则表示我们接收到这个变量的数据是这个绑定组的第<code>0</code>个条目。由于我们从槽位<code>0</code>传入的绑定组的布局是入口点<code>0</code>为一个缓冲，着色器会尝试将这个缓冲理解为我们下面指定的类型。接下来的<code>var&lt;uniform&gt;</code>则告诉着色器接下来定义的变量是从绑定组接收的数据，这和GLSL中的<code>uniform</code>意义一致。然后我们定义其名称为<code>u_projection</code>，类型为<code>mat4x4&lt;f32&gt;</code>，也就是内容是<code>f32</code>的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>矩阵。变量名字是可以随意起的。在接下来几个章节，我们将会面对条目越来越多的绑定组，也会同时用到多个绑定组。</p>
+<p>总的来说，这一段就是在表示：我要用第<code>0</code>绑定组的第<code>0</code>个条目的数据，而且要把那一段内存理解成<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>的单精度浮点矩阵。而经过这一番操作，我们在程序中传入的矩阵就可以在着色器中被使用了，而我们的用法也很简单，就是像前文说的那样，把它乘到顶点坐标上而已。</p>
+<pre><code class="language-wgsl">out.position = u_projection * vec4&lt;f32&gt;(position, 0.0, 1.0);
+</code></pre>
+<p>真不错！</p>
+<p>现在，你窗口的左下角有了一个大小不变而且死皮赖脸贴着窗口的小三角形了。你肯定早已注意到我们的顶点数据中有着描述颜色的字段，而你肯定充满了好奇：三个顶点的颜色，怎么能决定整个三角形每个像素的颜色？同时，我们的着色器中还充斥着各种神奇的标记，我们还没对它们做出任何解释。不用怕，一切都会在下一节真相大白！<strong>拖更道，堂堂连载！</strong></p>
 
 
                         <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"

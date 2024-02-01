@@ -193,8 +193,7 @@
 <pre><code class="language-toml"># Cargo.toml
 # ...
 [dependencies]
-winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
-# wgpu 0.18 的 RawWindowHandle 版本是 0.5。如果有编译失败，可以试试 cargo update 然后再试试
+winit = &quot;0.29&quot;
 </code></pre>
 <p>然后创建窗口</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021">#![windows_subsystem = &quot;window&quot;]
@@ -205,7 +204,7 @@ fn main() {
         .with_title(&quot;标题&quot;)
         .build(&amp;event_loop).unwrap();
 
-    event_loop.run(move |event, target| match event {
+    event_loop.run(|event, target| match event {
         _ =&gt; (),
     }).unwrap();
 

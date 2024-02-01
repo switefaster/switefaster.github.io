@@ -199,8 +199,8 @@ resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
 # UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
 
 [dependencies]
-winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
-wgpu = &quot;0.18&quot;
+winit = &quot;0.29&quot;
+wgpu = &quot;0.19&quot;
 pollster = &quot;0.3&quot;
 </code></pre>
 <p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
@@ -228,7 +228,7 @@ fn main() {
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ...
-let surface = unsafe { instance.create_surface(&amp;window).unwrap() };
+let surface = instance.create_surface(&amp;window).unwrap();
 let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
         power_preference: wgpu::PowerPreference::HighPerformance,
         compatible_surface: Some(&amp;surface),
@@ -237,8 +237,7 @@ let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
     .block_on()
     .unwrap();
 <span class="boring">}</span></code></pre></pre>
-<p>等等等等，不妙啊，怎么会出现<code>unsafe</code>呢？大可放心，这个<code>unsafe</code>只是警告你要保证<code>Surface</code>存活期间<code>RawWindowHandle</code>是有效的。<code>winit</code>会帮我们保证这个，我们就甭管了:P。</p>
-<p>同时我们还接着获取了适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择独显还是集显，看你咯。</p>
+<p>我们接着获取适配器，<code>request_adapter</code>这个函数会让<code>Instance</code>帮你挑一个满足你要求的适配器。好像参数也没啥好解释的……<code>wgpu::PowerPreference</code>会决定WGPU倾向于选择独显还是集显，看你咯。</p>
 <p>当然，如果你想自己枚举适配器，也是可以的。方法大致如下：</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -257,8 +256,8 @@ let adapter = instance.request_adapter(&amp;wgpu::RequestAdapterOptions {
 </span>let (device, queue) = adapter.request_device(
         &amp;wgpu::DeviceDescriptor {
             label: None,                  // 如果你给他起个名字，调试的时候可能比较有用
-            features: adapter.features(), // 根据需要的特性自行调整
-            limits: adapter.limits(),     // 根据需要的限定自行调整
+            required_features: adapter.features(), // 根据需要的特性自行调整
+            required_limits: adapter.limits(),     // 根据需要的限定自行调整
         },
         None,
     )
@@ -280,16 +279,17 @@ let mut surface_config = wgpu::SurfaceConfiguration {
         present_mode: wgpu::PresentMode::AutoVsync,
         alpha_mode: wgpu::CompositeAlphaMode::Auto,
         view_formats: vec![],
+        desired_maximum_frame_latency: 2,
     };
 
 surface.configure(&amp;device, &amp;surface_config);
 <span class="boring">}</span></code></pre></pre>
 <p>我们先获取了我们的<code>Surface</code>的<code>SurfaceCapabilities</code>，其中包含了我们的设备和平面支持的像素格式、呈现模式和alpha值模式。
-我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他能用的像素格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。<code>view_formats</code>则规定了我们创建帧缓冲视图时可以使用哪些格式。是的，视图的格式可以和缓冲本身不同。但是我们通常只会用到格式相同的情况，而这种情况永远都是被支持的，所以我们留空就行了。</p>
+我们将<code>Surface</code>的帧缓冲配置为我们窗口的大小，并告诉他我们的帧缓冲可以用来当<code>RENDER_ATTACHMENT</code>，人话说就是可以当渲染目标的东西。然后给他挑了个他能用的像素格式。查询 <code>PresentMode</code> 的文档你会发现有多种模式，详情请参照文档。其中几种是 <strong>垂直同步</strong> 的，也就是说当窗口需要被显示时程序会等到该帧被完全显示，通常这取决于显示屏的刷新率，这会减少画面割裂的产生。而最后一种则是立即显示，这种情况下最能反应当前设备下能达到的最优帧率。虽然不一定好就是了。<code>view_formats</code>则规定了我们创建帧缓冲视图时可以使用哪些格式。而<code>desired_maximum_frame_latency</code>则会决定交换链将提前渲染多少帧的内容，我们这里设为<code>2</code>，那么交换链维护的样子就是我们上章所示了。是的，视图的格式可以和缓冲本身不同。但是我们通常只会用到格式相同的情况，而这种情况永远都是被支持的，所以我们留空就行了。</p>
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, target| {
+</span>event_loop.run(|event, target| {
     target.set_control_flow(ControlFlow::Wait);
 
     match event {
