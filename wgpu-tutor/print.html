@@ -1,19 +1,18 @@
 <!DOCTYPE HTML>
-<html lang="zh-Hans" class="sidebar-visible no-js ayu">
+<html lang="zh-Hans" class="ayu" dir="">
 
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>某不正经的WGPU教程</title>
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex">
 
 
     <!-- Custom HTML head -->
     
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="icon" href="favicon.svg">
     <link rel="shortcut icon" href="favicon.png">
@@ -36,126 +35,159 @@
 
 </head>
 
-<body>
-    <!-- Provide site root to javascript -->
-    <script type="text/javascript">
-        var path_to_root = "";
-        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
-    </script>
+<body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
 
-    <!-- Work around some values being stored in localStorage wrapped in quotes -->
-    <script type="text/javascript">
-        try {
-            var theme = localStorage.getItem('mdbook-theme');
-            var sidebar = localStorage.getItem('mdbook-sidebar');
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
-            if (theme.startsWith('"') && theme.endsWith('"')) {
-                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
 
-            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="wgpu/beginner/pixel.html"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
             }
-        } catch (e) { }
-    </script>
+        </script>
 
-    <!-- Set the theme before any content is loaded, prevents flash -->
-    <script type="text/javascript">
-        var theme;
-        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
-        if (theme === null || theme === undefined) { theme = default_theme; }
-        var html = document.querySelector('html');
-        html.classList.remove('no-js')
-        html.classList.remove('ayu')
-        html.classList.add(theme);
-        html.classList.add('js');
-    </script>
+        <div id="page-wrapper" class="page-wrapper">
 
-    <!-- Hide / unhide sidebar before it is displayed -->
-    <script type="text/javascript">
-        var html = document.querySelector('html');
-        var sidebar = 'hidden';
-        if (document.body.clientWidth >= 1080) {
-            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
-            sidebar = sidebar || 'visible';
-        }
-        html.classList.remove('sidebar-visible');
-        html.classList.add("sidebar-" + sidebar);
-    </script>
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor"
+                            title="Toggle Table of Contents" aria-label="Toggle Table of Contents"
+                            aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                            aria-label="Change theme" aria-haspopup="true" aria-expanded="false"
+                            aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-        <div class="sidebar-scrollbox">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="wgpu/beginner/pixel.html"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
-        </div>
-        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
-    </nav>
+                    <h1 class="menu-title">某不正经的WGPU教程</h1>
 
-    <div id="page-wrapper" class="page-wrapper">
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
 
-        <div class="page">
-                        <div id="menu-bar-hover-placeholder"></div>
-            <div id="menu-bar" class="menu-bar sticky bordered">
-                <div class="left-buttons">
-                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
-                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
-                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                        <i class="fa fa-paint-brush"></i>
-                    </button>
-                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
-                        </li>
-                    </ul>
-                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
-                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
-                        aria-controls="searchbar">
-                        <i class="fa fa-search"></i>
-                    </button>
+                    </div>
                 </div>
 
-                <h1 class="menu-title">某不正经的WGPU教程</h1>
-
-                <div class="right-buttons">
-                    <a href="print.html" title="Print this book" aria-label="Print this book">
-                        <i id="print-button" class="fa fa-print"></i>
-                    </a>
-                    <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
-                        <i id="git-repository-button" class="fa fa-github"></i>
-                    </a>
-
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div id="search-wrapper" class="hidden">
-                <form id="searchbar-outer" class="searchbar-outer">
-                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                </form>
-                <div id="searchresults-outer" class="searchresults-outer hidden">
-                    <div id="searchresults-header" class="searchresults-header"></div>
-                    <ul id="searchresults">
-                    </ul>
-                </div>
-            </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-            <script type="text/javascript">
-                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
-                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                });
-            </script>
-
-            <div id="content" class="content">
-                <main>
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="说在前面"><a class="header" href="#说在前面">说在前面</a></h1>
 <h2 id="这是什么"><a class="header" href="#这是什么">这是什么？</a></h2>
 <p>这是一本WGPU教程（理论上），面向图形学初学者和闲的没事的酱油党。但是由于一时兴起，作者决定后续再写游戏开发的教程。目前该书正在施工中。</p>
@@ -180,70 +212,73 @@
 <pre><code class="language-toml"># Cargo.toml
 # ...
 [dependencies]
-winit = &quot;0.28&quot;
+winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
+# wgpu 0.18 的 RawWindowHandle 版本是 0.5。如果有编译失败，可以试试 cargo update 然后再试试
 </code></pre>
 <p>然后创建窗口</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021">#![windows_subsystem = &quot;window&quot;]
 
 fn main() {
-    let event_loop = winit::event_loop::EventLoop::new();
-    let _window = winit::window::WindowBuilder::new()
+    let event_loop = winit::event_loop::EventLoop::new().unwrap();
+    let window = winit::window::WindowBuilder::new()
         .with_title(&quot;标题&quot;)
-        .build(&amp;event_loop)
-        .unwrap();
-    event_loop.run(move |_event, _, _control_flow| {
-        todo!()
-    });
+        .build(&amp;event_loop).unwrap();
+
+    event_loop.run(move |event, target| match event {
+        _ =&gt; (),
+    }).unwrap();
+
+    Ok(())
 }</code></pre></pre>
 <p>完事，走人。</p>
 <p>没错，只有短短三行，我们就完成了窗口初始化，念及此我不禁感叹winit的伟大。</p>
 <p>还是要解释一下上面的代码的，winit中的类型<code>winit::event_loop::EventLoop</code>是winit中用来传递窗口事件的类型，本身除了<code>EventLoop::run</code>以外没有什么特别值得关注的函数。值得注意的是<code>EventLoop</code>可以传入用户自定义的事件，详情请阅读<a href="https://docs.rs/winit/latest/winit/event_loop/struct.EventLoop.html">EventLoop的文档</a>。</p>
 <p><code>winit::window::Window</code>便是窗口的主体了，主要负责保管窗口句柄，窗口大小，光标位置等的数据，具体可以设置以及获取的数据请参见<a href="https://docs.rs/winit/latest/winit/window/struct.Window.html">Window的文档</a>和<a href="https://docs.rs/winit/latest/winit/window/struct.WindowBuilder.html">WindowBuilder的文档</a>。值得一提的是<code>Window</code>实现了<code>HasRawWindowHandle</code>，所以可以直接将<code>&amp;Window</code>作为各类图形库的窗口句柄输入。</p>
-<p><code>EventLoop::run</code>接受<code>F: 'static + FnMut(Event&lt;'_, T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;, &amp;mut ControlFlow)</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是可以<code>Deref</code>出<code>&amp;EventLoop</code>的一个包装，主要方便用户在事件处理过程中创建新的窗口，而第三个参数负责控制窗口状态，用法例如<code>*control_flow = ControlFlow::Exit</code>。在一次回调结束后，winit会根据ControlFlow的值改变窗口的状态，比如关闭窗口等。<mask>一切都是borrow checker的选择</mask></p>
+<p><code>EventLoop::run</code>接受<code>F: FnMut(Event&lt;T&gt;, &amp;EventLoopWindowTarget&lt;T&gt;),</code>作为回调函数。第一个参数显然是窗口发送的事件，第二个参数是允许控制窗口状态和进行窗口操作的对象。在其中，你可以关闭窗口，设置窗口的等待状态，甚至创建新的窗口。我们暂时没有使用它，但是在下一章中我们会用它对一些窗口事件做出响应。</p>
 <blockquote>
 <p><strong>提示：</strong> 开头的<code>#![windows_subsystem = &quot;window&quot;]</code>标签将会在Windows平台编译时将入口点改为<code>WINMAIN</code>，因而使得程序启动时不会弹出一个CMD。不需要的读者可以自行删去这一行。其他平台不会受到该标签的影响。</p>
 </blockquote>
 <p>下一节，我们将会介绍如何处理窗口发送的事件，并且确定程序循环的主体。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="事件发生"><a class="header" href="#事件发生">事件发生！</a></h1>
-<p>在上一节中，我们初始化了一个窗口。如果有读者将<code>todo!()</code>删去并运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
+<p>在上一节中，我们初始化了一个窗口。如果有读者运行了上节的例程，就会发现运行后弹出了一个空白的窗口，但是不会对你的操作做出任何响应（除了移动和缩放），甚至点右上角的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>都没用。这是因为我们没有处理winit发来的事件，所有响应都是空的，这一节，我们将会学习处理一些基本的事件。</p>
 <p>我们先来看一个例子</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, _, control_flow| match event {
+</span>event_loop.run(move |event, target| match event {
         Event::DeviceEvent { event, .. } =&gt; {
             unimplemented!()
-        }
+        },
         Event::WindowEvent {
             event,
             window_id,
         } if window_id == window.id() =&gt;
             match event {
-                WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
+                WindowEvent::CloseRequested =&gt; target.exit(),
                 WindowEvent::Resized(physical_size) =&gt; {
                     resize(physical_size);
                 }
-                WindowEvent::ScaleFactorChanged { new_inner_size, .. } =&gt; {
-                    resize(*new_inner_size);
+                WindowEvent::RedrawRequested(_) =&gt; {
+                    render();
                 }
                 _ =&gt; {}
-            }
-        Event::RedrawRequested(_) =&gt; {
-            render();
-        }
-        Event::MainEventsCleared =&gt; {
+            },
+        Event::AboutToWait =&gt; {
             window.request_redraw();
-        }
+        },
         _ =&gt; {}
-    });
+    }).unwrap();
 <span class="boring">}</span></code></pre></pre>
 <p>这是一个渲染程序最基础的循环，现在我们来逐个分析这个回调中干了什么</p>
 <p>首先，我们用<code>match event {...}</code>来匹配事件，其中处理了四种事件：</p>
 <ul>
 <li><code>Event::DeviceEvent</code> 是 <code>Event</code> 的子事件，负责传递设备相关的信息，例如 <strong>鼠标移动</strong> <strong>鼠标点击</strong> <strong>键盘按键</strong> 等</li>
-<li><code>Event::WindowEvent</code> 是 <code>Event</code> 的子事件，负责传递窗口相关的信息，例如 <strong>窗口缩放</strong> <strong>窗口移动</strong> 等等，我们顺便在这把对窗口的关闭请求处理了（注意<code>control_flow</code>的用法），<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>终于有了用武之地</li>
-<li><code>Event::RedrawRequested</code> 事件会在窗口被要求重新绘制窗口内容时被调用，这也将会是渲染部分被调用的位置</li>
-<li><code>Event::MainEventsCleared</code> 事件会在事件队列中的事件清空时被调用，我们在此进行一次重绘要求，这样程序就会尽可能快地进行渲染</li>
+<li><code>Event::WindowEvent</code> 是 <code>Event</code> 的子事件，负责传递窗口相关的信息，例如 <strong>窗口缩放</strong> <strong>窗口移动</strong> 等等，我们顺便在这把对窗口的关闭请求处理了，<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>终于有了用武之地
+<ul>
+<li><code>WindowEvent::RedrawRequested</code> 事件会在窗口被要求重新绘制窗口内容时被调用，这也将会是渲染部分被调用的位置</li>
+</ul>
+</li>
+<li><code>Event::AboutToWait</code> 事件会在事件队列中的事件清空时被调用，我们在此进行一次重绘要求，这样程序就会尽可能快地进行渲染</li>
 <li>剩下的事件暂时管不着，我们直接<code>_</code></li>
 </ul>
 <blockquote>
@@ -505,8 +540,8 @@ resolver = &quot;2&quot; #!IMPORTANT 这对 wgpu &gt;= 0.10 是必要的
 # UPDATE: 从rust edition 2021开始 resolver = 2 是缺省的
 
 [dependencies]
-winit = &quot;0.28&quot;
-wgpu = &quot;0.16&quot;
+winit = { version = &quot;0.29&quot;, features = [&quot;rwh_05&quot;], default-features = false }
+wgpu = &quot;0.18&quot;
 pollster = &quot;0.3&quot;
 </code></pre>
 <p>可以看到，除了<code>winit</code>外，我们迎来了两位新朋友。第一位当然是我们的主角<code>wgpu</code>，而出于对 <strong>WebGPU</strong> 规范的遵从，<code>wgpu</code>包含了少量异步(<code>async</code>)函数。当然我们希望我们能将这些异步函数像同步函数一样处理(当然这会不可避免地造成阻塞，有异步需求的同学请自行摸索)，因而我们需要有一个<code>Executor</code>实现来阻塞地运行某个<code>Future</code>，出于方便，我们选择了<code>pollster</code>，其提供了一个简单的<code>pollster::block_on</code>函数。</p>
@@ -516,20 +551,21 @@ pollster = &quot;0.3&quot;
 <pre><pre class="playground"><code class="language-rust no_run edition2021">use pollster::FutureExt; // 有了这个我们就可以对任意Future使用block_on()了
 
 fn main() {
-    let event_loop = winit::event_loop::EventLoop::new();
+    let event_loop = winit::event_loop::EventLoop::new()?;
     let window = winit::window::WindowBuilder::new()
         .with_title(&quot;Test Window&quot;)
-        .build(&amp;event_loop)
-        .unwrap();
+        .build(&amp;event_loop)?;
 
     let instance = wgpu::Instance::new(wgpu::InstanceDescriptor {
         backends: wgpu::Backends::PRIMARY,
         dx12_shader_compiler: wgpu::Dx12Compiler::Fxc,
-    }); // 如果要在WSL里面使用，建议使用GL
+        flags: wgpu::InstanceFlags::default(),
+        gles_minor_version: wgpu::Gles3MinorVersion::Automatic,
+    });
 
     // ...
 }</code></pre></pre>
-<p><code>wgpu::InstanceDescriptor</code>描述了我们需要创建的实例的基本信息。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。<code>dx12_shader_compiler</code>则指定由<code>DirectX</code>使用的着色器语言<code>HLSL</code>的编译器。我们通篇都会使用<code>WGSL</code>，也不需要特殊的<code>HLSL</code>配置，便可以选择自带的<code>Fxc</code>。接下来，我们有了实例，该获取<code>Surface</code>了</p>
+<p><code>wgpu::InstanceDescriptor</code>描述了我们需要创建的实例的基本信息。<code>wgpu::Backends</code>是一个<code>BitSet</code>，每个不同的位表示了尝试使用这个后端(<em>1</em>)与否(<em>0</em>)。当然，如果你全选了WGPU通常会根据你的系统自动帮你挑一个，有需要的就自己指定吧。剩下的字段请读者自行翻看文档，我们不是很关心，所以都使用默认值即可。接下来，我们有了实例，该获取<code>Surface</code>了</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// ...
@@ -594,8 +630,8 @@ surface.configure(&amp;device, &amp;surface_config);
 <p>这下真万事俱备了，但是我们还需要对我们的循环做一点小调整。</p>
 <pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>event_loop.run(move |event, _, control_flow| {
-    *control_flow = ControlFlow::Wait;
+</span>event_loop.run(move |event, target| {
+    target.set_control_flow(ControlFlow::Wait);
 
     match event {
         winit::event::Event::WindowEvent { event, window_id } if window.id() == window_id =&gt; {
@@ -605,31 +641,21 @@ surface.configure(&amp;device, &amp;surface_config);
                         surface_config.width = new_size.width;
                         surface_config.height = new_size.height;
                         surface.configure(&amp;device, &amp;surface_config);
-                    }
+                        }
                 }
-                winit::event::WindowEvent::CloseRequested =&gt; *control_flow = ControlFlow::Exit,
-                winit::event::WindowEvent::ScaleFactorChanged {
-                    new_inner_size: new_size,
-                    ..
-                } =&gt; {
-                    if new_size.width &gt; 0 &amp;&amp; new_size.height &gt; 0 {
-                        surface_config.width = new_size.width;
-                        surface_config.height = new_size.height;
-                        surface.configure(&amp;device, &amp;surface_config);
-                    }
+                winit::event::WindowEvent::CloseRequested =&gt; target.exit(),
+                winit::event::WindowEvent::RedrawRequested =&gt; {
+                    // 在这渲染
                 }
                 _ =&gt; (),
             }
         }
-        winit::event::Event::MainEventsCleared =&gt; {
+        winit::event::Event::AboutToWait =&gt; {
             window.request_redraw();
-        }
-        winit::event::Event::RedrawRequested(_) =&gt; {
-            // 在这渲染  
         }
         _ =&gt; (),
     }
-});
+}).unwrap();
 <span class="boring">}</span></code></pre></pre>
 <p>上面的代码，说人话，就是在窗口大小变化的时候重新配置一下咱们的<code>Surface</code>。熟悉了渲染流程的读者可能已经猜到，如果不这么做，很有可能导致巨大的窗口上只寥寥显示了几个巨大的像素的惨剧……</p>
 <h2 id="万事俱备终于"><a class="header" href="#万事俱备终于">万事俱备，终于……</a></h2>
@@ -647,23 +673,26 @@ surface.configure(&amp;device, &amp;surface_config);
 let view = output
     .texture
     .create_view(&amp;wgpu::TextureViewDescriptor::default());
-let mut encoder =
-    device.create_command_encoder(&amp;wgpu::CommandEncoderDescriptor::default());
+let mut encoder = device
+    .create_command_encoder(&amp;wgpu::CommandEncoderDescriptor::default());
 {
-    // 注意这个 '{'
-    let _render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
-        label: None,
-        color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
-            view: &amp;view,
-            resolve_target: None,
-            ops: wgpu::Operations {
-                load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
-                store: true,
-            },
-        })],
-        depth_stencil_attachment: None,
-    });
-}
+                            // 注意这个 '{'
+    let _render_pass =
+            encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor {
+            label: None,
+            color_attachments: &amp;[Some(wgpu::RenderPassColorAttachment {
+                view: &amp;view,
+                resolve_target: None,
+                ops: wgpu::Operations {
+                    load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
+                    store: wgpu::StoreOp::Store,
+                },
+            })],
+            depth_stencil_attachment: None,
+            timestamp_writes: None,
+            occlusion_query_set: None,
+        });
+    }
 queue.submit(std::iter::once(encoder.finish()));
 output.present();
 <span class="boring">}</span></code></pre></pre>
@@ -940,10 +969,12 @@ let mut render_pass = encoder.begin_render_pass(&amp;wgpu::RenderPassDescriptor 
         resolve_target: None,
         ops: wgpu::Operations {
             load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
-            store: true,
+            store: wgpu::StoreOp::Store,
         },
     })],
     depth_stencil_attachment: None,
+    timestamp_writes: None,
+    occlusion_query_set: None,
 });
 
 render_pass.set_pipeline(&amp;pipeline);
@@ -997,12 +1028,16 @@ fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
 <p>归一设备坐标（NDC）是一个三维坐标系<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>。其Z轴仅在3D渲染时有意义，故我们暂时忽略Z轴。NDC的坐标会被线性映射到视口坐标中。换句话说，<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>会对应到视口的左上角，而相应的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>会对应到视口的右下角。我们在上一节的顶点的坐标事实上就是NDC里面的坐标。然而请注意，顶点着色器输出的坐标通常 <strong>不是</strong> NDC，我们将会在3D渲染中更详细地讨论这一事实。</p>
 <h2 id="顶点着色器和他的坐标朋友们"><a class="header" href="#顶点着色器和他的坐标朋友们">顶点着色器和他的坐标朋友们</a></h2>
 <p>虽然在二维渲染中我们并不需要处理太多坐标系相关的内容，但是我们已经有了展示顶点着色器作用的绝佳例子了！在通常的二维渲染中，我们需要以像素为单位描述位置，然而这在NDC中是不好做到的。抛开其他的不谈，如果我们采用一个固定的坐标，就会导致我们的图形随着窗口缩放而拉伸。如果我们想要一个固定的大小，就需要我们反复地计算像素宽度对应的NDC宽度。想象一下如果我们有成千上万个（其实通常可以比这更多）图形需要渲染，那我们就需要每一帧计算成千上万的坐标然后将其重新上传至GPU，低效不堪。然而稍微一想，我们就会发现端倪：渲染过程的最后无非是GPU统一把NDC坐标线性变换到视口（在我们的情况下是窗口）中，那我们先让GPU统一进行其逆变换不就可以了吗？顶点着色器就担任了这个对一些顶点统一进行变换的作用。听上去要算的东西还是差不多的，为什么我们更喜欢这样做呢？一是因为这样可以大幅减少CPU和GPU之间相对比较慢的数据交换，因为我们的顶点数据和变换用的数据都可以存在GPU中；二是因为GPU的硬件是对矩阵乘法特化的（不知道为什么和矩阵乘法扯上关系？下一个大章节你就知道了）。这个说法有个地方听上去有些弱智：既然我们本来就想直接输出到窗口坐标，为什么还要有一个NDC呢？在二维渲染的语境下，我没有想到什么为其开脱的理由。但是在三维渲染中，我们将会轻易注意到其重要地位。</p>
+<blockquote>
+<p>因为我不想翻转坐标，所以下面像素坐标都是以屏幕左下角为原点，向上为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span>，向右为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
 <p>我们还是先实现再说吧！先考虑我们需要什么样一个矩阵进行变换。假设我们窗口的宽度是<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span>，高度是<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>（像素），而一个像素的坐标是<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>。这个像素最终应该到达的NDC中的位置记为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>，则有：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9934em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9584em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>是一个缩放加上平移。但平移并不是一个线性变换，这怎么办呢？</p>
 <blockquote>
 <p>下面是给有线代基础同学的数学内容，不感兴趣可以选择<a href="wgpu/beginner/pixel.html#%E4%B8%8B%E8%AF%BE">跳过</a></p>
 </blockquote>
+<hr />
 <h3 id="理塘dj的完美数学教室"><a class="header" href="#理塘dj的完美数学教室">理塘DJ的完美数学教室</a></h3>
 <p>在数学中，线性变换配上平移组成的变换被称为 <strong>仿射变换(<em>Affine Transformation</em>)</strong>，而仿射变换也是可以用矩阵表示的！一般地说，如果我们想表示一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>上的平移<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord mathbf">p</span></span></span></span>，那么我们使用一个<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>维向量表示<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em;"></span><span class="mord mathbf">x</span></span></span></span></p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:6.66em;vertical-align:-3.08em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.55em;"><span style="top:-5.55em;"><span class="pstrut" style="height:8.6em;"></span><span style="width:0.667em;height:6.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='6.600em' viewBox='0 0 667 6600'><path d='M403 1759 V84 H666 V0 H319 V1759 v3000 v1759 h347 v-84 H403z M403 1759 V0 H319 V1759 v3000 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.05em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.58em;"><span style="top:-6.4275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-5.2275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.3675em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span><span style="top:-2.1675em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-0.9675em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.08em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.55em;"><span style="top:-5.55em;"><span class="pstrut" style="height:8.6em;"></span><span style="width:0.667em;height:6.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='6.600em' viewBox='0 0 667 6600'><path d='M347 1759 V0 H0 V84 H263 V1759 v3000 v1759 H0 v84 H347z M347 1759 V0 H263 V1759 v3000 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.05em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
@@ -1021,12 +1056,14 @@ fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
 <p>但是因为我们需要给三维处理留下一点空间，我们填上<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span>的单位映射得到</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.8102em;vertical-align:-2.1551em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M403 1759 V84 H666 V0 H319 V1759 v1200 v1759 h347 v-84 H403z M403 1759 V0 H319 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M347 1759 V0 H0 V84 H263 V1759 v1200 v1759 H0 v84 H347z M347 1759 V0 H263 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>这便是我们最终需要使用的矩阵了！</p>
+<hr />
 <h3 id="下课"><a class="header" href="#下课">下课</a></h3>
 <p>给跳过的同学贴上省流版本：我们只需要将这个矩阵</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.8102em;vertical-align:-2.1551em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M403 1759 V84 H666 V0 H319 V1759 v1200 v1759 h347 v-84 H403z M403 1759 V0 H319 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6551em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-3.6049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-2.4049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.2049em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1551em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M347 1759 V0 H0 V84 H263 V1759 v1200 v1759 H0 v84 H347z M347 1759 V0 H263 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>乘到</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.8em;vertical-align:-2.15em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M403 1759 V84 H666 V0 H319 V1759 v1200 v1759 h347 v-84 H403z M403 1759 V0 H319 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.667em' height='4.800em' viewBox='0 0 667 4800'><path d='M347 1759 V0 H0 V84 H263 V1759 v1200 v1759 H0 v84 H347z M347 1759 V0 H263 V1759 v1200 v1759 h84z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>上，就能在前两个分量中得到我们想要的结果。其中<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>的值随意，但是由于NDC的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span>取值范围不能超过<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>，这里的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>也不可以超过<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span>。</p>
+<h2 id="实操时间"><a class="header" href="#实操时间">实操时间</a></h2>
 <p>为了方便在程序中操作矩阵，我们引入一个新的依赖</p>
 <pre><code class="language-toml"># Cargo.toml
 
@@ -1034,76 +1071,166 @@ fn fs_main(pin: VertexOut) -&gt; @location(0) vec4&lt;f32&gt; {
 # ...
 cgmath = &quot;0.18&quot;
 </code></pre>
+<p>然后在初始化代码中的某一段生成矩阵并把它写入缓冲</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/*
+let vertices_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescriptor {
+    label: None,
+    contents: bytemuck::cast_slice(&amp;triangle),
+    usage: wgpu::BufferUsages::VERTEX,
+});
+*/
 
-                </main>
+let window_dimension = window.inner_size();
 
-                <nav class="nav-wrapper" aria-label="Page navigation">
-                    <!-- Mobile navigation buttons -->
+let pixel_matrix = cgmath::Matrix4::new(
+    2.0 as f32 / window_dimension.width as f32,
+    0.,
+    0.,
+    0.,
+    0.,
+    2.0 / window_dimension.height as f32,
+    0.,
+    0.,
+    0.,
+    0.,
+    1.,
+    0.,
+    -1.,
+    -1.,
+    0.,
+    1.,
+);
+
+// 虽然我们最终还是把矩阵转成了二维数组，但是反正我们迟早需要在CPU里面计算矩阵乘法，不如早点引入cgmath
+let projection_buffer = device.create_buffer_init(&amp;wgpu::util::BufferInitDescriptor {
+    label: None,
+    contents: bytemuck::cast_slice(&amp;&lt;cgmath::Matrix4&lt;f32&gt; as Into&lt;[[f32; 4]; 4]&gt;&gt;::into(
+        pixel_matrix,
+    )),
+    usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
+});
+<span class="boring">}</span></code></pre></pre>
+<blockquote>
+<p><code>cgmath</code>的内部存储结构和输入时的顺序都是 <strong>列优先(<em>Column Major</em>)</strong> 的，和WGPU一致。换句话说，我们输入的数字四个四个分为一组分别为第一列到第四列。如果你把它每四个换一行看，那看到的就是我们需要的矩阵的转置。这个比较误导人，请务必注意！</p>
+</blockquote>
+<p>注意到我们的缓冲的用途是<code>wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST</code>。前者告诉WGPU我们的缓冲将会用于向着色器内传递至少在一次渲染调用内保持不变的数据，后者则允许我们在必要时更新缓存的内容：例如窗口大小变化时。</p>
+<p>接下来，我们需要想办法将数据传递进着色器中。还记得上一节基本留空的管线布局(<em>Pipeline Layout</em>)吗？我们提到过向着色器传入数据和它有关。准确的说，和其中的绑定组(<em>Bind Group</em>)有关。</p>
+<p>绑定组存在的目的是向着色器传递在一次或者一次以上绘制请求之间不变的数据（与顶点数据不同）。为了顺利传递一个绑定组，我们需要如下操作：</p>
+<ul>
+<li>初始化时
+<ul>
+<li>创建绑定组布局(<em>Bind Group Layout</em>)</li>
+<li>创建拥有绑定组布局引用的管线布局</li>
+<li>创建拥有对应绑定组布局的管线</li>
+<li>创建绑定组</li>
+</ul>
+</li>
+<li>渲染时
+<ul>
+<li>使用对应的管线</li>
+<li>将绑定组设置到对应槽位</li>
+<li>发起渲染请求</li>
+</ul>
+</li>
+</ul>
+<p>那么我们便开始吧。我们先创建好绑定组布局和绑定组</p>
+<pre><pre class="playground"><code class="language-rust no_run edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let matrix_bind_group_layout =
+    device.create_bind_group_layout(&amp;wgpu::BindGroupLayoutDescriptor {
+        label: None,
+        entries: &amp;[wgpu::BindGroupLayoutEntry {
+            binding: 0,
+            visibility: wgpu::ShaderStages::VERTEX,
+            ty: wgpu::BindingType::Buffer {
+                ty: wgpu::BufferBindingType::Uniform,
+                has_dynamic_offset: false,
+                min_binding_size: None,
+            },
+            count: None,
+        }],
+    });
+
+let matrix_bind_group = device.create_bind_group(&amp;wgpu::BindGroupDescriptor {
+    label: None,
+    layout: &amp;matrix_bind_group_layout,
+    entries: &amp;[wgpu::BindGroupEntry {
+        binding: 0,
+        resource: projection_buffer.as_entire_binding(),
+    }],
+});
+<span class="boring">}</span></code></pre></pre>
+<p>如你所见，我们的绑定组布局和绑定组都拥有多个入口点(<em>entry</em>)，而且他们得是对应的。这就是说，一个绑定组可以同时传入多种不同的数据。因此，我们可以用绑定组将一些永远同时出现的数据放在一起传入（比如渲染一个物体时，我们可以将其姿态和材质放在同一个绑定组传入）。每个不管是绑定组布局还是绑定组， <em>entry</em> 都拥有一个<code>binding</code>字段，其指示着色器之后将索引该绑定组里面的数据，我们之后将会看到这一点。</p>
 
 
-                    <div style="clear: both"></div>
+                        <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
+                            data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
+                            data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
+                            data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
+                            data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+                            </script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+
+                <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
                 </nav>
 
-                <main>
-                    <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
-                        data-repo-id="MDEwOlJlcG9zaXRvcnkzOTI3MTk0MzM=" data-category="General"
-                        data-category-id="DIC_kwDOF2hsSc4CPOqW" data-mapping="pathname" data-reactions-enabled="1"
-                        data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast"
-                        data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
-                        </script>
-                </main>
             </div>
-        </div>
-
-        <nav class="nav-wide-wrapper" aria-label="Page navigation">
-
-        </nav>
-
-    </div>
 
 
 
 
-    <script type="text/javascript">
-        window.playground_copyable = true;
-    </script>
+            <script>
+                window.playground_copyable = true;
+            </script>
 
 
-    <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+            <script src="elasticlunr.min.js"></script>
+            <script src="mark.min.js"></script>
+            <script src="searcher.js"></script>
 
-    <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-    <script src="book.js" type="text/javascript" charset="utf-8"></script>
+            <script src="clipboard.min.js"></script>
+            <script src="highlight.js"></script>
+            <script src="book.js"></script>
 
-    <!-- Custom JS scripts -->
+            <!-- Custom JS scripts -->
 
-    <!-- Have to do this as mermaid relies on ESM now -->
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/+esm'
+            <!-- Have to do this as mermaid relies on ESM now -->
+            <script type="module">
+                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/+esm'
 
-        function patchMermaidCodeElementClass() {
-            var elements = document.getElementsByClassName("language-mermaid");
-            Array.from(elements).forEach(element => {
-                if (element.tagName.toLowerCase() == "code") {
-                    element.className = "mermaid";
+                function patchMermaidCodeElementClass() {
+                    var elements = document.getElementsByClassName("language-mermaid");
+                    Array.from(elements).forEach(element => {
+                        if (element.tagName.toLowerCase() == "code") {
+                            element.className = "mermaid";
+                        }
+                    });
+
                 }
-            });
 
-        }
+                patchMermaidCodeElementClass();
 
-        patchMermaidCodeElementClass();
+                mermaid.initialize({ startOnLoad: true })
+            </script>
 
-        mermaid.initialize({ startOnLoad: true })
-    </script>
+            <script>
+                window.addEventListener('load', function () {
+                    window.setTimeout(window.print, 100);
+                });
+            </script>
 
-    <script type="text/javascript">
-        window.addEventListener('load', function () {
-            window.setTimeout(window.print, 100);
-        });
-    </script>
-
+        </div>
 </body>
 
 </html>
