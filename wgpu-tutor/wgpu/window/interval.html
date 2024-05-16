@@ -186,7 +186,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="太快了"><a class="header" href="#太快了">太快了！</a></h1>
 <p>控制恒定的更新速度是游戏中常见的需求，这一节我们将介绍一种简单的控制更新频率的方法。</p>
 <p>玩过 <strong>Minecraft™</strong> 吗？Minecraft中的游戏逻辑循环是以20次/秒的频率进行的，称为 20 <strong>tps(<em>ticks per second</em>)</strong>，而渲染循环却以不同的频率（常见的为60个画面（称为 <strong>帧</strong>）每秒，称为60 <strong>fps(<em>frames per second</em>)</strong>）刷新。较低的逻辑更新频率可以减少计算的负担，而更高的渲染频率则可以使游戏显得更加流畅。如果更新的速度不均匀，则可能使游戏显示的画面有违和的跳动。那么，我们应该如何控制更新的频率呢？</p>
