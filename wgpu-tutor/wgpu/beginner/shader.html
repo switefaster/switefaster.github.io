@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>引言 - 某不正经的WGPU教程</title>
+    <title>我变色了——着色器初步 - 某不正经的WGPU教程</title>
 
 
     <!-- Custom HTML head -->
@@ -13,24 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="icon" href="../favicon.svg">
-    <link rel="shortcut icon" href="../favicon.png">
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/chrome.css">
-    <link rel="stylesheet" href="../css/print.css" media="print">
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="../highlight.css">
-    <link rel="stylesheet" href="../tomorrow-night.css">
-    <link rel="stylesheet" href="../ayu-highlight.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
-    <link rel="stylesheet" href="../extra-style.css">
+    <link rel="stylesheet" href="../../extra-style.css">
 
 </head>
 
@@ -38,7 +38,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "../";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
         </script>
 
@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="../wgpu/index.html" class="active"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="../wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="../wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="../wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="../wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="../wgpu/beginner/pixel.html"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><a href="../wgpu/beginner/shader.html"><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">说在前面</a></li><li class="chapter-item expanded affix "><li class="part-title">WGPU入门</li><li class="chapter-item expanded "><a href="../../wgpu/index.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/index.html"><strong aria-hidden="true">2.</strong> 程序，窗口，主循环</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/window.html"><strong aria-hidden="true">2.1.</strong> 打开窗口</a></li><li class="chapter-item expanded "><a href="../../wgpu/window/event.html"><strong aria-hidden="true">2.2.</strong> 事件发生！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/window/interval.html"><strong aria-hidden="true">2.2.1.</strong> 太快了！</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/infra/index.html"><strong aria-hidden="true">3.</strong> 设备，队列，交换链？</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/infra/graphics.html"><strong aria-hidden="true">3.1.</strong> 图形学，从入门到入土</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/wgpu.html"><strong aria-hidden="true">3.2.</strong> 认识WGPU</a></li><li class="chapter-item expanded "><a href="../../wgpu/infra/init.html"><strong aria-hidden="true">3.3.</strong> 一切的起点——初始化</a></li></ol></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/index.html"><strong aria-hidden="true">4.</strong> 顶点，像素，着色器！</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../wgpu/beginner/triangle.html"><strong aria-hidden="true">4.1.</strong> 七巧板？——图形与三角</a></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/pixel.html"><strong aria-hidden="true">4.2.</strong> 一闪一闪亮晶晶——像素与窗口</a></li><li class="chapter-item expanded "><a href="../../wgpu/beginner/shader.html" class="active"><strong aria-hidden="true">4.3.</strong> 我变色了——着色器初步</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> 来点色图——材质与采样</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 矩阵，空间，坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 多此一轴——三维渲染</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 调节姿态——模型坐标系</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> 开眼看世界——视角矩阵与摄像机</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.1.</strong> 眼睛别往别处看！——广告板</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> 近大远小？相似三角？——投影</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 深♂度缓冲</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 光与暗</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> 神说，要有光——光照初步</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> 化直为曲——法线贴图</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> 如影随形——阴影初步</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> 文字渲染</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.2.</strong> 常用词汇对照表</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">游戏开发入门</li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 从WGPU到游戏开发</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -153,7 +153,7 @@
                     <h1 class="menu-title">某不正经的WGPU教程</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/switefaster/wgpu-tutor" title="Git repository" aria-label="Git repository">
@@ -187,14 +187,8 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<h1 id="引言"><a class="header" href="#引言">引言</a></h1>
-<p><strong>阅读本文需要<a href="https://www.rust-lang.org">Rust</a>基础，以及一小部分<a href="https://rust-lang.github.io/async-book/">Rust Async</a>的知识，未满足要求者请阅读<a href="https://doc.rust-lang.org/book/">Rust Book</a></strong></p>
-<blockquote>
-<p><strong>警告：</strong> 切忌将本教程当作一本正经的教程，否则后果自负。文中笔者可能会使用模糊不清甚至粗俗的语言，若有不适，请适度阅读。</p>
-</blockquote>
-<p>以上的话请务必不要当真。实话实说，Rust中称得上尽人意的<strong>安全</strong>图形库确实不多，其中的先锋gfx早已停止维护，转而进行<a href="https://github.com/gfx-rs/gfx">gfx-hal</a>的开发<mask>然而后者现在也进入维护模式了，因为WGPU</mask>，vulkano的语法(主要是那些宏)及线程安全多少有些麻烦<mask>蛋疼</mask>，WGPU 称得上是为数不多安全，甚至线程安全，而又简便易用的图形库了。<small>你问我glium？<mask><del>GL，狗都不用</del></mask></small></p>
-<p>WGPU 可能不是这些库中性能最高的，却绝对称得上是最易用的，也是笔者(下文中统称&quot;我&quot;)最喜欢的图形库。</p>
-<p>在这篇教程中，我会尽量用通俗易懂的语言向读者(下文中或许会简称&quot;你&quot;)介绍WGPU的基本使用。鉴于图形库的性质，我会相对详细地介绍其中涉及的数学知识以及图形库工作的方式，并且会提及到其他图形库中的写法。图形学初学者和其他图形库用户过来打酱油都可以放心食用。</p>
+<h1 id="我变色了着色器初步"><a class="header" href="#我变色了着色器初步">我变色了——着色器初步</a></h1>
+<p>从这一章伊始，我们便多次接触到 <strong>着色器(<em>Shader</em>)</strong> 这个概念。然而，我们一直没能揭开其神秘的面纱。在本节中，我们将具体介绍着色器在WGPU中的应用。</p>
 
 
                         <script src="https://giscus.app/client.js" data-repo="switefaster/wgpu-tutor"
@@ -207,30 +201,22 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        <a rel="prev" href="../index.html" class="mobile-nav-chapters previous"
+                        <a rel="prev" href="../../wgpu/beginner/pixel.html" class="mobile-nav-chapters previous"
                             title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                             <i class="fa fa-angle-left"></i>
                         </a>
 
-                        <a rel="next prefetch" href="../wgpu/window/index.html" class="mobile-nav-chapters next"
-                            title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
 
                         <div style="clear: both"></div>
                     </nav>
                 </div>
 
                 <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../index.html" class="nav-chapters previous"
+                    <a rel="prev" href="../../wgpu/beginner/pixel.html" class="nav-chapters previous"
                         title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../wgpu/window/index.html" class="nav-chapters next"
-                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 </nav>
 
             </div>
@@ -243,13 +229,13 @@
             </script>
 
 
-            <script src="../elasticlunr.min.js"></script>
-            <script src="../mark.min.js"></script>
-            <script src="../searcher.js"></script>
+            <script src="../../elasticlunr.min.js"></script>
+            <script src="../../mark.min.js"></script>
+            <script src="../../searcher.js"></script>
 
-            <script src="../clipboard.min.js"></script>
-            <script src="../highlight.js"></script>
-            <script src="../book.js"></script>
+            <script src="../../clipboard.min.js"></script>
+            <script src="../../highlight.js"></script>
+            <script src="../../book.js"></script>
 
             <!-- Custom JS scripts -->
 
