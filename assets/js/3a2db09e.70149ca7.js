@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([["3186"],{8070(s){s.exports=JSON.parse('{"tags":[{"label":"Physics","permalink":"/blog/tags/physics","description":"Physics related articles","count":3},{"label":"Mathematics","permalink":"/blog/tags/maths","description":"Mathematics related articles","count":1}]}')}}]);
